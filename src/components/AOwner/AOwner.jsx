@@ -30,12 +30,11 @@ export default function Owner() {
                         <tr>
                             <td></td>
                             <td> </td>
-                            <td> </td>
+                            <td></td>
                             <td></td>
                             <td> </td>
                             <td> </td>
-                            <td></td>
-                            
+                        <td></td>
                             
                             
                              <th>

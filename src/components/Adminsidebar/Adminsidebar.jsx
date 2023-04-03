@@ -49,7 +49,7 @@ export default function SideBarr() {
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                 aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fa fa-bolt"></i>
+                <i class="fa fa-search"></i>
                 <span> Inquiry</span>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -65,7 +65,7 @@ export default function SideBarr() {
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                 aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fa fa-bell"></i>
+                <i class="fa fa-bus" ></i>
                 <span>Busfare</span>
             </a>
         </li></Link>

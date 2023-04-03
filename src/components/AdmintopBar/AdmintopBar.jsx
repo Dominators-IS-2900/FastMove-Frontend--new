@@ -40,7 +40,7 @@ export default function AdminBar() {
                             <div class="status-indicator bg-success"></div>
                         </div>
                         <div class="font-weight-bold">
-                            <div class="text-truncate">$800 has been debited to your account</div>
+                            <div class="text-truncate">Rs.800 has been debited to your account</div>
                             <div class="small text-gray-500">· 58m</div>
                         </div>
                     </a>

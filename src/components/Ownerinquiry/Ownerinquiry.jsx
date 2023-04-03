@@ -27,8 +27,7 @@ export default function Ownerinquiry() {
                         <td></td>
                             <td></td>
                             <td> </td>
-                            <td> </td>
-                            
+                           
                              <th>
                       
                              <button type="button" class="btn btn-primary ml-1">Delete</button>
@@ -43,7 +42,7 @@ export default function Ownerinquiry() {
                         <td></td>
                             <td></td>
                             <td> </td>
-                            <td> </td>
+                          
                           
                           
                             <th>
@@ -57,7 +56,7 @@ export default function Ownerinquiry() {
                         <td></td>
                             <td></td>
                             <td> </td>
-                            <td> </td>
+                           
                            
 
 
@@ -73,7 +72,7 @@ export default function Ownerinquiry() {
                         <td></td>
                             <td></td>
                             <td> </td>
-                            <td> </td>
+                            
                             
 
 

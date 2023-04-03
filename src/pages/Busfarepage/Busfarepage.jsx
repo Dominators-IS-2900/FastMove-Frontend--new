@@ -15,8 +15,7 @@ export default function Busfarepage(props) {
             For more information about DataTables, please visit the <a target="_blank"
                 href="https://datatables.net">official DataTables documentation</a>.</p> */}
         <BusFare/>
-        <button type="button" class="btn btn-primary ml-1 mb-3">Cancel</button>
-        <button type="button" class="btn btn-primary ml-1 mb-3">Display</button>
+        
     </div>
     <Footer/>
 

@@ -1,7 +1,8 @@
 import React from 'react'
 
 export default function ActivityShedule() {
-  return (
+
+    return (
     <div class="card shadow mb-4">
         
         <div class="card-body">
@@ -74,8 +75,8 @@ export default function ActivityShedule() {
 
 
                             <th>
-                            <button type="button" class="btn btn-primary ml-1">Edit</button>
-                                <button type="button" class="btn btn-warning ml-1">Delete</button>    
+                            <button type="button" class="btn btn-primary ml-1" >Edit</button>
+                                <button type="button" class="btn btn-warning ml-1" >Delete</button>    
                                 
                             </th>   
                         </tr>
@@ -88,3 +89,4 @@ export default function ActivityShedule() {
     </div>
   )
 }
+
