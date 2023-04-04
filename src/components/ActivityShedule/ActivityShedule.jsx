@@ -17,11 +17,6 @@ export default function ActivityShedule() {
                             <th>Action</th>
                         </tr>
                     </thead>
-
-
-
-  
-                    
                     <tbody>
                         <tr>
                             <td></td>
