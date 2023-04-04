@@ -48,17 +48,14 @@ export default function conductorSchedule() {
                         </tr>
                         <tr>
 
-                            <td>1001</td>
+                            <td>1000</td>
                             <td>150</td>
                             <td>Ambalangoda to Galle</td>
                             <td>25</td>
                             <td>01/04/2023 </td>
                             <td>5.00pm-6.00pm </td>
                             
-                        </tr>
-
-                        
-                        
+                        </tr>            
                     </tbody>
                 </table>
             </div>

@@ -136,13 +136,6 @@ function Emergency() {
         <br/><br/><br/>
         <div class="col-6">
             <div class="input-group">
-                <span class="input-group-text">Bus Name:</span>
-                <input type="text" class="form-control"/>
-            </div>
-        </div>
-        <br/><br/><br/><br/>
-        <div class="col-6">
-            <div class="input-group">
                 <span class="input-group-text">Route No:</span>
                 <input type="number" 
                 class="form-control" 

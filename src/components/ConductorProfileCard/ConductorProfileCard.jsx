@@ -4,6 +4,7 @@ import "./ConductorProfilecard.css"
 export default function ConductorProfilecard() {
   return (
     <div className="tablestyle">
+
         {/* table crad*/}
     <div class="card shadow mb-4">
           <div class="card-header py-3">
@@ -16,8 +17,6 @@ export default function ConductorProfilecard() {
                 <div class="card-body">
                   <div class="table-responsive">
                       <table class="table table-bordered" id="dataTable" cellspacing="0">
-
-
                           <tbody>
                               <tr>
                                   <td>1</td>
