@@ -1,9 +1,9 @@
 import MainPage from "./pages/mainpage/MainPage";
-import BusReg from "./pages/busReg/BusReg";
-import ViewBusPage from "./pages/ViewBusPage";
+
+
 import { Route, Routes } from "react-router-dom"
 import HelpPage from "./pages/HelpPage";
-import BusRoute from "./pages/busReg/BusReg";
+
 import Homepage from "./pages/Homepage/Homepage";
 import DashBoard from "./pages/dashboard/DashBoard";
 import DashBoardPage from "./pages/dashboard";

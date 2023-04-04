@@ -15,7 +15,7 @@ function Adminlogin() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Your code for validating email and password goes here
+    //  code for validating email and password goes here
   };
 
   return (
