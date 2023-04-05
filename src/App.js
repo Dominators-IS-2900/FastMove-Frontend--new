@@ -24,13 +24,18 @@ import Activity from "./pages/Activity/Activity";
 import ActivityShe from "./pages/Activity";
 import ProfilePage from "./pages/ProfilePage";
 import ProfilePP from "./pages/ProfilePage";
-
 import Signin from "./pages/SigninCharPage";
 import Homepage from "./pages/Homepage/Homepage";
 import SigninCharPage from "./pages/SigninCharPage/SigninCharPage";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 function App() {
+  const{loginWithRedirect,
+        logout,
+        user,
+        isAuthenticated}
+        =useAuth0();
   return (
     <div className="App">
       <div >

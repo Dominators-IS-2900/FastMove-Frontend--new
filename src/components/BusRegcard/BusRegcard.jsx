@@ -40,25 +40,27 @@ const BusRegcard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { BusNo, BusType, NumOfSeats, LisenceRenewDate } = formData;
-    const formDataToSubmit = new FormData();
-    formDataToSubmit.append('BusNo', BusNo);
-    formDataToSubmit.append('BusType', BusType);
-    formDataToSubmit.append('NumOfSeats', NumOfSeats);
-    formDataToSubmit.append('LisenceRenewDate', LisenceRenewDate);
-    // const formDataToSubmit = {
-    //   BusNo:BusNo,
-    //   BusType:BusType,
-    //   NumOfSeats:NumOfSeats,
-    //   LisenceRenewDate:LisenceRenewDate
-    // }
+    
+  
+    const formDataToSubmit =( {
+      Bus_No:BusNo,
+      Bus_type:BusType,
+      No_ofSeats:NumOfSeats,
+      Bus_Lisence_startDate:LisenceRenewDate
+    });
 
     try {
-      const res = await axios.post(`${API_BASE_URL}/addBus`, formDataToSubmit, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      console.log(res.data);
+      console.log(formDataToSubmit)
+      axios.post(`${API_BASE_URL}/addBus`, formDataToSubmit
+      // , {
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data',
+      //   },
+      // }
+      ).then((res)=>{
+        console.log(res.data);
+
+      })
     } catch (error) {
       console.log(error);
     }
