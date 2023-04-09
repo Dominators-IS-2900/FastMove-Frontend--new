@@ -1,0 +1,112 @@
+.container {
+  display: flex;
+}
+
+.sidebar_container {
+  height: 100vh;
+  width: 20%;
+  background-color: #E2FFF9;
+}
+
+
+
+.none{
+  color: #333;
+}
+.top_left{
+  height: 160px;
+  width: 100%;
+  background-color: #333;
+}
+
+.top_left > h1{
+  margin-left: 100px;
+  margin-top: 35px;
+  color: white;
+
+}
+
+.bus {
+  margin-top: 400px;
+}
+.bus > img {
+  width: 100%;
+}
+
+.bus1_container {
+  margin-left: 180px;
+  width: 700px;
+ 
+}
+
+.samll_bus{
+  height: 50px;
+  width: 50px;
+}
+
+button {
+  width: 20%;
+  height: 50px;
+  background-color: #164631;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: white;
+  margin: 50px;
+}
+
+.logo1div {
+  height: 100px;
+}
+
+.logo1div > img {
+  margin-top: 16px;
+  margin-left: 1000px;
+  height: 70px;
+  width: 70px;
+}
+
+
+
+
+
+.bus2_container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+margin: 10px;
+color: #164631;
+ 
+}
+
+.price{
+  float: right;
+ margin: 10px;
+}
+.cards{
+  margin-top: 15px;
+  margin-right: 100px;
+  height: 145px;
+  width: 100%;
+  background-color: #C4D4CF;
+  border:2px solid #164631;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 20px;
+}
+.card >  h3{
+  margin: 4px;
+}
+.card >  p{
+  margin: 4px;
+}
+.date{
+  text-align: center;
+ 
+}
+
+.date > h1{
+ font-size: 1.3rem;
+ color: #164631;
+}
+

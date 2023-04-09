@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+}
+.body_body {
+  font-family: "Montserrat", sans-serif;
+  min-height: 100vh;
+  font-size: 14px;
+  color: #303030;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.signup_container {
+  margin-left: 400px;
+  width: 700px;
+  margin-bottom: 50px;
+}
+
+h2 {
+  margin: 30px;
+  margin-right: 70px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #01281a;
+}
+
+.input {
+  margin-right: 120px;
+}
+.form_item > input {
+  width: 70%;
+  height: 35px;
+  padding: 0 32px;
+  margin-top: 30px;
+  letter-spacing: 0.5px;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 100px;
+}
+
+button[type="submit"] {
+  border: none;
+  outline: none;
+  background-color: #01281a;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-size: 1em;
+  font-weight: bolder;
+  padding: 16px 24px;
+  cursor: pointer;
+  margin: 20px;
+}
+
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.radio {
+  display: flex;
+  margin: 15px;
+  margin-right: 120px;
+}
+.radio > h3 {
+  color: #01281a;
+}
+
+.link {
+  color: #01281a;
+}
+
+.radio1 {
+  margin: auto;
+}

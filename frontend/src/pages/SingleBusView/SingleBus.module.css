@@ -1,0 +1,186 @@
+.container {
+  display: flex;
+}
+
+.sidebar_container {
+  height: 100vh;
+  width: 20%;
+  background-color: #e2fff9;
+}
+
+.none {
+  color: #333;
+}
+.top_left {
+  height: 160px;
+  width: 100%;
+  background-color: #333;
+}
+
+.top_left > h1 {
+  margin-left: 100px;
+  margin-top: 35px;
+  color: white;
+}
+
+.bus {
+  margin-top: 400px;
+}
+.bus > img {
+  width: 100%;
+}
+
+.bus1_container {
+  margin-left: 180px;
+  width: 750px;
+}
+
+.samll_bus {
+  height: 50px;
+  width: 50px;
+  margin-top: -15px;
+  margin-left: 320px;
+  position: absolute;
+}
+
+button {
+  width: 20%;
+  height: 50px;
+  background-color: #164631;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: white;
+  margin: 50px;
+}
+
+.logo1div {
+  height: 100px;
+}
+
+.logo1div > img {
+  margin-top: 16px;
+  margin-left: 1000px;
+  height: 70px;
+  width: 70px;
+}
+
+.bus2_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  color: #164631;
+}
+
+.price {
+  float: right;
+  margin: 10px;
+}
+.cards {
+  margin-right: 100px;
+  height: 145px;
+  width: 100%;
+  background-color: #c4d4cf;
+  border: 2px solid #164631;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 20px;
+}
+.card > h3 {
+  margin: 4px;
+}
+.card > p {
+  margin: 4px;
+}
+.date {
+  text-align: center;
+}
+
+.date > h1 {
+  font-size: 1.3rem;
+  color: #164631;
+}
+
+.card_table {
+  margin-top: 15px;
+  margin-right: 100px;
+  height: 300px;
+  width: 100%;
+  display: flex;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 20px;
+}
+
+.card_table > table {
+  border-collapse: separate;
+  border-spacing: 0 30px;
+  width: 140px;
+}
+
+.sqaure {
+  margin: 10px;
+  height: 30px;
+  width: 30px;
+  background-color: rgb(154, 153, 154);
+}
+
+.table2 {
+  float: right;
+  margin-left: 400px;
+}
+
+.card_status {
+  margin-top: 15px;
+  margin-right: 100px;
+  height: 50px;
+  width: 100%;
+
+  display: flex;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 20px;
+}
+.card_div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+}
+.availabe1 {
+  margin: 8px;
+  height: 27px;
+  width: 27px;
+  background-color: rgb(154, 153, 154);
+}
+.availabe2 {
+  margin: 8px;
+  height: 27px;
+  width: 27px;
+  background-color: #ca1306;
+}
+
+.availabe3 {
+  margin: 8px;
+  height: 27px;
+  width: 27px;
+  background-color: #164631;
+}
+
+thead,
+tbody {
+  color: #164631;
+}
+
+.back {
+  float: right;
+}
+
+.booked {
+  background-color: #ca1306;
+}
+
+.mybooked {
+  background-color: #164631;
+}

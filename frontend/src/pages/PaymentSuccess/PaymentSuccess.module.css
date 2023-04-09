@@ -1,0 +1,71 @@
+
+.body{
+      background-color: #E2FFF9;
+}
+.paymentsuccess{
+    height: 100vh;
+    width: 80%;
+      background-color: #E2FFF9;
+    margin: auto;
+}
+
+.paymentsuccess_top{
+    height:100px;
+    width: 100%;
+   background-color: #E2FFF9;
+    margin: auto; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.card{
+    height: 300px;
+    width: 800px;
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    margin-top: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.card img{
+    height: 70px;
+    width: 70px;
+}
+.bus_img >  img{
+    height: 290px;
+    width: 450px;
+    top: 0;
+    margin-top: 200px;
+}
+.profile_img >  img{
+    height: 70px;
+    width: 70px;
+}
+.back{
+   
+ }
+ .button {
+  width: 40%;
+  height: 50px;
+  background-color: #164631;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: white;
+
+}
+
+.actions{
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    
+}
+
+.heading{
+    font-weight: bold;
+    color: #164631;
+}
