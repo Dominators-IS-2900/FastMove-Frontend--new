@@ -32,14 +32,15 @@ overflow: hidden;
 .btn1 {
     border: none;
     padding: 10px 20px; 
-    cursor: pointer; 
-    
+    cursor: pointer;
+    border-radius: 0.5rem;
   }
   
 .cap{background-color: rgb(3, 29, 3); 
     color: white;
     margin-top: -9px;
     margin-left: 700px;
+    
    
   } 
 .cap:hover {background-color: #062b07;}
