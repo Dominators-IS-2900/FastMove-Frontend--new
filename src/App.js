@@ -29,6 +29,15 @@ import Signin from "./pages/SigninCharPage";
 import Homepage from "./pages/Homepage/Homepage";
 import SigninCharPage from "./pages/SigninCharPage/SigninCharPage";
 
+import HelpPageConductor from "./pages/HelpPage conductor/ConductorHelpPage";
+import DashBoardConductor from "./pages/dashboard conductor/DashBoardConductor";
+import DashBoardPageConductor from "./pages/dashboard conductor";
+import ProfilePageConductor from "./pages/Profile conductor";
+import MySchedulePage from "./pages/My Schedule conductor/components/MySchedule"
+import EmergencyPage from "./pages/Emergancy conductor";
+import ScanPage from "./pages/scan conductor/Scan"
+
+
 
 function App() {
   return (
@@ -36,7 +45,7 @@ function App() {
       <div >
       <Routes>
       
-        <Route path="/" element={<BusRegPage/>} />
+        <Route path="/" element={<DashBoardPageConductor/>} />
         <Route path="/SignInchar" element={<Signin/>} />
 
         <Route path="/Busfarepage" element={<Busfarepagein />} />
@@ -48,9 +57,14 @@ function App() {
 
         <Route path="/BusReg" element={<BusRegPage/>} />
         <Route path="/ViewBuses" element={<ViewBusPage/>} />
-        <Route path="/HelpPage" element={<HelpPage/>} />
-        <Route path="/HelpPage" element={<HelpPage/>} />
         <Route path="/OwnerProfile" element={<OwnerProfile/>} />
+
+        <Route path="/" element={<DashBoardPageConductor/>} />
+        <Route path="/Scan" element={<ScanPage/>} />
+        <Route path="/Profile" element={<ProfilePageConductor/>} />
+        <Route path="/MySchedule" element={<MySchedulePage/>} />
+        <Route path="/Emergency" element={<EmergencyPage/>} />
+        <Route path="/HelpPage" element={<HelpPageConductor/>} />
         
       </Routes>     
          

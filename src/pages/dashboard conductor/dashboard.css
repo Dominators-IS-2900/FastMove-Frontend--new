@@ -1,0 +1,15 @@
+.Topbar{
+    margin-left: 3%;
+}
+
+.sidebar{
+    margin-top: -5.4%;
+}
+
+
+.flex{
+    display: flex;
+}
+.fontcolor{
+    color: darkgreen;
+}
