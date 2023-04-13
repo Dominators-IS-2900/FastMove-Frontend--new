@@ -1,0 +1,8 @@
+.main-login {
+
+    overflow: hidden;
+    background: -webkit-gradient(linear, left top, right top, color-stop(50%,#b7d6ce ), color-stop(50%, #4dd6b6));
+    background: linear-gradient(to right, #b7d6ce 50%, #b7d6ce 50%);
+  }
+  
+  
