@@ -1,40 +1,91 @@
-import React from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
 
-export default function Help() {
+const API_BASE_URL = 'http://localhost:5000';
+
+const Help=()=> {
+    const [formData, setFormData] = useState({ inquirybox: '' });
+      const [inquiryValue, setInquiryValue] = useState('');
+    
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+        // setInquiryValue(value); // update the inquiry value on every change
+      };
+    
+      function displayInfo() {
+        console.log(formData);
+      }
+    
+    
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        const {inquirybox}=formData;
+    
+        const formDataToSubmit=({
+            // email:
+            inquiry_bus_owner:inquirybox,
+          });
+    
+        try {
+            console.log(formDataToSubmit);
+          const response = await axios.post(`${API_BASE_URL}/submit-inquiry`, formData);
+          setFormData({ inquirybox: '' });
+          console.log(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
   return (
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Raise your questions here </h6>
-            
-        </div>
-        <div class="card-body">
-            <div class="table-responsive" >
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
-                    <thead>
-                        <tr>
-                            <th>Contact us</th>
-                            <th>Message</th>
-                        </tr>
-                    </thead>
-                    
-                    <tbody>
-                        <tr>
-                            <td>
-                            Approach us via:<br/><br/>
-                            <i class='fas fa-phone-square-alt'></i> +94 11 269 1136<br/><br/>
-                            <i class='fas fa-envelope'></i>  No:45,Main Street, Bambalapitiya<br/><br/>
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Raise your questions here </h6>
+      </div>
+      <div class="card-body">
+        <form onSubmit={handleSubmit}>
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Contact us</th>
+                  <th>Message</th>
+                </tr>
+              </thead>
 
-                            </td>
-                            
-                            <th>
-                            <textarea id="w3review" name="w3review" className="inquirybox" rows="6" cols="50"></textarea><br/>
-                                <button type="button" class="btn btn-primary ml-1">Submit</button>
-                            </th>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+              <tbody>
+                <tr>
+                  <td>
+                    Approach us via:<br /><br />
+                    <i class="fas fa-phone-square-alt"></i> +94 11 269 1136<br /><br />
+                    <i class="fas fa-envelope"></i> No:45,Main Street, Bambalapitiya<br /><br />
+                  </td>
+
+                  <th>
+                    <textarea
+                      id="inquirybox"
+                      name="inquirybox"
+                      className="inquirybox"
+                      rows="6"
+                      cols="50"
+                      value={formData.inquirybox}
+                      onChange={handleChange}
+                    >
+                        <p>Your inquiry: {inquiryValue}</p> {/* display the inquiry value */}
+                    </textarea>
+                    <br />
+                    <button type="button" class="btn btn-primary ml-1" onClick={displayInfo}>
+                      Submit
+                    </button>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </form>
+      </div>
     </div>
-  )
+  );
 }
+
+export default Help;

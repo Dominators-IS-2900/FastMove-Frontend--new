@@ -12,7 +12,8 @@ export default function BusownersideBar() {
         
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
             <div className='Logobox'>
-                Logo
+                FastMove
+                {/* Logo */}
             </div>
         
         </a>

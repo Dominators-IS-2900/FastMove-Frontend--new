@@ -7,14 +7,12 @@ import "./Servicespage.css"
 export default function Servicespageinn(){
     return(
         <div className="Busfarepage">
-
-              <div className="AdminTopBar"> <AdminTopBar/></div>
+              <div className="AdminTopBar"> <AdminTopBar/></div>        
               <div className="flex">
-              <div className="Adminsidebar"> <Adminsidebar/></div>
+                <div className="Adminsidebar"> <Adminsidebar/></div>
                 <div className="Dash"> <Servicespage/></div>            
-                   
-                </div>
-         </div>
+              </div>
+        </div>
 
     )
 }
