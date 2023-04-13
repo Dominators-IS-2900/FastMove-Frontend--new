@@ -95,13 +95,14 @@ function Emergency() {
             <br />
             <div class="col-6">
               <div class="input-group">
-                <label class="input-group-text">Emergency ID:</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  value={emergencyId}
-                  onChange={handleEmergencyIdChange} required
-                />
+                <span class="input-group-text">Emergency ID:</span>
+              <select class="form-control"  value={emergencyId} onChange={handleEmergencyIdChange} required>
+              <option value="" disabled selected>Select Emergency Id</option>
+              <option value="1"> 1</option>
+              <option value="2"> 2</option>
+              <option value="3">3</option>
+            </select>
+               
             </div>
             </div>
             <br />
@@ -110,12 +111,13 @@ function Emergency() {
             <div class="col-6">
               <div class="input-group">
                 <span class="input-group-text">Emergency Type:</span>
-                <input
-                  type="text"
-                  class="form-control"
-                  value={emergencyType}
-                  onChange={handleEmergencyTypeChange} required
-                />
+                <select class="form-control"  value={emergencyType} onChange={handleEmergencyTypeChange} required>
+              <option value="" disabled selected>Select Emergency Type</option>
+              <option value="1"> Accident</option>
+              <option value="2"> Breakdown</option>
+              <option value="3"> Heavy Traffic</option>
+            </select>
+
             </div>
             </div>
             <br />
@@ -124,12 +126,13 @@ function Emergency() {
             <div class="col-6">
               <div class="input-group">
                 <span class="input-group-text"> Bus No:</span>
-                <input
-                  type="number"
-                  class="form-control"
-                  value={busNo}
-                  onChange={handleBusNoChange} required
-                />
+                <select class="form-control" value={busNo}  onChange={handleBusNoChange}required>
+              <option value="" disabled selected>Select Bus No</option>
+              <option value="1"> 9</option>
+              <option value="2"> 8</option>
+              <option value="3"> 7</option>
+            </select>
+
               </div>
 
 </div>
@@ -153,9 +156,14 @@ function Emergency() {
         <div class="col-6">
             <div class="input-group">
                 <span class="input-group-text">Route Name:</span>
-                <input type="text" 
-                class="form-control" />
-                
+                <select class="form-control"  required>
+              <option value="" disabled selected>Select Route Name</option>
+              <option value="1">Ambalangoda-Colombo</option>
+              <option value="2">Ambalangoda-Galle</option>
+              <option value="3">Ambalangoda-Matara</option>
+              
+            </select>
+                              
             </div>
         </div>
         <br/>

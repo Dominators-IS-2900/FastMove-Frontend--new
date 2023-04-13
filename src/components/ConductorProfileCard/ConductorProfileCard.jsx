@@ -1,5 +1,5 @@
 import React from 'react'
-import "./ConductorProfilecard.css"
+import "./ConductorProfileCard.css"
 
 export default function ConductorProfilecard() {
   return (
