@@ -136,11 +136,14 @@ function Emergency() {
         <br/><br/><br/>
         <div class="col-6">
             <div class="input-group">
-                <span class="input-group-text">Route No:</span>
-                <input type="number" 
-                class="form-control" 
-                value={routeNo} 
-                onChange={handleRouteNoChange}  required/>
+            <span class="input-group-text">Route No:</span>
+            <select class="form-control" value={routeNo} onChange={handleRouteNoChange} required>
+              <option value="" disabled selected>Select Route No</option>
+              <option value="1">Route 1</option>
+              <option value="2">Route 2</option>
+              <option value="3">Route 3</option>
+              
+            </select>
                 
             </div>
         </div>
