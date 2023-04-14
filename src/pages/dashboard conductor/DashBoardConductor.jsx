@@ -15,7 +15,7 @@ export default function DashBoardConductor() {
     </Link>
     </div>
 
-    <h1 class="fontcolor">Welcome Nimal De Silva</h1>
+    <h1 class="fontcolor">Welcome </h1>
     <br/>
     <div class="row">
 
