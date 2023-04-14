@@ -1,13 +1,15 @@
+//side navigation bar of bus owner
 import React from 'react'
 import {Link} from 'react-router-dom'
 import { useState } from 'react';
+import './Busownersidebar.css'
 
 export default function BusownersideBar() {
 
     const [route, setRoute] = useState("");
   return (
 
-    <div>
+    <div className='BusownersideBar'>
       <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -17,18 +19,14 @@ export default function BusownersideBar() {
             </div>
         
         </a>
-
         
         <hr class="sidebar-divider my-0"/>
 
-        
         <li class="nav-item active">
             
                 <Link to='/' class="nav-link">
                     <span>Dashboard</span>
-                </Link>
-            
-                
+                </Link>      
         </li>
         
         <hr class="sidebar-divider"/>
@@ -36,7 +34,7 @@ export default function BusownersideBar() {
             Bus Owner
         </div>
 
-        {/* Nav Item - Pages Collapse Menu  */}
+        {/* navigation tabs */}
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                 aria-expanded="true" aria-controls="collapseTwo">
@@ -45,10 +43,9 @@ export default function BusownersideBar() {
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-             
-              <Link to="/BusReg"> <a class="collapse-item" href="/route"><i class="fa fa-edit"></i> Add new Bus</a></Link>
-              <Link to="/ViewBuses"> <a class="collapse-item" href="/route_1"><i class="fa fa-bars"></i> My Buses</a></Link>
-                    </div>
+                    <Link to="/BusReg"> <a class="collapse-item" href="/route"><i class="fa fa-edit"></i> Add new Bus</a></Link>
+                    <Link to="/ViewBuses"> <a class="collapse-item" href="/route_1"><i class="fa fa-bars"></i> My Buses</a></Link>
+                </div>
             </div>
         </li>
  

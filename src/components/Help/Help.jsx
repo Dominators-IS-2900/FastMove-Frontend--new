@@ -4,8 +4,15 @@ import axios from 'axios';
 const API_BASE_URL = 'http://localhost:5000';
 
 const Help=()=> {
-    const [formData, setFormData] = useState({ inquirybox: '' });
-      const [inquiryValue, setInquiryValue] = useState('');
+    const [formData, setFormData] = useState({ 
+      issueType:'',
+      inquirybox: '' });
+      // const [
+
+      //     inquiryValue,
+      //   //  setInquiryValue
+      //   ] 
+      //    = useState('');
     
       const handleChange = (e) => {
         const { name, value } = e.target;
@@ -14,24 +21,31 @@ const Help=()=> {
       };
     
       function displayInfo() {
-        console.log(formData);
+        // console.log(formData);
       }
     
     
       const handleSubmit = async (e) => {
         e.preventDefault();
-        const {inquirybox}=formData;
+        const {issueType,inquirybox}=formData;
+        console.log(issueType);
     
         const formDataToSubmit=({
             // email:
-            inquiry_bus_owner:inquirybox,
+            type_of_issue:issueType,
+            complain:inquirybox,
           });
-    
+          console.log(formDataToSubmit);
         try {
-            console.log(formDataToSubmit);
-          const response = await axios.post(`${API_BASE_URL}/submit-inquiry`, formData);
-          setFormData({ inquirybox: '' });
-          console.log(response.data);
+            // console.log(formDataToSubmit);
+          // const response = await axios.post(`${API_BASE_URL}/submit-inquiry`, formData);
+          // console.log(response.data);
+          axios.post(`${API_BASE_URL}/submit-inquiry`, formDataToSubmit).then((res) => {
+            setFormData({ 
+              issueType:'',
+              inquirybox: '' });
+            console.log(res.data);
+          });
         } catch (error) {
           console.log(error);
         }
@@ -62,7 +76,16 @@ const Help=()=> {
                   </td>
 
                   <th>
+
+                  <select name='issueType' id='issueType' required onChange={handleChange}>
+                    <option value=''>Select the type of inquiry</option>
+                    <option value='Unregister the Bus'>Unregister the Bus</option>
+                    <option value='Income issue'>Income issue</option>
+                    <option value='Other'>Other</option>
+                  </select>
+                  <br/><br/>
                     <textarea
+                      placeholder='Describe your issue(Optional)'
                       id="inquirybox"
                       name="inquirybox"
                       className="inquirybox"
@@ -71,10 +94,10 @@ const Help=()=> {
                       value={formData.inquirybox}
                       onChange={handleChange}
                     >
-                        <p>Your inquiry: {inquiryValue}</p> {/* display the inquiry value */}
+                        {/* <p>Your inquiry: {inquiryValue}</p> display the inquiry value */}
                     </textarea>
                     <br />
-                    <button type="button" class="btn btn-primary ml-1" onClick={displayInfo}>
+                    <button type="submit" class="btn btn-primary ml-1"  onClick={displayInfo}>
                       Submit
                     </button>
                   </th>
