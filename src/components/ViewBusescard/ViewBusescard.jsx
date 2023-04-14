@@ -1,3 +1,4 @@
+//view the buses registered by the owner
 import React from 'react'
 
 export default function ViewBusescard() {
