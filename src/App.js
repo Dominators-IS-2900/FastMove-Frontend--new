@@ -114,7 +114,7 @@ function App() {
       <div >
       <Routes>
       
-        <Route path="/" element={<DashBoardConductor/>} />
+        <Route path="/" element={<DashBoardPageConductor/>} />
         <Route path="/SignInchar" element={<Signin/>} />
 
         <Route path="/Busfarepage" element={<Busfarepagein />} />
