@@ -3,6 +3,7 @@ import TopBar from "../../components/ConducortopBar/TopBar";
 import React, { useRef } from 'react';
 import Webcam from 'react-webcam';
 import jsQR from 'jsqr';
+import './scan.css'
 
 function QRScanner() {
   const webcamRef = useRef(null);
@@ -34,9 +35,10 @@ function QRScanner() {
         audio={false}
         ref={webcamRef}
         screenshotFormat="image/jpeg"
+        width="500px"
       />
       {/* Render the capture button */}
-      <button onClick={capture}>Capture QR Code</button>
+      <button  class="btn1 cap " onClick={capture}>Capture QR Code</button>
     </div>
     </div>
     </div>
