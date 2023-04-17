@@ -2,7 +2,13 @@
 
 }
 
-.BusownersideBar{
-    padding-top: -100px;
-    
-}
+@media screen and (max-width: 600px) {
+    .BusownersideBar{
+        padding-top: 20px;
+      font-size: smaller;
+      float: left;
+    }
+    .Logobox{
+        font-size: small;
+    }
+  }

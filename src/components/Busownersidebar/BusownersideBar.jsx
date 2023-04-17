@@ -11,7 +11,7 @@ export default function BusownersideBar() {
 
     <div className='BusownersideBar'>
       <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        
+        <div className='sidebarowner'>        
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
             <div className='Logobox'>
                 FastMove
@@ -57,7 +57,7 @@ export default function BusownersideBar() {
                 <span>Help</span>
             </a>
         </li></Link>
-        
+        </div>
   </ul>
         
       
