@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './help.css'
 
 const API_BASE_URL = 'http://localhost:5000';
 
