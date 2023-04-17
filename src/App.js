@@ -129,7 +129,7 @@ function App() {
         <Route path="/OwnerProfile" element={<OwnerProfile/>} />
         <Route path="/HelpPage" element={<HelpPage/>} />
         
-        {/*aconductor routes*/}
+        {/*add conductor routes*/}
 
         <Route path="/" element={<DashBoardPageConductor/>} />
         <Route path="/Scan" element={<ScanPage/>} />
