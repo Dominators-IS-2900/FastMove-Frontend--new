@@ -131,7 +131,6 @@ function App() {
         
         {/*add conductor routes*/}
 
-        <Route path="/" element={<DashBoardPageConductor/>} />
         <Route path="/Scan" element={<ScanPage/>} />
         <Route path="/Profile" element={<ProfilePageConductor/>} />
         <Route path="/MySchedule" element={<MySchedulePage/>} />
