@@ -73,7 +73,7 @@ export default function SideBar() {
                 <span>Activity Schedule</span>
             </a>
         </li></Link>
-        <br/>  <br/>
+        <br/>  <br/> <br/>  <br/>
         <Link to='/' class="nav-link">
         <li class="nav-item">
             <a class="nav-link collapsed" href="#"  data-target="#collapseUtilities"
