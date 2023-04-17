@@ -114,7 +114,7 @@ function App() {
       <div >
       <Routes>
       
-        <Route path="/" element={<DashBoardConductor/>} />
+        <Route path="/" element={<DashBoardPageConductor/>} />
         <Route path="/SignInchar" element={<Signin/>} />
 
         <Route path="/Busfarepage" element={<Busfarepagein />} />
@@ -128,6 +128,8 @@ function App() {
         <Route path="/ViewBuses" element={<ViewBusPage/>} />
         <Route path="/OwnerProfile" element={<OwnerProfile/>} />
         <Route path="/HelpPage" element={<HelpPage/>} />
+        
+        {/*add conductor routes*/}
 
         <Route path="/" element={<DashBoardPageConductor/>} />
         <Route path="/Scan" element={<ScanPage/>} />
