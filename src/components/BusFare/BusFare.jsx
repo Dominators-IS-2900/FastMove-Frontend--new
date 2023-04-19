@@ -11,7 +11,7 @@ export default function BusFare() {
                         
                     <thead>
                             <tr>
-                                <th>Route Id</th>
+                                <th>Route ID</th>
                                 <th>Start Point</th>
                                 <th>End Point</th>
                                 <th>Distance</th>
