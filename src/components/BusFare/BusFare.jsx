@@ -11,97 +11,145 @@ export default function BusFare() {
                         
                     <thead>
                             <tr>
+                                <th>Route Id</th>
                                 <th>Start Point</th>
                                 <th>End Point</th>
                                 <th>Distance</th>
-                                <th>Price</th>
-                                <th>Action</th>
+                                
                             </tr>
                         </thead>
     
-    
-    
-      
                         
                         <tbody>
                             <tr>
                                 <td></td>
                                 <td> </td>
-                                <td></td>
-                                <td></td>
-                                
-                               
-                                
-                                
-                                 <th>
-                          
-                                 <button type="button" class="btn btn-primary ml-1">Cancel</button>
-                                    <button type="button" class="btn btn-warning ml-1">Display</button>
-                                    
-                                    </th>   
+                                <td> </td>
+                                <td> </td>  
                                     
                     
                             </tr>
                            
                             <tr>
                                 
-                            <td></td>
-                                <td> </td>
-                                <td> </td>
                                 <td></td>
-                               
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>  
                                 
                                 
                               
                               
-                                <th>
-                                <button type="button" class="btn btn-primary ml-1">Cancel</button>
-                                    <button type="button" class="btn btn-warning ml-1">Display</button>
-                                   
-                                  
-                                </th>    
+                                
                             </tr>
                             <tr>
-                            <td></td>
-                                <td> </td>
-                                <td> </td>
                                 <td></td>
-                               
-                                
-                                
-    
-    
-    
-                                <th>
-                                <button type="button" class="btn btn-primary ml-1">Cancel</button>
-                                    <button type="button" class="btn btn-warning ml-1">Display</button>
-                                  
-                                    
-                                </th>    
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>
                             </tr>
                             <tr>
                           
-                            <td> </td>
+                                <td> </td>
                                 <td> </td>
                                 <td></td>
                                 <td> </td>
-                                
-                                
-                                
-    
-    
-    
-                                <th>
-                                <button type="button" class="btn btn-primary ml-1">Cancel</button>
-                                    <button type="button" class="btn btn-warning ml-1">Display</button>
-                                    
-                                    
-                                </th>   
                             </tr>
                             
                             
                         </tbody>
                     </table>
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
+      
+                        
+                    <thead>
+                            <tr>
+                                <th>Route ID</th>
+                                <th>Distance</th>
+                                <th>Price</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td> </td>
+                                <td> </td>
+                                
+                                    
+                    
+                            </tr>
+                           
+                            <tr>
+                                
+                                <td></td>
+                                <td> </td>
+                                <td> </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td> </td>
+                                <td> </td>
+                             
+                            </tr>
+                            <tr>
+                          
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>
+                               
+                            </tr>
+                            
+                            
+                        </tbody>
+
+    </table>
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
+      
+                        
+      <thead>
+              <tr>
+                  <th>Route ID</th>
+                  <th>Start Point</th>
+                  <th>End Point</th>
+                  <th>Bus Fare</th>
+                 
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td></td>
+                  <td> </td>
+                  <td></td>
+                  <td> </td>
+              </tr>
+             
+              <tr>
+                  
+                  <td></td>
+                  <td> </td>
+                  <td></td>
+                  <td> </td>
+              </tr>
+              <tr>
+                  <td></td>
+                  <td> </td>
+                 <td></td>
+                 <td> </td>
+              </tr>
+              <tr>
+            
+                  <td> </td>
+                  <td> </td>
+                  <td></td>
+                  <td> </td>
+              </tr>
+              
+              
+          </tbody>
+
+</table>
+
                 </div>
             </div>
         </div>
