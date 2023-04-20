@@ -2,12 +2,12 @@ import MainPage from "./pages/mainpage/MainPage";
 
 
 import { Route, Routes } from "react-router-dom"
-import HelpPage from "./pages/HelpPage";
+
 
 import Homepage from "./pages/Homepage/Homepage";
 import DashBoard from "./pages/dashboard/DashBoard";
 import DashBoardPage from "./pages/dashboard";
-import BusRegPage from "./pages/busReg";
+
 import Footer from "./components/footer/Footer";
 import ADashBoard from "./pages/Adashboard/ADashBoard";
 import ADashBoardPage from "./pages/Adashboard";
