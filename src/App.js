@@ -47,7 +47,7 @@ function App() {
       <div >
       <Routes>
       
-        <Route path="/" element={<PassengerVerify/>} />
+        <Route path="/" element={<ProfilePP/>} />
 
         {/* authorize and redirect users to system */}
         <Route path="/" element={isAuthenticated?<Homepage/>:<BusRegPage/>} /> 
