@@ -111,11 +111,9 @@ export default function Passenger() {
             />
           </div>
           <button type="submit" className="btn btn-primary mr-2">
-            Submit
+            Verify
           </button>
-          <button type="reset" className="btn btn-secondary">
-            Reset
-          </button>
+          
         </form>
       </div>
     </div>

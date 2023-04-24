@@ -53,8 +53,8 @@ export default function Profile() {
             <label for="nicScanCopy">NIC Scan copy</label>
             <input type="file" class="form-control-file" id="nicScanCopy" name="nicScanCopy" accept="image/*" onChange={handleFileChange} />
           </div>
-          <button type="button" class="btn btn-primary ml-1">Edit</button>
-                                <button type="button" class="btn btn-warning ml-1">Delete</button>
+          <button type="button" class="btn btn-primary ml-1">ADD</button>
+          
         </form>
       </div>
     </div>

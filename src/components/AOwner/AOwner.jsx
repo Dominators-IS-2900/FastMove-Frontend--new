@@ -92,12 +92,11 @@ export default function Owner() {
           <div className="form-group">
             <label htmlFor="license">License</label>
             <input
-              type="text"
-              className="form-control"
-              id="license"
-              name="license"
-              value={formData.license}
-              onChange={handleChange}
+              type="file"
+              className="form-control-file"
+              id="licence"
+              name="licence"
+              onChange={handleFileUpload}
             />
           </div>
           <div className="form-group">
@@ -111,14 +110,10 @@ export default function Owner() {
               onChange={handleChange}
             />
           </div>
-          <button type="submit" className="btn btn-primary mr-2">
-            Submit
+          <button type="Veify" className="btn btn-primary mr-2">
+            Verify
           </button>
-          <button type="reset" className="btn btn-secondary">
-            Reset
-          </button>
-                                
-         
+
         </form>
       </div>
     </div>
