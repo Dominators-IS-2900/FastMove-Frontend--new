@@ -14,8 +14,6 @@ import ADashBoard from "./pages/Adashboard/ADashBoard";
 import ADashBoardPage from "./pages/Adashboard";
 import Busfarepage from "./pages/Busfarepage/Busfarepage";
 import Busfarepagein from "./pages/Busfarepage";
-import Servicespage from "./pages/Servicespage/Servicespage";
-import Servicespageinn from "./pages/Servicespage";
 import Ownervarification from "./pages/Ownervarification/Ownervarification";
 import Ownervarify from "./pages/Ownervarification";
 import PassengerVerification from "./pages/PassengerVerification/PassengerVerification";
@@ -47,15 +45,15 @@ function App() {
       <div >
       <Routes>
       
-        <Route path="/" element={<ProfilePP/>} />
-
+        
+        <Route path="/" element={<ADashBoardPage/>} />
         {/* authorize and redirect users to system */}
         <Route path="/" element={isAuthenticated?<Homepage/>:<BusRegPage/>} /> 
 
         <Route path="/SignInchar" element={<Signin/>} />
         
         <Route path="/Busfarepage" element={<Busfarepagein />} />
-        <Route path="/Servicespage" element={<Servicespageinn />} />
+       
         <Route path="/Ownervarification" element={<Ownervarify />} />
         <Route path="/PassengerVerification" element={<PassengerVerify />} />
         <Route path="/ProfilePage" element={< ProfilePP />} />
@@ -70,7 +68,7 @@ function App() {
         <Route path="/Profile" element={<ProfilePageConductor/>} />
         <Route path="/MySchedule" element={<MySchedulePage/>} />
         <Route path="/Emergency" element={<EmergencyPage/>} />
-              
+           
          {/*add conductor routes*/}
 
         <Route path="/Scan" element={<ScanPage/>} />
