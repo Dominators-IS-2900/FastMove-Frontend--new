@@ -3,6 +3,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import { useState } from 'react';
 import './Busownersidebar.css'
+import Logo from '../../Logo.png'
 
 export default function BusownersideBar() {
 
@@ -10,16 +11,16 @@ export default function BusownersideBar() {
   return (
 
     <div className='BusownersideBar'>
+         <img src={Logo}/>
       <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         <div className='sidebarowner'>        
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        {/* <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
             <div className='Logobox'>
-                FastMove
-                {/* Logo */}
+                
+                <img src={Logo}/>
             </div>
         
-        </a>
-        
+        </a> */}
         <hr class="sidebar-divider my-0"/>
 
         <li class="nav-item active">
