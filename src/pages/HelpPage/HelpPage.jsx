@@ -8,7 +8,6 @@ export default function Helpsheet() {
     <div>
 
     <div class="container-fluid mr-5" style={{width: '1100px'}}>
-      <br/><br/>
         <h1 class="h3 mb-2 text-gray-800">Help</h1>
         <Help/>
     </div>
