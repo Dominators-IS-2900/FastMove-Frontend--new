@@ -32,7 +32,8 @@ import ProfilePageConductor from "./pages/Profile conductor";
 import MySchedulePage from "./pages/My Schedule conductor/components/MySchedule"
 import EmergencyPage from "./pages/Emergancy conductor";
 import ScanPage from "./pages/scan conductor/Scan"
-
+import DetailsownerPage from "./pages/DetailsownerPage";
+import detailsowner from "./pages/DetailsownerPage";
 function App() {
   //use auth0 for authentication of users
   const{loginWithRedirect,
@@ -57,7 +58,7 @@ function App() {
         <Route path="/Ownervarification" element={<Ownervarify />} />
         <Route path="/PassengerVerification" element={<PassengerVerify />} />
         <Route path="/ProfilePage" element={< ProfilePP />} />
-        <Route path="/Activity" element={< ActivityShe />} />
+        <Route path="/DetailsownerPage" element={<detailsowner/>} />
 
         <Route path="/BusReg" element={<BusRegPage/>} />
         <Route path="/ViewBuses" element={<ViewBusPage/>} />
