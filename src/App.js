@@ -34,8 +34,7 @@ import ProfilePageConductor from "./pages/Profile conductor";
 import MySchedulePage from "./pages/My Schedule conductor/components/MySchedule"
 import EmergencyPage from "./pages/Emergancy conductor";
 import ScanPage from "./pages/scan conductor/Scan"
-
-
+import OwnerdashboardPage from "./pages/ownerDashboardpage";
 
 function App() {
   //use auth0 for authentication of users
@@ -49,7 +48,7 @@ function App() {
       <div >
       <Routes>
       
-        <Route path="/" element={<HelpPage/>} />
+        <Route path="/" element={<OwnerdashboardPage/>} />
 
         {/* authorize and redirect users to system */}
         <Route path="/" element={isAuthenticated?<Homepage/>:<BusRegPage/>} /> 
@@ -62,7 +61,8 @@ function App() {
         <Route path="/PassengerVerification" element={<PassengerVerify />} />
         <Route path="/ProfilePage" element={< ProfilePP />} />
         <Route path="/Activity" element={< ActivityShe />} />
-
+        
+        <Route path="/ownerDashboardpage" element={<ownerDashboardpage/>} />
         <Route path="/BusReg" element={<BusRegPage/>} />
         <Route path="/ViewBuses" element={<ViewBusPage/>} />
         <Route path="/OwnerProfile" element={<OwnerProfile/>} />
