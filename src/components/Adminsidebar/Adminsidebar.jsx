@@ -45,14 +45,21 @@ export default function SideBarr() {
                 <span>Conductor Registration</span>
             </a>
         </li></Link>
-        <Link to="/">
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fa fa-search"></i>
-                <span>Inquiry</span>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fa fa-user-circle"></i>
+                <span>Inquiry </span>
             </a>
-        </li></Link>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+             
+              <Link to="/InquiryOwnerP"> <a class="collapse-item" href="/route"><i class="fa fa-user-circle"></i> Bus Owner</a></Link>
+              <Link to="/InquiryPassengerP"> <a class="collapse-item" href="/route_1"><i class="fa fa-user-circle"></i> Passenger</a></Link>
+                    </div>
+            </div>
+        </li>
+ 
       
         <Link to="/Busfarepage">
         <li class="nav-item">
@@ -63,10 +70,6 @@ export default function SideBarr() {
             </a>
         </li></Link>
 
-
-
-
-        {/* Nav Item - Pages Collapse Menu  */}
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                 aria-expanded="true" aria-controls="collapseTwo">
@@ -90,7 +93,21 @@ export default function SideBarr() {
                 <span>Activity Schedule</span>
             </a>
         </li></Link>
-
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fa fa-user-circle"></i>
+                <span>Users Informations</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+             
+              <Link to="/DetailsownerPage"> <a class="collapse-item" href="/route"><i class="fa fa-user-circle"></i> Bus Owner</a></Link>
+              <Link to="/DetailsconductorPage"> <a class="collapse-item" href="/route_1"><i class="fa fa-user-circle"></i> Passenger</a></Link>
+              <Link to="/DetailsPassengerPage"> <a class="collapse-item" href="/route_1"><i class="fa fa-user-circle"></i> Conductor </a></Link>
+                    </div>
+            </div>
+        </li>
   </ul>
         
       

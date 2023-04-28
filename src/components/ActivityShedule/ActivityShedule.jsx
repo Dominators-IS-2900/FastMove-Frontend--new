@@ -23,8 +23,7 @@ export default function ActivityShedule() {
                             <td> </td>
                             <td> </td>
                             <td> </td>
-                             
-                
+                         
                         </tr>
                        
                         <tr>
@@ -33,21 +32,23 @@ export default function ActivityShedule() {
                             <td> </td>
                             <td> </td>
                             <td> </td>
-    
+                           
                         </tr>
                         <tr>
                             
                             <td></td>
                             <td> </td>
                             <td> </td>
-                            <td> </td> 
+                            <td> </td>
+                          
                         </tr>
                         <tr>
                       
                             <td></td>
                             <td> </td>
                             <td> </td>
-                            <td> </td>                           
+                            <td> </td>
+                                                     
                         </tr>
                         
                         
