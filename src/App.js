@@ -47,7 +47,7 @@ function App() {
       <Routes>
       
         
-        <Route path="/" element={<ADashBoardPage/>} />
+        <Route path="/" element={<Homepage/>} />
         {/* authorize and redirect users to system */}
         <Route path="/" element={isAuthenticated?<Homepage/>:<BusRegPage/>} /> 
 
