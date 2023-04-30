@@ -47,7 +47,12 @@ function App() {
     <div className="App">
       <div >
       <Routes>
+
         <Route path="/" element={<OwnerdashboardPage/>} />
+
+      
+        <Route path="/" element={<Homepage/>} />
+
 
 
         
@@ -66,7 +71,7 @@ function App() {
         <Route path="/Activity" element={< ActivityShe />} />
         
         <Route path="/ownerDashboardpage" element={<ownerDashboardpage/>} />
-=======
+
         <Route path="/DetailsownerPage" element={<detailsowner/>} />
 
         <Route path="/BusReg" element={<BusRegPage/>} />
