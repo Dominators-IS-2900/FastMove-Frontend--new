@@ -14,8 +14,6 @@ import ADashBoard from "./pages/Adashboard/ADashBoard";
 import ADashBoardPage from "./pages/Adashboard";
 import Busfarepage from "./pages/Busfarepage/Busfarepage";
 import Busfarepagein from "./pages/Busfarepage";
-import Servicespage from "./pages/Servicespage/Servicespage";
-import Servicespageinn from "./pages/Servicespage";
 import Ownervarification from "./pages/Ownervarification/Ownervarification";
 import Ownervarify from "./pages/Ownervarification";
 import PassengerVerification from "./pages/PassengerVerification/PassengerVerification";
@@ -36,6 +34,8 @@ import EmergencyPage from "./pages/Emergancy conductor";
 import ScanPage from "./pages/scan conductor/Scan"
 import OwnerdashboardPage from "./pages/ownerDashboardpage";
 
+import DetailsownerPage from "./pages/DetailsownerPage";
+import detailsowner from "./pages/DetailsownerPage";
 function App() {
   //use auth0 for authentication of users
   const{loginWithRedirect,
@@ -47,28 +47,40 @@ function App() {
     <div className="App">
       <div >
       <Routes>
-      
         <Route path="/" element={<OwnerdashboardPage/>} />
 
+
+        
+        <Route path="/" element={<ADashBoardPage/>} />
         {/* authorize and redirect users to system */}
         <Route path="/" element={isAuthenticated?<Homepage/>:<BusRegPage/>} /> 
 
         <Route path="/SignInchar" element={<Signin/>} />
         
         <Route path="/Busfarepage" element={<Busfarepagein />} />
-        <Route path="/Servicespage" element={<Servicespageinn />} />
+       
         <Route path="/Ownervarification" element={<Ownervarify />} />
         <Route path="/PassengerVerification" element={<PassengerVerify />} />
         <Route path="/ProfilePage" element={< ProfilePP />} />
+
         <Route path="/Activity" element={< ActivityShe />} />
         
         <Route path="/ownerDashboardpage" element={<ownerDashboardpage/>} />
+=======
+        <Route path="/DetailsownerPage" element={<detailsowner/>} />
+
         <Route path="/BusReg" element={<BusRegPage/>} />
         <Route path="/ViewBuses" element={<ViewBusPage/>} />
         <Route path="/OwnerProfile" element={<OwnerProfile/>} />
         <Route path="/HelpPage" element={<HelpPage/>} />
 
-        <Route path="/" element={<DashBoardPageConductor/>} />
+        <Route path="/Scan" element={<ScanPage/>} />
+        <Route path="/Profile" element={<ProfilePageConductor/>} />
+        <Route path="/MySchedule" element={<MySchedulePage/>} />
+        <Route path="/Emergency" element={<EmergencyPage/>} />
+           
+         {/*add conductor routes*/}
+
         <Route path="/Scan" element={<ScanPage/>} />
         <Route path="/Profile" element={<ProfilePageConductor/>} />
         <Route path="/MySchedule" element={<MySchedulePage/>} />

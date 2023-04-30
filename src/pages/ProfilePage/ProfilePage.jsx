@@ -9,10 +9,9 @@ export default function Profilef(props) {
   <div id="content" style={{width: '1150px'}}>
 
       <div class="container-fluid mr-5" style={{width: '1100px'}}>
-        <h1 class="h3 mb-2 text-gray-800">Profile</h1>
+        <h3 class="h3 mb-2 text-gray-800">Conductor Registration</h3>
         <Profile/>
-        <button type="button" class="btn btn-primary ml-1 mb-3">Back</button>
-        <button type="button" class="btn btn-primary ml-1 mb-3">Edit</button>
+        
       </div>
     <Footer/>
   </div>

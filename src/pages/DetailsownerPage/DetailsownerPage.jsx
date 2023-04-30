@@ -1,7 +1,7 @@
 import React from 'react'
-import BusFare from '../../components/BusFare/BusFare'
+import Detailsowner from '../../components/Detailsowner/Detailsowner'
 import Footer from '../../components/footer/Footer'
-export default function Busfarepage(props) {
+export default function detailsOwner(props) {
     console.log(props);
     
 
@@ -9,10 +9,10 @@ export default function Busfarepage(props) {
     <div id="content" style={{width: '1150px'}}>
 
     <div class="container-fluid mr-5" style={{width: '1100px'}}>
-        <h3 class="h3 mb-2 text-gray-800">Bus Fare</h3>
+        <h3 class="h3 mb-2 text-gray-800">Owner Details </h3>
         
       
-        <BusFare/>
+        <Detailsowner/>
         
     </div>
     <Footer/>
