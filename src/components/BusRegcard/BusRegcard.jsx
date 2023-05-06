@@ -68,7 +68,7 @@ const BusRegcard = ({ userEmail }) => { // userEmail is passed as a prop from th
       Bus_type: BusType,
       No_ofSeats: NumOfSeats,
       Bus_Lisence_startDate: LisenceRenewDate,
-      User_Email: userEmail, // add the user email to the form data
+     // User_Email: userEmail, // add the user email to the form data
     });
 
     try {
