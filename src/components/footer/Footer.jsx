@@ -1,20 +1,18 @@
 import React from 'react'
 
-
- function Footer() {
+export default function Footer() {
   return (
     <div>
          
-    <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Bus Pass Application:2023</span>
+        <footer className="sticky-footer bg-white">
+                <div className="container my-auto">
+                    <div className="copyright text-center my-auto">
+                        <span>Copyright &copy; Bus Pass Application:2023</span>
+                    </div>
                 </div>
-            </div>
-    </footer>
-  
-  
-</div>
-)
-  }
-export default Footer;
+        </footer>
+      
+      
+    </div>
+  )
+}
