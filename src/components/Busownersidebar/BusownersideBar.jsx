@@ -21,12 +21,15 @@ export default function BusownersideBar() {
             </div>
         
         </a> */}
-        <hr class="sidebar-divider my-0"/>
-            <Link to='/ownerDashboardpage' class="nav-link">
-                <li class="nav-item active">
-                    <span>Dashboard</span>
-                </li>
-            </Link>    
+        <hr class="sidebar-divider my-0"/>   
+            <li class="nav-item active">
+            
+            <Link to='/OgitwnerDashboardpage' class="nav-link">
+                <span>Dashboard</span>
+            </Link>
+        
+            
+    </li>
         
         <hr class="sidebar-divider"/>
         <div class="sidebar-heading">
