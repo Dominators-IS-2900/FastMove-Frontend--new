@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, Outlet} from "react-router-dom"
 
 import ViewBusPage from "./pages/busOwner/ViewBusPage";
 import OwnerHelpPage from "./pages/busOwner/OwnerHelpPage";
@@ -17,7 +17,19 @@ import ConductorSchedulePage from "./pages/conductor/ConductorSchedulePage";
 import ConductorEmergencyPage from "./pages/conductor/ConductorEmergencyPage";
 import ScanPage from "./pages/conductor/ScanPage";
 import OwnerDashboardPage from "./pages/busOwner/OwnerDashboardpage";
-
+import SideBar from "./components/timeKeeper/sidebar/SideBar";
+import ArrivalPage from "./pages/timeKeeper/arrivalPage/ArrivalPage";
+import DeparturePage from "./pages/timeKeeper/departurePage/DeparturePage";
+import DeposPage from "./pages/timeKeeper/deposPage/DeposPage";
+import TimeTable from "./pages/timeKeeper/busRoute/BusRoute";
+import LoginPage from "./pages/timeKeeper/auth/login";
+import MainPage from "./pages/timeKeeper/mainpage/MainPage";
+const SidebarLayout = () => (
+  <>
+    <SideBar />
+    <Outlet />
+  </>
+);
 function App() { 
   //use auth0 for authentication of users
   const{loginWithRedirect,
@@ -27,21 +39,26 @@ function App() {
         =useAuth0();
   return (
     <div className="App">
-      <div >
-      <Routes>        
-        <Route path="/" element={<Homepage/>}/>  
+      <div id= "wrapper">
+      <Routes>
+        {/* Admin routes         */}
+        <Route path="/" element={<DeposPage/>}/>  
         <Route path="/SignInchar" element={<SigninCharPage/>} />        
         <Route path="/Busfarepage" element={<Busfarepage />} />       
         <Route path="/Ownervarification" element={<OwnerVarificationPage />} />
         <Route path="/PassengerVerification" element={<PassengerVerificationPage/>} />
         <Route path="/ProfilePage" element={<ProfilePage/>} />
-        <Route path="/Activity" element={<ActivityPage/>} />        
+        <Route path="/Activity" element={<ActivityPage/>} />    
+        <Route path="/profile" element={<ProfilePage />} />
+
+        {/* Bus owner routes */}
         <Route path="/ownerDashboardpage" element={<OwnerDashboardPage/>} />
         <Route path="/DetailsownerPage" element={<detailsOwner/>} />
         <Route path="/BusReg" element={<BusRegisterPage/>} />
         <Route path="/ViewBuses" element={<ViewBusPage/>} />
         <Route path="/OwnerProfile" element={<OwnerProfilePage/>} />
         <Route path="/HelpPage" element={<OwnerHelpPage/>} />
+
        
          {/*add conductor routes*/}
 
@@ -49,7 +66,18 @@ function App() {
         <Route path="/Profile" element={<ConductorProfilePage/>} />
         <Route path="/MySchedule" element={<ConductorSchedulePage/>} />
         <Route path="/Emergency" element={<ConductorEmergencyPage/>} />
+
+          {/*add Timekeeper routes*/}
+           <Route element={<SidebarLayout />}>
+            <Route path="/main" element={<MainPage />} />
+            <Route path="/arrival" element={<ArrivalPage />} />
+            <Route path="/departure" element={<DeparturePage />} />
+            <Route path="/timetable" element={<TimeTable/>} />
+            <Route path="/depo" element={<DeposPage />} />
+        </Route>
+        <Route path="/login" element={<LoginPage />} />
         
+
       </Routes>     
          
       </div>
