@@ -1,42 +1,22 @@
-import MainPage from "./pages/mainpage/MainPage";
-import BusReg from "./pages/busReg/BusReg";
-import ViewBusPage from "./pages/ViewBusPage";
 import { Route, Routes } from "react-router-dom"
-import HelpPage from "./pages/HelpPage";
-import BusRoute from "./pages/busReg/BusReg";
-import GetStarted from "./pages/Homepage";
-import DashBoard from "./pages/dashboard/DashBoard";
-import DashBoardPage from "./pages/dashboard";
-import BusRegPage from "./pages/busReg";
-import OwnerProfile from "./pages/OwnerProfilePage";
-import Footer from "./components/footer/Footer";
-import ADashBoard from "./pages/Adashboard/ADashBoard";
-import ADashBoardPage from "./pages/Adashboard";
-import Busfarepage from "./pages/Busfarepage/Busfarepage";
-import Busfarepagein from "./pages/Busfarepage";
-import Ownervarification from "./pages/Ownervarification/Ownervarification";
-import Ownervarify from "./pages/Ownervarification";
-import PassengerVerification from "./pages/PassengerVerification/PassengerVerification";
-import PassengerVerify from "./pages/PassengerVerification";
-import Activity from "./pages/Activity/Activity";
-import ActivityShe from "./pages/Activity";
-import ProfilePage from "./pages/ProfilePage";
-import ProfilePP from "./pages/ProfilePage";
-import Signin from "./pages/SigninCharPage";
-import Homepage from "./pages/Homepage/Homepage";
-import SigninCharPage from "./pages/SigninCharPage/SigninCharPage";
-import { useAuth0 } from "@auth0/auth0-react";
-import DashBoardConductor from "./pages/dashboard conductor/DashBoardConductor";
-import DashBoardPageConductor from "./pages/dashboard conductor";
-import ProfilePageConductor from "./pages/Profile conductor";
-import MySchedulePage from "./pages/My Schedule conductor/components/MySchedule"
-import EmergencyPage from "./pages/Emergancy conductor";
-import ScanPage from "./pages/scan conductor/Scan"
-import OwnerdashboardPage from "./pages/ownerDashboardpage";
-import detailsOwner from "./pages/DetailsownerPage/DetailsownerPage";
 
-import DetailsownerPage from "./pages/DetailsownerPage";
-import detailsowner from "./pages/DetailsownerPage";
+import ViewBusPage from "./pages/busOwner/ViewBusPage";
+import OwnerHelpPage from "./pages/busOwner/OwnerHelpPage";
+import BusRegisterPage from "./pages/busOwner/BusRegisterPage";
+import OwnerProfilePage from "./pages/busOwner/OwnerProfilePage";
+import Busfarepage from "./pages/admin/Busfarepage";
+import OwnerVarificationPage from "./pages/admin/OwnerVarificationPage";
+import PassengerVerificationPage from "./pages/admin/PassengerVerificationPage";
+import ActivityPage from "./pages/admin/ActivityPage";
+import ProfilePage from "./pages/admin/ProfilePage";
+import SigninCharPage from "./pages/common/SigninCharPage/components/SigninCharPage";
+import Homepage from "./pages/common/Homepage/components/Home";
+import { useAuth0 } from "@auth0/auth0-react";
+import ConductorProfilePage from "./pages/conductor/ConductorProfilePage";
+import ConductorSchedulePage from "./pages/conductor/ConductorSchedulePage";
+import ConductorEmergencyPage from "./pages/conductor/ConductorEmergencyPage";
+import ScanPage from "./pages/conductor/ScanPage";
+import OwnerDashboardPage from "./pages/busOwner/OwnerDashboardpage";
 
 function App() { 
   //use auth0 for authentication of users
@@ -49,26 +29,26 @@ function App() {
     <div className="App">
       <div >
       <Routes>        
-        <Route path="/" element={isAuthenticated?<Homepage/>:<HelpPage/>} />  
-        <Route path="/SignInchar" element={<Signin/>} />        
-        <Route path="/Busfarepage" element={<Busfarepagein />} />       
-        <Route path="/Ownervarification" element={<Ownervarify />} />
-        <Route path="/PassengerVerification" element={<PassengerVerify />} />
-        <Route path="/ProfilePage" element={< ProfilePP />} />
-        <Route path="/Activity" element={< ActivityShe />} />        
-        <Route path="/ownerDashboardpage" element={<OwnerdashboardPage/>} />
+        <Route path="/" element={<Homepage/>}/>  
+        <Route path="/SignInchar" element={<SigninCharPage/>} />        
+        <Route path="/Busfarepage" element={<Busfarepage />} />       
+        <Route path="/Ownervarification" element={<OwnerVarificationPage />} />
+        <Route path="/PassengerVerification" element={<PassengerVerificationPage/>} />
+        <Route path="/ProfilePage" element={<ProfilePage/>} />
+        <Route path="/Activity" element={<ActivityPage/>} />        
+        <Route path="/ownerDashboardpage" element={<OwnerDashboardPage/>} />
         <Route path="/DetailsownerPage" element={<detailsOwner/>} />
-        <Route path="/BusReg" element={<BusRegPage/>} />
+        <Route path="/BusReg" element={<BusRegisterPage/>} />
         <Route path="/ViewBuses" element={<ViewBusPage/>} />
-        <Route path="/OwnerProfile" element={<OwnerProfile/>} />
-        <Route path="/HelpPage" element={<HelpPage/>} />
+        <Route path="/OwnerProfile" element={<OwnerProfilePage/>} />
+        <Route path="/HelpPage" element={<OwnerHelpPage/>} />
        
          {/*add conductor routes*/}
 
         <Route path="/Scan" element={<ScanPage/>} />
-        <Route path="/Profile" element={<ProfilePageConductor/>} />
-        <Route path="/MySchedule" element={<MySchedulePage/>} />
-        <Route path="/Emergency" element={<EmergencyPage/>} />
+        <Route path="/Profile" element={<ConductorProfilePage/>} />
+        <Route path="/MySchedule" element={<ConductorSchedulePage/>} />
+        <Route path="/Emergency" element={<ConductorEmergencyPage/>} />
         
       </Routes>     
          
