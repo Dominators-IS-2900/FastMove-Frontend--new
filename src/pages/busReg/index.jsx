@@ -3,7 +3,7 @@ import BusownersideBar from "../../components/Busownersidebar/BusownersideBar";
 import BusownerTopBar from "../../components/BusownertopBar/BusownerTopBar";
 import BusReg from "./BusReg.jsx";
 import "./BusReg.css"
-// import Footer from "../../components/footer/Footer";
+import Footer from "../../components/footer/Footer";
 
 
 export default function BusRegPage(){
