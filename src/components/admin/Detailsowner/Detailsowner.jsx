@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 
 export default function Owner() {
   const [formData, setFormData] = useState({
+    ownerId: '',
     email: '',
     name: '',
     nicScanCopy: '',
     tp: '',
     address: '',
-    license: '',
     accountNo: '',
   });
 
@@ -26,108 +26,47 @@ export default function Owner() {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add your form submission logic here
-    console.log(formData);
-  };
-
   return (
     <div className="card shadow mb-4">
       <div className="card-body">
         <table>
           <tbody>
             <tr>
-              <td>Email</td>
+              <td>Owner ID</td>
               <td>
                 <input
-                  type="email"
+                  type="text"
                   className="form-control"
-                  id="email"
-                  name="email"
-                  value={formData.email}
+                  id="ownerId"
+                  name="ownerId"
+                  value={formData.ownerId}
                   onChange={handleChange}
                 />
               </td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>{formData.email}</td>
             </tr>
             <tr>
               <td>Name</td>
-              <td>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                />
-              </td>
+              <td>{formData.name}</td>
             </tr>
             <tr>
               <td>NIC Scan Copy</td>
-              <td>
-                <input
-                  type="file"
-                  className="form-control-file"
-                  id="nicScanCopy"
-                  name="nicScanCopy"
-                  onChange={handleFileUpload}
-                />
-              </td>
+              <td>{formData.nicScanCopy}</td>
             </tr>
             <tr>
               <td>TP</td>
-              <td>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="tp"
-                  name="tp"
-                  value={formData.tp}
-                  onChange={handleChange}
-                />
-              </td>
+              <td>{formData.tp}</td>
             </tr>
             <tr>
               <td>Address</td>
-              <td>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="address"
-                  name="address"
-                  value={formData.address}
-                  onChange={handleChange}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>License</td>
-              <td>
-                <input
-                  type="file"
-                  className="form-control-file"
-                  id="licence"
-                  name="licence"
-                  onChange={handleFileUpload}
-                />
-              </td>
+              <td>{formData.address}</td>
             </tr>
             <tr>
               <td>Account NO</td>
-              <td>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="accountNo"
-                  name="accountNo"
-                  value={formData.accountNo}
-                  onChange={handleChange}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td></td>     
+              <td>{formData.accountNo}</td>
             </tr>
           </tbody>
         </table>
@@ -135,3 +74,4 @@ export default function Owner() {
     </div>
   );
 }
+
