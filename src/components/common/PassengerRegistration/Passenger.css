@@ -91,4 +91,47 @@ a {
     margin-left: 300px;
   }
   
+  .download-link {
+    font-size: 14px; /* Adjust the font size as per your requirements */
+  }
+  
+  .download-link-input {
+    font-size: 14px; /* Adjust the font size as per your requirements */
+    /* Add any additional styles for the input field here */
+  }
+
+  .download-link {
+    font-size: 14px; /* Adjust the font size as per your requirements */
+    text-decoration: none;
+    color: #000000;
+    /* Remove or customize the box shadow as needed */
+    box-shadow: none;
+  }
+  .download-link {
+    font-size: 14px; /* Adjust the font size as per your requirements */
+    text-decoration: underline; /* Optional: Add underline to indicate it's a link */
+    color: blue; /* Optional: Customize the color as per your design */
+    cursor: pointer; /* Optional: Show pointer cursor on hover */
+  }
+  
+  .download-link:hover {
+    color: red; /* Optional: Customize the color on hover */
+  }
+
+  .file-text {
+    font-size: 18px; /* Adjust the font size as per your requirements */
+    /* Add any additional styles for the "View uploaded file" text here */
+  }
+  
+  .download-link {
+    font-size: 18px; /* Adjust the font size as per your requirements */
+    text-decoration: none;
+    color:blue;
+    box-shadow: none;
+  }
+  
+  .download-link:hover {
+    text-decoration: underline; /* Optional: Add underline on hover */
+    color: #000000; /* Optional: Customize the color on hover */
+  }
   

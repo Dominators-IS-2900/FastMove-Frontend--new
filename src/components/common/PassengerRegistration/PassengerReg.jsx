@@ -1,131 +1,105 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './BusownerRegistration.css';
+import './Passenger.css';
 import Logo from '../../../Images/Logo.png';
 import { storage } from './firebase';
+import axios from 'axios';
 
-const BusownerRegistration = () => {
-  const [name, setName] = useState('');
-  const [nameError, setNameError] = useState('');
-  const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [accountNo, setAccountNo] = useState('');
-  const [accountNoError, setAccountNoError] = useState('');
-  const [contactNo, setContactNo] = useState('');
-  const [contactNoError, setContactNoError] = useState('');
+const API_BASE_URL = 'http://localhost:5000';
+
+const PassengerReg = ({ userEmail }) => {
+  const [formData, setFormData] = useState({
+    Name: '',
+    email: '',
+    Account_No: '',
+    Contact_No: '',
+    NICcopy: null,
+  });
   const [selectedFile, setSelectedFile] = useState(null);
-  const [selectedFileURL, setSelectedFileURL] = useState('');
-
-  const fileInputRef = useRef(null);
-
-  const handleNameChange = (event) => {
-    const inputValue = event.target.value;
-    setName(inputValue);
-    setNameError('');
-  };
-
-  const handleEmailChange = (event) => {
-    const inputValue = event.target.value;
-    setEmail(inputValue);
-    setEmailError('');
-  };
-
-  const handleAccountNoChange = (event) => {
-    const inputValue = event.target.value;
-    setAccountNo(inputValue);
-    setAccountNoError('');
-  };
-
-  const handleContactNoChange = (event) => {
-    const inputValue = event.target.value;
-    setContactNo(inputValue);
-    setContactNoError('');
-  };
-
-  const validateName = () => {
-    const nameRegex = /^[A-Za-z]+\s[A-Za-z]+$/;
-    return nameRegex.test(name);
-  };
-
-  const validateEmail = () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const validateAccountNo = () => {
-    const accountNoRegex = /^\d{7}$/;
-    return accountNoRegex.test(accountNo);
-  };
-
-  const validateContactNo = () => {
-    const contactNoRegex = /^\d{10}$/;
-    return contactNoRegex.test(contactNo);
-  };
+  const [fileUrl, setFileUrl] = useState(null);
 
   const handleFileSelect = (event) => {
-    const file = event.target.files[0];
-    setSelectedFile(file);
+    setSelectedFile(event.target.files[0]);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   const handleFileUpload = () => {
     if (selectedFile) {
-      const uploadTask = storage.ref(`files/${selectedFile.name}`).put(selectedFile);
+      const storageRef = storage.ref();
+      const uploadTask = storageRef.child(selectedFile.name).put(selectedFile);
+
       uploadTask.on(
         'state_changed',
-        (snapshot) => {},
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+        },
         (error) => {
           console.error(error);
+          toast.error('File upload failed');
         },
         () => {
           uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-            setSelectedFileURL(downloadURL);
-            console.log('File uploaded successfully!');
+            console.log('File available at', downloadURL);
+            setFileUrl(downloadURL);
+            toast.success('File uploaded successfully');
           });
         }
       );
+    } else {
+      toast.error('No file selected');
     }
   };
 
-  const handleDownloadFile = () => {
-    window.open(selectedFileURL);
+  const displayInfo = () => {
+    console.log(formData);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    let valid = true;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { Name, email, Account_No, Contact_No, NIC } = formData;
+  
+    const formDataToSubmit = {
+      name: Name,
+      email: email,
+      accountNo: Account_No,
+      contactNo: Contact_No,
+      NIC_scancopy: NIC || '', // Use NIC as the value for NIC_scancopy
+    };
 
-    if (!validateName()) {
-      setNameError('Please enter First name and Last name');
-      valid = false;
-    }
-
-    if (!validateEmail()) {
-      setEmailError('Please enter a valid email address');
-      valid = false;
-    }
-
-    if (!validateAccountNo()) {
-      setAccountNoError('Account number must be 7 digits');
-      valid = false;
-    }
-
-    if (!validateContactNo()) {
-      setContactNoError('Contact number must be 10 digits');
-      valid = false;
-    }
-
-    if (valid) {
-      toast.success('Your Information was submitted successfully!');
-      setName('');
-      setEmail('');
-      setAccountNo('');
-      setContactNo('');
-      setSelectedFile(null);
-      setSelectedFileURL('');
-      if (fileInputRef.current) {
-        fileInputRef.current.value = '';
+      try {
+      const response = await axios.post(`${API_BASE_URL}/registerBusOwner`, formDataToSubmit);
+      console.log(response.data);
+      if (response.data.sqlState === '23000' && response.data.sqlMessage.includes('Duplicate entry')) {
+        // Display error message for duplicate entry
+        toast.error('You are already registered.', {
+          className: 'red-toast',
+          bodyClassName: 'red-toast-body',
+        });
+        console.log(response.data);
+      } else {
+        // Display success message
+        toast.success('You are registered successfully');
+        // Clear the form data
+        setFormData({
+          Name: '',
+          email: '',
+          Account_No: '',
+          Contact_No: '',
+          NIC: '',
+        });
       }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -142,104 +116,106 @@ const BusownerRegistration = () => {
           height: '300px',
         }}
       />
-      <form onSubmit={handleSubmit} action="action_page.php">
-        <div className="container">
+      <form action='action_page.php' onSubmit={handleSubmit}>
+        <div className='container'>
           <h1 style={{ fontSize: '2rem', fontWeight: 'bold', textShadow: 'none', color: '#3a6a57' }}>Get Registered</h1>
-          <p style={{ fontSize: '0.9rem', fontWeight: 'normal', textShadow: 'none' }}>Please fill in this form to create a Bus Owner account.</p>
+          <p style={{ fontSize: '0.9rem', fontWeight: 'normal', textShadow: 'none' }}>Please fill in this form to create a Passenger account.</p>
           <hr />
 
-          <label htmlFor="Name"><b>Name</b></label>
+          <label htmlFor='Name'><b>First Name</b></label>
           <input
-            type="text"
-            placeholder="First name and Last name"
-            name="Name"
-            id="Name"
-            value={name}
-            onChange={handleNameChange}
+            type='text'
+            name='First_Name'
+            id='First_Name'
             required
-            className="input-field"
+            className='input-field'
+            onChange={handleChange}
           />
-          {nameError && <p style={{ color: 'red', fontSize: '0.8rem', marginBottom: '0.5rem', textShadow: 'none' }}>{nameError}</p>}
 
-          <label htmlFor="email"><b>Email</b></label>
+          <label htmlFor='Name'><b>Last Name</b></label>
           <input
-            type="text"
-            name="email"
-            id="email"
-            value={email}
-            onChange={handleEmailChange}
+            type='text'
+            name='Last_Name'
+            id='Last_Name'
             required
+            className='input-field'
+            onChange={handleChange}
           />
-          {emailError && <p style={{ color: 'red', fontSize: '0.8rem', marginBottom: '0.5rem', textShadow: 'none' }}>{emailError}</p>}
 
-          <label htmlFor="Account_No"><b>Bank Account Number</b></label>
+          <label htmlFor='email'><b>Email</b></label>
           <input
-            type="text"
-            name="Account_No"
-            id="Account_No"
-            value={accountNo}
-            onChange={handleAccountNoChange}
+            type='text'
+            name='email'
+            id='email'
+            onChange={handleChange}
             required
           />
-          {accountNoError && <p style={{ color: 'red', fontSize: '0.8rem', marginBottom: '0.5rem', textShadow: 'none' }}>{accountNoError}</p>}
 
-          <label htmlFor="Contact_No"><b>Contact Number</b></label>
+          <label htmlFor='Account_No'><b>Home Address</b></label>
           <input
-            type="text"
-            name="Contact_No"
-            id="Contact_No"
-            value={contactNo}
-            onChange={handleContactNoChange}
+            type='text'
+            name='Home_Address'
+            id='Home_Address'
+            onChange={handleChange}
             required
           />
-          {contactNoError && <p style={{ color: 'red', fontSize: '0.8rem', marginBottom: '0.5rem', textShadow: 'none' }}>{contactNoError}</p>}
 
-          <label htmlFor="NIC" style={{ marginTop: '1rem' }}><b>National Identity Card</b>
+          <label htmlFor='Contact_No'><b>Contact Number</b></label>
+          <input
+            type='text'
+            name='Contact_No'
+            id='Contact_No'
+            onChange={handleChange}
+            required
+          />
+
+          <label htmlFor='Gender'><b>Gender</b></label>
+          <select id="cars" name="cars">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Prefer_Not_to_say">Prefer Not to say</option>
+          </select>
+
+          <label htmlFor='NIC' style={{ marginTop: '1rem' }}><b>National Identity Card</b>
             <br /><b>Scanned Copy:</b></label>
-          <input type="file" name="NICcopy" id="NICcopy" required ref={fileInputRef} onChange={handleFileSelect} />
-          {selectedFile && (
-            <button type="button" onClick={handleFileUpload} className="upload-button">
-              Upload File
-            </button>
-          )}
-         {selectedFileURL && (
-          <div>
-            <p>
-            <a href={selectedFileURL} target="_blank" rel="noopener noreferrer" style={{ fontSize: '14px', textShadow: 'none' }}>
-  View the uploaded file
-</a>
+          <input
+            type='file'
+            name='NICcopy'
+            id='NICcopy'
+            required
+            onChange={handleFileSelect}
+          />
 
-              <br />
-            </p>
-            <input
-              name="NIC"
-              id="NIC"
-              type="text"
-              value={selectedFileURL}
-              readOnly
-            />
-          </div>
-        )}
+          {selectedFile && (
+            <>
+              <button type='button' className='uploadbtn' onClick={handleFileUpload}>
+                Upload
+              </button>
+            </>
+          )}
+           
+            {fileUrl && (
+              <>
+                <p>
+                  <span className="file-text">View uploaded file:</span>
+                  <span className="download-link" onClick={() => window.open(fileUrl, '_blank')}>
+                    Click here
+                  </span>
+                </p>
+                <input type='text'Name='NIC' id='NIC' value={fileUrl} readOnly className='download-link-input' onChange={handleChange} />
+                
+              </>
+            )}
           <hr />
 
-          {/* <p style={{ fontSize: '0.8rem', fontWeight: 'normal', textShadow: 'none' }}>
-            By creating an account you agree to our <a href="/terms">Terms & Privacy</a>.
-          </p> */}
-
-          <button type="submit" className="registerbtn">
+          <button type='submit' className='registerbtn'  onClick={displayInfo}>
             Register
           </button>
-        </div>
-
-        {/* <div className="container signin">
-          <p style={{ fontSize: '0.8rem', fontWeight: 'normal', textShadow: 'none' }}>
-            Already have an account? <a href="/login">Sign in</a>.
-          </p>
-        </div> */}
+        </div>    
       </form>
       <ToastContainer />
     </div>
   );
 };
 
-export default BusownerRegistration;
+export default PassengerReg;

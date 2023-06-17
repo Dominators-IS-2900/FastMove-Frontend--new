@@ -10,6 +10,7 @@ const API_BASE_URL = 'http://localhost:5000';
 
 const BusownerRegistration = ({ userEmail }) => {
   const [formData, setFormData] = useState({
+
     Name: '',
     email: '',
     Account_No: '',
@@ -27,7 +28,7 @@ const BusownerRegistration = ({ userEmail }) => {
     const { name, value } = e.target;
 
     setFormData((prevState) => ({
-      ...prevState,
+      ...formData,
       [name]: value,
     }));
   };
@@ -51,7 +52,10 @@ const BusownerRegistration = ({ userEmail }) => {
           uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
             console.log('File available at', downloadURL);
             setFileUrl(downloadURL);
-            toast.success('File uploaded successfully');
+            setFormData((prevState) => ({
+              ...formData,
+              NICcopy: downloadURL,
+            })); toast.success('File uploaded successfully');
           });
         }
       );
@@ -66,16 +70,17 @@ const BusownerRegistration = ({ userEmail }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { Name, email, Account_No, Contact_No, fileUrl } = formData;
-  
+    const { Name, email, Account_No, Contact_No, NICcopy } = formData;
+
     const formDataToSubmit = {
+      UserID: "6",
       name: Name,
       email: email,
       accountNo: Account_No,
       contactNo: Contact_No,
-      NICcopy: fileUrl || '',
-    };    
-  
+      NIC_scancopy: NICcopy || '', // Use NIC as the value for NIC_scancopy
+    };
+
     try {
       const response = await axios.post(`${API_BASE_URL}/registerBusOwner`, formDataToSubmit);
       console.log(response.data);
@@ -95,8 +100,7 @@ const BusownerRegistration = ({ userEmail }) => {
           email: '',
           Account_No: '',
           Contact_No: '',
-          selectedFile: null,
-          fileUrl: '',
+          NICcopy: '',
         });
       }
     } catch (error) {
@@ -157,6 +161,7 @@ const BusownerRegistration = ({ userEmail }) => {
             type='text'
             name='Contact_No'
             id='Contact_No'
+            onChange={handleChange}
             required
           />
 
@@ -177,24 +182,23 @@ const BusownerRegistration = ({ userEmail }) => {
               </button>
             </>
           )}
-           
-            {fileUrl && (
-              <>
-                <p>
-                  <span className="file-text">View uploaded file:</span>
-                  <span className="download-link" onClick={() => window.open(fileUrl, '_blank')}>
-                    Click here
-                  </span>
-                </p>
-                <input type='text' value={fileUrl} readOnly className='download-link-input' />
-              </>
-            )}
+
+          {fileUrl && (
+            <>
+              <p>
+                <span className="file-text">View uploaded file:</span>
+                <span className="download-link" onClick={() => window.open(fileUrl, '_blank')}>
+                  Click here
+                </span>
+              </p>
+            </>
+          )}
           <hr />
 
-          <button type='submit' className='registerbtn'  onClick={displayInfo}>
+          <button type='submit' className='registerbtn' onClick={displayInfo}>
             Register
           </button>
-        </div>    
+        </div>
       </form>
       <ToastContainer />
     </div>

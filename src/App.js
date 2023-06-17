@@ -25,6 +25,7 @@ import TimeTable from "./pages/timeKeeper/busRoute/BusRoute";
 import LoginPage from "./pages/timeKeeper/auth/login";
 import MainPage from "./pages/timeKeeper/mainpage/MainPage";
 import BusownerRegistration from "./components/busOwner/BusownerRegistration/BusownerRegistration";
+import PassengerReg from "./components/common/PassengerRegistration/PassengerReg";
 
 const SidebarLayout = () => (
   <>
