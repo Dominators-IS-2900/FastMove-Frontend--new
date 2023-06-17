@@ -1,15 +1,51 @@
+import React, { useState, useEffect } from 'react';
+import './APaseenger.css';
+import axios from 'axios';
 
-import { useState } from "react";
-import './APaseenger.css'
+const PassengerVerification = () => {
+  const [passengers, setPassengers] = useState([]);
 
-export default function Passenger() {
-  const [nicImages, setNicImages] = useState([]);
+  useEffect(()=>{
+    axios.get("http://localhost:5000/verification")
+    .then(res=>{
+      setPassengers(res.data) 
+      console.log (passengers);
+      
+    }).catch(
+    (err)=>{
+      console.log(err)
+    }
+  )
+  },[1])
+ 
 
-  const handleImageUpload = (event, rowIndex) => {
-    const file = event.target.files[0];
-    const updatedImages = [...nicImages];
-    updatedImages[rowIndex] = URL.createObjectURL(file);
-    setNicImages(updatedImages);
+
+  const handleVerify = async (UserID) => {
+    try {
+
+       await axios.get(`http://localhost:5000/verficated/${UserID}`).then(
+        res=>{
+          console.log(res.data)
+        }
+       )
+      // const response = await axios.post('/passengerverify', (response.data)); // Updated API endpoint and payload
+      // console.log(response.data);
+      // alert('Passenger verified successfully');
+    } catch (error) {
+      console.error('Error verifying passenger:', error);
+      // Handle error
+    }
+  };
+
+  const handleCancel = async () => {
+    try {
+      const response = await axios.delete(`/deleteverifypa/${UserID}`); // Updated API endpoint
+      console.log(response.data);
+      alert('Passenger canceled successfully');
+    } catch (error) {
+      console.error('Error canceling passenger:', error);
+      // Handle error
+    }
   };
 
   return (
@@ -19,12 +55,10 @@ export default function Passenger() {
           <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
             <thead>
               <tr>
-                <th>User_ID</th>
+                <th>User ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
-                <th>Create Password</th>
-                <th>Confirm Password</th>
                 <th>NIC</th>
                 <th>Phone Number</th>
                 <th>Address</th>
@@ -33,40 +67,37 @@ export default function Passenger() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Sajini</td>
-                <td>Madhushika</td>
-                <td>desilva@gmail.com</td>
-                <td>reset123</td>
-                <td>reset123</td>
-                <td>
-                  {nicImages[0] ? (
-                    <img src={nicImages[0]} alt="NIC Scan Copy" style={{ width: "100px", height: "auto" }} />
-                  ) : (
-                    "No image uploaded"
-                  )}
-                  <input type="file" accept="image/*" onChange={(e) => handleImageUpload(e, 0)} />
-                </td>
-                <td>02344444444</td>
-                <td>no11 dream hills mawenalla</td>
-                <td>female</td>
-                <td>
-                  <div className="Button">
-                    <button className="btn btn-primary equal-width">Verify</button>
-                  </div>
-                  <span style={{ margin: "0 5px" }}></span>
-                  <div className="Button">
-                    <button className="btn btn-danger equal-width">Cancel</button>
-                  </div>
-                </td>
-              </tr>
-              {/* Rest of the rows */}
+              {passengers.map(passengers=> (
+                <tr key={passengers.UserID}>
+                  <td>{passengers.UserID}</td>
+                  <td>{passengers.First_Name}</td>
+                  <td>{passengers.Last_Name}</td>
+                  <td>{passengers.Email}</td>
+                  <td>{passengers.Nic_Image}</td>
+                  <td>{passengers.Phone_Number}</td>
+                  <td>{passengers.Address}</td>
+                  <td>{passengers.Gender}</td>
+                  <td>
+                    <div className="Button">
+                      <button className="btn btn-primary equal-width" onClick={() => handleVerify(passengers.UserID)}>
+                        Verify
+                      </button>
+                    </div>
+                    <span style={{ margin: '0 5px' }}></span>
+                    <div className="Button">
+                      <button className="btn btn-danger equal-width" onClick={() => handleCancel(passengers.UserID)}>
+                        Cancel
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
       </div>
     </div>
   );
-}
+};
 
+export default PassengerVerification;

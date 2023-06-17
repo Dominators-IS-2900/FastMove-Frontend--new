@@ -1,188 +1,129 @@
-// import React from 'react';
-// import { useForm } from 'react-hook-form';
-// import axios from 'axios';
-
-// const ConductorRegistration = () => {
-//   const {
-//     register,
-//     handleSubmit,
-//     formState: { errors },
-//   } = useForm();
-
-//   const onSubmit = (data) => {
-//     // Convert file objects to FormData
-//     const formData = new FormData();
-//     formData.append('conductorId', data.conductorId);
-//     formData.append('username', data.username);
-//     formData.append('password', data.password);
-//     formData.append('mobileNumber', data.mobileNumber);
-//     formData.append('email', data.email);
-//     formData.append('nicScanCopy', data.nicScanCopy[0]);
-//     formData.append('conductorLicen', data.conductorLicen[0]);
-
-//     // Send form data to backend API endpoint
-//     axios
-//       .post('http://localhost:5000/conductorRegistration', formData)
-//       .then((response) => {
-//         console.log(response.data); // Handle successful response
-//       })
-//       .catch((error) => {
-//         console.error(error); // Handle error
-//       });
-//   };
-
-//   return (
-//     <div className="card shadow mb-4">
-//       <div className="card-body">
-//         <form onSubmit={handleSubmit(onSubmit)}>
-//           <div className="form-group">
-//             <label htmlFor="conductorId">Conductor ID</label>
-//             <input
-//               type="text"
-//               className="form-control"
-//               id="conductorId"
-//               {...register('conductorId', { required: true })}
-//             />
-//             {errors.conductorId && <span className="text-danger">Conductor ID is required</span>}
-//           </div>
-
-//           <div className="form-group">
-//             <label htmlFor="username">Username</label>
-//             <input
-//               type="text"
-//               className="form-control"
-//               id="username"
-//               {...register('username', { required: true })}
-//             />
-//             {errors.username && <span className="text-danger">Username is required</span>}
-//           </div>
-
-//           <div className="form-group">
-//             <label htmlFor="password">Password</label>
-//             <input
-//               type="password"
-//               className="form-control"
-//               id="password"
-//               {...register('password', { required: true })}
-//             />
-//             {errors.password && <span className="text-danger">Password is required</span>}
-//           </div>
-
-//           <div className="form-group">
-//             <label htmlFor="mobileNumber">Mobile Number</label>
-//             <input
-//               type="tel"
-//               className="form-control"
-//               id="mobileNumber"
-//               {...register('mobileNumber', { required: true })}
-//             />
-//             {errors.mobileNumber && <span className="text-danger">Mobile Number is required</span>}
-//           </div>
-
-//           <div className="form-group">
-//             <label htmlFor="email">Email</label>
-//             <input
-//               type="email"
-//               className="form-control"
-//               id="email"
-//               {...register('email', { required: true })}
-//             />
-//             {errors.email && <span className="text-danger">Email is required</span>}
-//           </div>
-
-//           <div className="form-group">
-//             <label htmlFor="nicScanCopy">NIC Scan Copy</label>
-//             <input
-//               type="file"
-//               className="form-control"
-//               id="nicScanCopy"
-//               {...register('nicScanCopy', { required: true })}
-//             />
-//             {errors.nicScanCopy && <span className="text-danger">NIC Scan Copy is required</span>}
-//           </div>
-
-//           <div className="form-group">
-//             <label htmlFor="conductorLicen">Conductor License</label>
-//             <input
-//               type="file"
-//               className="form-control"
-//               id="conductorLicen"
-//               {...register('conductorLicen', { required: true })}
-//             />
-//             {errors.conductorLicen && <span className="text-danger">Conductor License is required</span>}
-//           </div>
-
-//           <button type="submit" className="btn btn-primary">
-//             Add
-//           </button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ConductorRegistration;
 
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { storage } from './firebase.js'; // Import Firebase storage
+import './ProfileCard.css';
 
 const ConductorRegistration = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
+    reset,
+    watch
   } = useForm();
 
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [nicFormData, setNicFormData] = useState({
+    selectedFile: null,
+    selectedFileURL: ''
+  });
+  const [conductorFormData, setConductorFormData] = useState({
+    selectedFile: null,
+    selectedFileURL: ''
+  });
 
-  const password = watch('password');
+  const onSubmit = async (data) => {
+    try {
+      const formData = {
+        ...data,
+        nicScanCopy: nicFormData.selectedFileURL,
+        conductorLicense: conductorFormData.selectedFileURL
+      };
+  
+      const response = await axios.post(`http://localhost:5000/conductorReg`, formData);
+      console.log(response.data.message);
+      setSuccessMessage('Successfully added');
+      reset();
+    } catch (error) {
+      console.log('Error registering conductor:', error);
+    }
+  };
+  
+  const password = watch('password', '');
 
-  const onSubmit = (data) => {
-    const formData = new FormData();
-    formData.append('conductorId', data.conductorId);
-    formData.append('username', data.username);
-    formData.append('password', data.password);
-    formData.append('mobileNumber', data.mobileNumber);
-    formData.append('email', data.email);
-    formData.append('nicScanCopy', data.nicScanCopy[0]);
-    formData.append('conductorLicen', data.conductorLicen[0]);
+  const handleNicFileSelect = (e) => {
+    setNicFormData({
+      ...nicFormData,
+      selectedFile: e.target.files[0],
+    });
+  };
 
-    axios
-      .post('http://localhost:5000/conductorRegistration', formData)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  const handleNicFileUpload = () => {
+    if (nicFormData.selectedFile) {
+      const storageRef = storage.ref();
+      const fileRef = storageRef.child(nicFormData.selectedFile.name);
+      fileRef
+        .put(nicFormData.selectedFile)
+        .then((snapshot) => {
+          console.log('NIC File uploaded successfully.');
+          // download URL of file
+          return snapshot.ref.getDownloadURL();
+        })
+        .then((downloadURL) => {
+          // Update the formData with the download URL
+          setNicFormData({
+            ...nicFormData,
+            selectedFileURL: downloadURL,
+          });
+        })
+        .catch((error) => {
+          console.log('Error uploading NIC file:', error);
+        });
+    }
+  };
+
+  const handleConductorFileSelect = (e) => {
+    setConductorFormData({
+      ...conductorFormData,
+      selectedFile: e.target.files[0],
+    });
+  };
+
+  const handleConductorFileUpload = () => {
+    if (conductorFormData.selectedFile) {
+      const storageRef = storage.ref();
+      const fileRef = storageRef.child(conductorFormData.selectedFile.name);
+      fileRef
+        .put(conductorFormData.selectedFile)
+        .then((snapshot) => {
+          console.log('Conductor File uploaded successfully.');
+          // download URL of file
+          return snapshot.ref.getDownloadURL();
+        })
+        .then((downloadURL) => {
+          // Update the formData with the download URL
+          setConductorFormData({
+            ...conductorFormData,
+            selectedFileURL: downloadURL,
+          });
+        })
+        .catch((error) => {
+          console.log('Error uploading Conductor file:', error);
+        });
+    }
   };
 
   return (
     <div className="card shadow mb-4">
       <div className="card-body">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="form-group">
-            <label htmlFor="conductorId">Conductor ID</label>
-            <input
-              type="text"
-              className="form-control"
-              id="conductorId"
-              {...register('conductorId', { required: true })}
-            />
-            {errors.conductorId && <span className="text-danger">Conductor ID is required</span>}
-          </div>
+          {/* Other form fields */}
+          {/* ... */}
 
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
+
+              <div className="form-group">
+           <label htmlFor="username">Username</label>
             <input
               type="text"
               className="form-control"
               id="username"
               {...register('username', { required: true })}
             />
-            {errors.username && <span className="text-danger">Username is required</span>}
+            {errors.username && (
+              <span className="text-danger">Username is required</span>
+            )}
           </div>
 
           <div className="form-group">
@@ -195,12 +136,12 @@ const ConductorRegistration = () => {
                 required: true,
                 minLength: {
                   value: 6,
-                  message: 'Password should have at least 6 characters',
+                  message: 'Password should have at least 6 characters'
                 },
                 pattern: {
                   value: /^(?=.*[0-9].*[0-9]).{6,}$/,
-                  message: 'Password should have at least 2 numbers',
-                },
+                  message: 'Password should have at least 2 numbers'
+                }
               })}
             />
             {errors.password && (
@@ -208,17 +149,42 @@ const ConductorRegistration = () => {
             )}
           </div>
 
-          
+          <div className="form-group">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              className="form-control"
+              id="confirmPassword"
+              {...register('confirmPassword', {
+                required: true,
+                validate: (value) =>
+                  value === password || 'Passwords do not match'
+              })}
+            />
+            {errors.confirmPassword && (
+              <span className="text-danger">
+                {errors.confirmPassword.message}
+              </span>
+            )}
+          </div>
           <div className="form-group">
             <label htmlFor="mobileNumber">Mobile Number</label>
             <input
               type="tel"
               className="form-control"
               id="mobileNumber"
-              {...register('mobileNumber', { required: true })}
+              {...register('mobileNumber', {
+                required: true,
+                pattern: {
+                  value: /^\d{10}$/,
+                  message: 'Mobile Number should be 10 digits'
+                }
+              })}
             />
             {errors.mobileNumber && (
-              <span className="text-danger">Mobile Number is required</span>
+              <span className="text-danger">
+                {errors.mobileNumber.message}
+              </span>
             )}
           </div>
 
@@ -228,40 +194,102 @@ const ConductorRegistration = () => {
               type="email"
               className="form-control"
               id="email"
-              {...register('email', { required: true })}
+              {...register('email', {
+                required: true,
+                pattern: {
+                  value: /^\S+@\S+$/i,
+                  message: 'Invalid email format'
+                }
+              })}
             />
-            {errors.email && <span className="text-danger">Email is required</span>}
+            {errors.email && (
+              <span className="text-danger">{errors.email.message}</span>
+            )}
           </div>
-
           <div className="form-group">
-            <label htmlFor="nicScanCopy">NIC Scan Copy</label>
-            <input
-              type="file"
-              className="form-control"
-              id="nicScanCopy"
-              {...register('nicScanCopy', { required: true })}
-            />
-            {errors.nicScanCopy && (
-              <span className="text-danger">NIC Scan Copy is required</span>
+            {/* NIC Scan Copy */}
+            <label htmlFor="nicScanCopy">
+              NIC Scan Copy
+              <br />
+              <input
+                type="file"
+                name="nicSelectedFile"
+                id="nicSelectedFile"
+                required
+                onChange={handleNicFileSelect}
+              />
+            </label>
+            <br />
+            {nicFormData.selectedFile && (
+              <>
+                <button
+                  type="button"
+                  onClick={handleNicFileUpload}
+                  className="upload-button"
+                >
+                  Upload
+                </button>
+                <br />
+                {nicFormData.selectedFileURL && (
+                  <a
+                    href={nicFormData.selectedFileURL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View the uploaded NIC file
+                  </a>
+                )}
+              </>
             )}
           </div>
 
           <div className="form-group">
-            <label htmlFor="conductorLicen">Conductor License</label>
-            <input
-              type="file"
-              className="form-control"
-              id="conductorLicen"
-              {...register('conductorLicen', { required: true })}
-            />
-            {errors.conductorLicen && (
-              <span className="text-danger">Conductor License is required</span>
+            {/* Conductor License */}
+            <label htmlFor="conductorLicense">
+              Conductor License
+              <br />
+              <input
+                type="file"
+                name="conductorSelectedFile"
+                id="conductorSelectedFile"
+                required
+                onChange={handleConductorFileSelect}
+              />
+            </label>
+            <br />
+            {conductorFormData.selectedFile && (
+              <>
+                <button
+                  type="button"
+                  onClick={handleConductorFileUpload}
+                  className="upload-button"
+                >
+                  Upload
+                </button>
+                <br />
+                {conductorFormData.selectedFileURL && (
+                  <a
+                    href={conductorFormData.selectedFileURL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View the uploaded Conductor file
+                  </a>
+                )}
+              </>
             )}
           </div>
+
+          {/* Rest of the form */}
+          {/* ... */}
 
           <button type="submit" className="btn btn-primary">
             Add
           </button>
+
+          {successMessage && (
+            <div className="alert alert-success mt-3">{successMessage}</div>
+          )}
         </form>
       </div>
     </div>
@@ -269,7 +297,4 @@ const ConductorRegistration = () => {
 };
 
 export default ConductorRegistration;
-
-
-
 

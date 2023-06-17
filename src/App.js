@@ -7,7 +7,6 @@ import OwnerProfilePage from "./pages/busOwner/OwnerProfilePage";
 import Busfarepage from "./pages/admin/Busfarepage";
 import OwnerVarificationPage from "./pages/admin/OwnerVarificationPage";
 import PassengerVerificationPage from "./pages/admin/PassengerVerificationPage";
-import ActivityPage from "./pages/admin/ActivityPage";
 import ProfilePage from "./pages/admin/ProfilePage";
 import SigninCharPage from "./pages/common/SigninCharPage/components/SigninCharPage";
 import Homepage from "./pages/common/Homepage/components/Home";
@@ -24,8 +23,12 @@ import DeposPage from "./pages/timeKeeper/deposPage/DeposPage";
 import TimeTable from "./pages/timeKeeper/busRoute/BusRoute";
 import LoginPage from "./pages/timeKeeper/auth/login";
 import MainPage from "./pages/timeKeeper/mainpage/MainPage";
-
-
+import InvestigationPage from "./pages/admin/InvestigationPage";
+import InfoPage from "./pages/admin/InfoPage";
+import PverifiedPage from "./pages/admin/PverifiedPage";
+import DecOwnerPage from "./pages/admin/DecOwnerPage";
+import IssuesOwnerPage from "./pages/admin/IssuesOwnerPage";
+import IssuesPPage from "./pages/admin/IssuesPPage";
 const SidebarLayout = () => (
   <>
     <SideBar />
@@ -49,11 +52,14 @@ function App() {
         <Route path="/Busfarepage" element={<Busfarepage />} />       
         <Route path="/Ownervarification" element={<OwnerVarificationPage />} />
         <Route path="/PassengerVerification" element={<PassengerVerificationPage/>} />
-        <Route path="/ProfilePage" element={<ProfilePage/>} />
-        <Route path="/Activity" element={<ActivityPage/>} />    
+        <Route path="/ProfilePage" element={<ProfilePage/>} /> 
         <Route path="/profile" element={<ProfilePage />} />
-  
-
+        <Route path="/InvestigationPage" element={<InvestigationPage/>} />
+        <Route path="/InfoPage" element={<InfoPage />} />
+        <Route path="/PverifiedPage" element={<PverifiedPage/>} />
+        <Route path="/DecOwnerPage" element={<DecOwnerPage/>} />
+        <Route path="/IssuesOwnerPage" element={<IssuesOwnerPage/>}/>
+        <Route path="/IssuesPPage" element={<IssuesPPage/>}/>
         {/* Bus owner routes */}
         <Route path="/ownerDashboardpage" element={<OwnerDashboardPage/>} />
         <Route path="/DetailsownerPage" element={<detailsOwner/>} />
