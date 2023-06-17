@@ -1,45 +1,136 @@
 .screen{
-    background-image: linear-gradient(to right, white , #73BFB8);
+  background-image: linear-gradient(to right, white , #73BFB8);
+}
+
+.mainhome{
+  background-color:#B2BEBA;
+}
+
+body {
+font-weight: 30; /* Adjust the font thickness as desired */
+text-shadow: none; /* Remove text shadows */
 }
 
 .split {
-    height: 100%;
-    width: 50%;
-    position: fixed;
-    z-index: 1;
-    top:0;
-    overflow-x: hidden;
-    padding-top: 20px;
-  }
-  
-  .left {
-    left: o;
-  }
-  
-  .right {
-    right:0;
-   
-  }
-  
-  .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-  
-  .centered img {
-    width: 150%;
-    align-items: center;
-    padding-right: 29px;
-    padding-left: 0%;
-    margin-right: 30px;
-    
-  }
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top:0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
 
-  
+.left {
+  left: o;
+}
+
+.right {
+  right:0;
  
+}
 
-  /* #01281a */
-  /* #f6c23e */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.centered img {
+  width: 150%;
+  align-items: center;
+  padding-right: 29px;
+  padding-left: 0%;
+  margin-right: 30px;
+  
+}
+
+.description-section{
+background-color: aqua;
+} 
+
+.about-section {
+margin-top: 50px;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+justify-content: space-between;
+}
+
+.widget {
+margin-top: 70px;
+padding: 20px;
+border-radius: 8px;
+height: 400px;
+box-shadow: none !important; /* Remove the background shadow */
+background-color: transparent !important; /* Remove the background color */
+}
+
+.dividing-line {
+width: 1px;
+height: 100px;
+background-color: #ccc;
+}
+.wid-topic{
+padding: 15px;
+font-weight: normal; /* Reduce font thickness */
+text-shadow: none; /* Remove text shadow */
+}
+
+.wid-body{
+text-align: justify;
+padding: 20px;
+font-size: small;
+height: max-content;
+font-weight: normal; /* Reduce font thickness */
+text-shadow: none; /* Remove text shadow */
+}
+
+.wrapper {
+background-color: #B2BEBA;
+}
+.get-in-touch-section {
+margin-top: 200px;
+background-color: #f2f2f2;
+padding: 20px;
+bottom: 0;
+width: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-end;
+}
+
+.get-in-touch-section h2 {
+font-size: 24px;
+color: #333;
+}
+
+.get-in-touch-section p {
+font-size: 16px;
+color: #555;
+margin-bottom: 10px;
+}
+
+.contact-info p {
+margin: 0;
+}
+
+.contact-info p:not(:last-child) {
+margin-bottom: 5px;
+}
+
+
+
+/* #01281a */
+/* #f6c23e */
+
+.login-signup-container {
+  margin-top: 20px;
+}
+
+.button-spacing {
+  margin: 0 10px;
+}

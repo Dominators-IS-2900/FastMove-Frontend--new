@@ -1,0 +1,94 @@
+
+
+* {box-sizing: border-box}
+
+/* Add padding to containers */
+.container {
+    margin-top: -95px;
+    margin-left: 35%;
+  padding: 16px;
+  width: 600px;
+}
+
+
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit/register button */
+.registerbtn {
+  background-color:#3a6a57;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.center-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    background-color: #f2f2f2;
+    margin-top: 10px;
+  }
+
+  .upload-button {
+    background-color: #f2f2f2;
+    color: #000;
+    border-radius: 4px;
+    width: 200px;
+    height: 50px;
+    margin-top: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .upload-button:hover {
+    background-color: rgb(72, 72, 202);
+    color: white;
+  }
+
+  .Regform{
+    margin-left: 300px;
+  }
+  
+  

@@ -8,7 +8,7 @@ import React from 'react'
     <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Bus Pass Application:2023</span>
+                    <span>Copyright &copy; FastMove|Bus Pass Application:2023</span>
                 </div>
             </div>
     </footer>
