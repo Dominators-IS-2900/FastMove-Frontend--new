@@ -21,6 +21,14 @@ export default function BusownersideBar() {
             </div>
         
         </a> */}
+
+        <li class="nav-item active">
+            
+            <Link to='/ownerDashboardpage' class="nav-link">
+                <span>Dashboard</span>
+            </Link>
+        </li>
+{/*     
         <hr class="sidebar-divider my-0"/>
             <Link to='/ownerDashboardpage' class="nav-link">
                 <li class="nav-item active">
@@ -28,7 +36,8 @@ export default function BusownersideBar() {
                 </li>
             </Link>    
         
-        <hr class="sidebar-divider"/>
+        <hr class="sidebar-divider"/> */}
+        
         <div class="sidebar-heading">
             Bus Owner
         </div>

@@ -2,12 +2,16 @@ import React from 'react'
 import BusRegcard from '../../../components/busOwner/BusRegcard/BusRegcard';
 import Footer from '../../../components/common/footer/Footer';
 
+//popup notification
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function BusRegister(props) {
     console.log(props);
     
 
   return (
+    <div class='regcard'>
     <div id="content" style={{width: '1150px'}}>
 
     <div class="container-fluid mr-5" style={{width: '1100px'}}>
@@ -19,7 +23,7 @@ export default function BusRegister(props) {
         <BusRegcard/>
         <Footer/>
     </div>
-
+    </div>
 
 </div>
     

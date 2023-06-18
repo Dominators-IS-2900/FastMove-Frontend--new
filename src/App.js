@@ -24,6 +24,11 @@ import DeposPage from "./pages/timeKeeper/deposPage/DeposPage";
 import TimeTable from "./pages/timeKeeper/busRoute/BusRoute";
 import LoginPage from "./pages/timeKeeper/auth/login";
 import MainPage from "./pages/timeKeeper/mainpage/MainPage";
+import BusownerRegistration from "./components/busOwner/BusownerRegistration/BusownerRegistration";
+import PassengerRegistration from "./components/common/PassengerRegistration/PassengerReg";
+import OTPpage from "./components/common/OTPpage/OTPpage"
+import UserRegistration from "./components/common/UserRegistration/UserRegistration";
+
 const SidebarLayout = () => (
   <>
     <SideBar />
@@ -42,7 +47,7 @@ function App() {
       <div id= "wrapper">
       <Routes>
         {/* Admin routes         */}
-        <Route path="/" element={<DeposPage/>}/>  
+        <Route path="/" element={<UserRegistration/>}/>  
         <Route path="/SignInchar" element={<SigninCharPage/>} />        
         <Route path="/Busfarepage" element={<Busfarepage />} />       
         <Route path="/Ownervarification" element={<OwnerVarificationPage />} />
