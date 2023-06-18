@@ -72,19 +72,21 @@ const PassengerRegistration = ({ userEmail }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { Name, email, Account_No, Contact_No, NICcopy } = formData;
+    const { FName,LName,sex, email, Contact_No,HAddress,NICcopy} = formData;
 
     const formDataToSubmit = {
-      UserID: "6",
-      name: Name,
-      email: email,
-      accountNo: Account_No,
-      contactNo: Contact_No,
-      NIC_scancopy: NICcopy || '', // Use NIC as the value for NIC_scancopy
-    };
+      UserID: "2",
+      First_Name:FName,
+      Last_Name:LName,
+      Gender:sex,
+      Email:email,
+      Phone_Number: Contact_No,
+      Address:HAddress,      
+      Nic_Image:NICcopy || '',
+      };
 
     try {
-      const response = await axios.post(`${API_BASE_URL}/registerBusOwner`, formDataToSubmit);
+      const response = await axios.post(`${API_BASE_URL}/registerpassengers`, formDataToSubmit);
       console.log(response.data);
       if (response.data.sqlState === '23000' && response.data.sqlMessage.includes('Duplicate entry')) {
         // Display error message for duplicate entry
@@ -151,7 +153,7 @@ const PassengerRegistration = ({ userEmail }) => {
           />
           
           <label htmlFor='Gender'><b>Gender</b></label>
-          <select id="sex" name="sex">
+          <select id="sex" name="sex"  onChange={handleChange}>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="NotMentioned">Prefer not to say</option>
