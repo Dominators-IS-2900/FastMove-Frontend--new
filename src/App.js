@@ -25,7 +25,8 @@ import TimeTable from "./pages/timeKeeper/busRoute/BusRoute";
 import LoginPage from "./pages/timeKeeper/auth/login";
 import MainPage from "./pages/timeKeeper/mainpage/MainPage";
 import BusownerRegistration from "./components/busOwner/BusownerRegistration/BusownerRegistration";
-import PassengerReg from "./components/common/PassengerRegistration/PassengerReg";
+import PassengerRegistration from "./components/common/PassengerRegistration/PassengerReg";
+import OTPpage from "./components/common/OTPpage/OTPpage"
 
 const SidebarLayout = () => (
   <>
@@ -45,7 +46,7 @@ function App() {
       <div id= "wrapper">
       <Routes>
         {/* Admin routes         */}
-        <Route path="/" element={<BusownerRegistration/>}/>  
+        <Route path="/" element={<PassengerRegistration/>}/>  
         <Route path="/SignInchar" element={<SigninCharPage/>} />        
         <Route path="/Busfarepage" element={<Busfarepage />} />       
         <Route path="/Ownervarification" element={<OwnerVarificationPage />} />

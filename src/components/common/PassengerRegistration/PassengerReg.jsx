@@ -8,11 +8,14 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:5000';
 
-const PassengerReg = ({ userEmail }) => {
+const PassengerRegistration = ({ userEmail }) => {
   const [formData, setFormData] = useState({
-    Name: '',
+
+    FName: '',
+    LName:'',
+    sex:'',
     email: '',
-    Account_No: '',
+    HAddress: '',
     Contact_No: '',
     NICcopy: null,
   });
@@ -27,7 +30,7 @@ const PassengerReg = ({ userEmail }) => {
     const { name, value } = e.target;
 
     setFormData((prevState) => ({
-      ...prevState,
+      ...formData,
       [name]: value,
     }));
   };
@@ -51,7 +54,10 @@ const PassengerReg = ({ userEmail }) => {
           uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
             console.log('File available at', downloadURL);
             setFileUrl(downloadURL);
-            toast.success('File uploaded successfully');
+            setFormData((prevState) => ({
+              ...formData,
+              NICcopy: downloadURL,
+            })); toast.success('File uploaded successfully');
           });
         }
       );
@@ -66,17 +72,18 @@ const PassengerReg = ({ userEmail }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { Name, email, Account_No, Contact_No, NIC } = formData;
-  
+    const { Name, email, Account_No, Contact_No, NICcopy } = formData;
+
     const formDataToSubmit = {
+      UserID: "6",
       name: Name,
       email: email,
       accountNo: Account_No,
       contactNo: Contact_No,
-      NIC_scancopy: NIC || '', // Use NIC as the value for NIC_scancopy
+      NIC_scancopy: NICcopy || '', // Use NIC as the value for NIC_scancopy
     };
 
-      try {
+    try {
       const response = await axios.post(`${API_BASE_URL}/registerBusOwner`, formDataToSubmit);
       console.log(response.data);
       if (response.data.sqlState === '23000' && response.data.sqlMessage.includes('Duplicate entry')) {
@@ -91,11 +98,13 @@ const PassengerReg = ({ userEmail }) => {
         toast.success('You are registered successfully');
         // Clear the form data
         setFormData({
-          Name: '',
+          FName: '',
+          LName:'',
+          sex:'',
           email: '',
-          Account_No: '',
+          HAddress: '',
           Contact_No: '',
-          NIC: '',
+          NICcopy: '',
         });
       }
     } catch (error) {
@@ -125,22 +134,28 @@ const PassengerReg = ({ userEmail }) => {
           <label htmlFor='Name'><b>First Name</b></label>
           <input
             type='text'
-            name='First_Name'
-            id='First_Name'
+            name='FName'
+            id='FName'
             required
             className='input-field'
             onChange={handleChange}
           />
-
           <label htmlFor='Name'><b>Last Name</b></label>
           <input
             type='text'
-            name='Last_Name'
-            id='Last_Name'
+            name='LName'
+            id='LName'
             required
             className='input-field'
             onChange={handleChange}
           />
+          
+          <label htmlFor='Gender'><b>Gender</b></label>
+          <select id="sex" name="sex">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="NotMentioned">Prefer not to say</option>
+               </select>
 
           <label htmlFor='email'><b>Email</b></label>
           <input
@@ -154,8 +169,8 @@ const PassengerReg = ({ userEmail }) => {
           <label htmlFor='Account_No'><b>Home Address</b></label>
           <input
             type='text'
-            name='Home_Address'
-            id='Home_Address'
+            name='HAddress'
+            id='HAddress'
             onChange={handleChange}
             required
           />
@@ -168,13 +183,6 @@ const PassengerReg = ({ userEmail }) => {
             onChange={handleChange}
             required
           />
-
-          <label htmlFor='Gender'><b>Gender</b></label>
-          <select id="cars" name="cars">
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Prefer_Not_to_say">Prefer Not to say</option>
-          </select>
 
           <label htmlFor='NIC' style={{ marginTop: '1rem' }}><b>National Identity Card</b>
             <br /><b>Scanned Copy:</b></label>
@@ -193,29 +201,27 @@ const PassengerReg = ({ userEmail }) => {
               </button>
             </>
           )}
-           
-            {fileUrl && (
-              <>
-                <p>
-                  <span className="file-text">View uploaded file:</span>
-                  <span className="download-link" onClick={() => window.open(fileUrl, '_blank')}>
-                    Click here
-                  </span>
-                </p>
-                <input type='text'Name='NIC' id='NIC' value={fileUrl} readOnly className='download-link-input' onChange={handleChange} />
-                
-              </>
-            )}
+
+          {fileUrl && (
+            <>
+              <p>
+                <span className="file-text">View uploaded file:</span>
+                <span className="download-link" onClick={() => window.open(fileUrl, '_blank')}>
+                  Click here
+                </span>
+              </p>
+            </>
+          )}
           <hr />
 
-          <button type='submit' className='registerbtn'  onClick={displayInfo}>
+          <button type='submit' className='registerbtn' onClick={displayInfo}>
             Register
           </button>
-        </div>    
+        </div>
       </form>
       <ToastContainer />
     </div>
   );
 };
 
-export default PassengerReg;
+export default PassengerRegistration;
