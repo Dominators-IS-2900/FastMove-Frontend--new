@@ -47,7 +47,7 @@ export default function SideBar() {
             </a>
         </li></Link>
         
-        <Link to="/Profile">
+        <Link to="/ConductorProfile">
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                 aria-expanded="true" aria-controls="collapseUtilities">
