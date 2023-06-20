@@ -1,128 +1,19 @@
-// import React, { useRef } from 'react';
-// import './Home.css';
-// import logo from '../../../../Images/Logo.png';
-// import axios from 'axios';
-// import { useAuth0 } from '@auth0/auth0-react';
-// import { useEffect } from 'react';
-// import '../index.css';
-
-// function Home() {
-//   const { loginWithRedirect, isAuthenticated, user } = useAuth0();
-//   const aboutSectionRef = useRef(null);
-//   const getInTouchSectionRef = useRef(null);
-
-//   useEffect(() => {
-//     user &&
-//       axios
-//         .post('http://localhost:5000//api/users', {
-//           username: user.nickname,
-//           email: user.email,
-//         })
-//         .then((res) => {
-//           console.log(res);
-//         })
-//         .catch((e) => {
-//           console.log(e);
-//         });
-//   }, [isAuthenticated]);
-
-//   const handleAboutClick = () => {
-//     aboutSectionRef.current.scrollIntoView({ behavior: 'smooth' });
-//   };
-
-//   const handleHomeClick = () => {
-//     window.scrollTo({ top: 0, behavior: 'smooth' });
-//   };
-
-//   const handleContactClick = () => {
-//     getInTouchSectionRef.current.scrollIntoView({ behavior: 'smooth' });
-//   };
-
-//   return (
-//     <div className="wrapper">
-//       <header className="fixed-header">
-//         <img src={logo} alt="FastMove Logo" height="30" />
-//         <nav>
-//           <ul>
-//             <li onClick={handleHomeClick}>Home</li> {/* Call handleHomeClick when the Home button is clicked */}
-//             <li onClick={handleAboutClick}>About</li>
-//             <li onClick={handleContactClick}>Contact us</li> {/* Call handleContactClick when the Contact us button is clicked */}
-//           </ul>
-//         </nav>
-//       </header>
-//       <main>
-//         <img src={logo} alt="logo" className="Home--logo" />
-//         <h1>Book smart-Travel safe</h1>
-//         <p>Smart Bus Pass booking application to book your ticket smart and conveniently</p>
-//         <button onClick={loginWithRedirect}>Get Started</button>
-
-        // <div className="about-section" ref={aboutSectionRef}>
-        //   <div className="widget">
-        //   <div className='wid-topic'>
-        //       <h2>Within fingertip reach</h2>
-        //     </div>           
-        //     <div className='wid-body'>
-        //       <p>
-        //         Discover the ultimate convenience of FastMove. With just a few simple taps
-        //         and minimal steps, you can reserve their bus seats effortlessly, revolutionizing their travel
-        //         experience. It's fingertip access at its finest!
-        //       </p>
-        //     </div>
-        //   </div>
-        //   <div className="widget">
-        //     <div className='wid-topic'>
-        //       <h2>24 / 7 Service</h2>
-        //     </div>
-        //     <div className='wid-body'>
-        //       <p>Introducing our groundbreaking FastMove system, available round the clock.
-        //         You can effortlessly reserve bus seats anytime, ensuring a seamless and convenient journey.
-        //         Experience 24/7 convenience at your fingertips.</p>
-        //     </div>
-        //   </div>
-        //   <div className="widget">
-        //     <div className='wid-topic'>
-        //       <h2>Secure seat booking transactions</h2>
-        //     </div>
-        //     <div className='wid-body'>
-        //       <p>Secure smart bus pass system ensures protected transactions for seat bookings.
-        //         Advanced safeguards provide peace of mind.
-        //         Experience convenient and safe bus seat reservations.</p>
-        //     </div>
-        //   </div>
-        // </div>
-
-//         <div className="get-in-touch-section">
-//   <h2>Get in Touch</h2>
-//   <p>If you have any questions or need assistance, feel free to reach out to us.</p>
-//   <div className="contact-info">
-//     <p>Email: info@fastmove.com</p>
-//     <p>Phone:  +94 11 269 1136</p>
-//     <p>No:45,Main Street, Bambalapitiya</p>
-//   </div>
-//   <footer>
-//         &copy; 2023 FastMove | All rights reserved
-//       </footer>
-// </div>
-//       </main>
-//     </div>
-//   );
-// }
-
-// export default Home;
-
 // import React, { useRef, useState } from 'react';
 // import './Home.css';
 // import logo from '../../../../Images/Logo.png';
+// import bgimg from '../../../../Images/bgimg.jpg'
 // import axios from 'axios';
 // import { useAuth0 } from '@auth0/auth0-react';
 // import { useEffect } from 'react';
 // import '../index.css';
+// import {Link} from 'react-router-dom'
 
 // function Home() {
 //   const { loginWithRedirect, isAuthenticated, user } = useAuth0();
 //   const aboutSectionRef = useRef(null);
 //   const getInTouchSectionRef = useRef(null);
 //   const [showLoginSignup, setShowLoginSignup] = useState(false);
+//   const [showLoginForm, setShowLoginForm] = useState(false);
 
 //   useEffect(() => {
 //     user &&
@@ -155,79 +46,62 @@
 //     setShowLoginSignup(true);
 //   };
 
+//   const handleLogin = () => {
+//     setShowLoginForm(true);
+//   };
+
 //   return (
 //     <div className="wrapper">
 //       <header className="fixed-header">
-//         <img src={logo} alt="FastMove Logo" height="30" />
+//         <div className='homelogo'><img src={logo} alt="FastMove Logo" height="30" /></div>
 //         <nav>
 //           <ul>
-//             <li onClick={handleHomeClick}>Home</li> {/* Call handleHomeClick when the Home button is clicked */}
+//             <li onClick={handleHomeClick}>Home</li>
 //             <li onClick={handleAboutClick}>About</li>
-//             <li onClick={handleContactClick}>Contact us</li> {/* Call handleContactClick when the Contact us button is clicked */}
+//             <li onClick={handleContactClick}>Contact us</li>
+//             <Link to="/Login"> 
+            
+//             <button className='loginbtn'>Log in</button>
+//             </Link>
 //           </ul>
 //         </nav>
 //       </header>
 //       <main>
-//         <img src={logo} alt="logo" className="Home--logo" />
-//         <h1>Book smart-Travel safe</h1>
-//         <p>Smart Bus Pass booking application to book your ticket smart and conveniently</p>
-//         {showLoginSignup ? (
-//           <div className="login-signup-container">
-//             <button className="login-button">Login</button>
-//             <span className="button-spacing"></span>
-//             <button className="signup-button">Sign Up</button>
-//           </div>
-//         ) : (
-//           <button onClick={handleGetStarted}>Get Started</button>
-//         )}
-
-// <div className="about-section" ref={aboutSectionRef}>
-//           <div className="widget">
-//           <div className='wid-topic'>
-//               <h2>Within fingertip reach</h2>
-//             </div>           
-//             <div className='wid-body'>
-//               <p>
-//                 Discover the ultimate convenience of FastMove. With just a few simple taps
+//         <img src={logo} alt="FastMove Logo" height="30" className='homeimg'/>
+//         <div className='content'>
+//         <h1 style={{ textShadow: 'none', fontWeight: 'lighter' }}>Reserve your Bus Seat at </h1>
+//         <h1 style={{ textShadow: 'none', fontWeight: 'bold', color: '#004226' }}>Distance of Fingertip</h1>
+//         <p style={{ textShadow: 'none',  fontStyle: 'italic' }}> Book Fast - Travel Safe</p>
+//         <button className='startbtn'>Get Started</button>
+//         </div>
+//         <div className='bgimge'>
+//           <img src={bgimg} alt="bgimge" style={{ width: '600px', height: '600px' }} />
+//         </div>
+//         <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+//       <div className='about'>
+//         <div className='squres'>
+//           <div className='squrehead1'><h3>Within fingertip reach</h3></div>
+//           <br/>
+//           <div className='squrebody1'><p>Discover the ultimate convenience of FastMove. With just a few simple taps
 //                 and minimal steps, you can reserve their bus seats effortlessly, revolutionizing their travel
-//                 experience. It's fingertip access at its finest!
-//               </p>
-//             </div>
-//           </div>
-//           <div className="widget">
-//             <div className='wid-topic'>
-//               <h2>24 / 7 Service</h2>
-//             </div>
-//             <div className='wid-body'>
-//               <p>Introducing our groundbreaking FastMove system, available round the clock.
-//                 You can effortlessly reserve bus seats anytime, ensuring a seamless and convenient journey.
-//                 Experience 24/7 convenience at your fingertips.</p>
-//             </div>
-//           </div>
-//           <div className="widget">
-//             <div className='wid-topic'>
-//               <h2>Secure seat booking transactions</h2>
-//             </div>
-//             <div className='wid-body'>
-//               <p>Secure smart bus pass system ensures protected transactions for seat bookings.
+//                 experience. It's fingertip access at its finest!</p></div>
+//         </div>
+//         <div className='squres'>
+//           <div className='squrehead2'><h3>24 / 7 Service</h3></div>
+//           <br/>
+          // <div className='squrebody2'><p>Introducing our groundbreaking FastMove system, available round the clock.
+          //       You can effortlessly reserve bus seats anytime, ensuring a seamless and convenient journey.
+          //       Experience 24/7 convenience at your fingertips.</p></div>
+        // </div>
+//         <div className='squres'>
+//           <div className='squrehead3'><h3>Secure seat booking transactions</h3></div>
+//           <br/>
+//           <div className='squrebody3'><p>Secure smart bus pass system ensures protected transactions for seat bookings.
 //                 Advanced safeguards provide peace of mind.
-//                 Experience convenient and safe bus seat reservations.</p>
-//             </div>
-//           </div>
+//                 Experience convenient and safe bus seat reservations.</p></div>
 //         </div>
-
-//         <div className="get-in-touch-section" ref={getInTouchSectionRef}>
-//           <h2>Get in Touch</h2>
-//           <p>If you have any questions or need assistance, feel free to reach out to us.</p>
-//           <div className="contact-info">
-//             <p>Email: info@fastmove.com</p>
-//             <p>Phone:  +94 11 269 1136</p>
-//             <p>No:45,Main Street, Bambalapitiya</p>
-//           </div>
-//           <footer>
-//             &copy; 2023 FastMove | All rights reserved
-//           </footer>
-//         </div>
+//       </div>
+      
 //       </main>
 //     </div>
 //   );
@@ -235,13 +109,17 @@
 
 // export default Home;
 
+
+
 import React, { useRef, useState } from 'react';
 import './Home.css';
 import logo from '../../../../Images/Logo.png';
+import bgimg from '../../../../Images/bgimg.jpg';
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useEffect } from 'react';
 import '../index.css';
+import { Link } from 'react-router-dom';
 
 function Home() {
   const { loginWithRedirect, isAuthenticated, user } = useAuth0();
@@ -288,90 +166,56 @@ function Home() {
   return (
     <div className="wrapper">
       <header className="fixed-header">
-      <img src={logo} alt="FastMove Logo" height="30"/>
+        <div className="homelogo">
+          <img src={logo} alt="FastMove Logo" height="30" />
+        </div>
         <nav>
           <ul>
             <li onClick={handleHomeClick}>Home</li>
             <li onClick={handleAboutClick}>About</li>
             <li onClick={handleContactClick}>Contact us</li>
+            <Link to="/Login">
+              <button className="loginbtn">Log in</button>
+            </Link>
           </ul>
         </nav>
       </header>
       <main>
-      <div className='mainhome'>
-        <img src={logo} alt="logo" className="Home--logo" style={{ marginLeft: '600px' }} />
-        <h1>Book smart-Travel safe</h1>
-        <p>Smart Bus Pass booking application to book your ticket smart and conveniently</p>
-        {showLoginSignup ? (
-          showLoginForm ? (
-            <div className="login-form">
-              <input type="text" placeholder="Username" className="login-input" style={{ width:"500px", marginLeft:"520px",height:"50px"}} />
-              <input type="password" placeholder="Password" className="login-input" style={{ width:"500px", marginLeft:"520px",height:"50px"}}/>
-              <button className="login-button" style={{ marginLeft: '700px',height:"70px" }}>Login</button>
-            </div>
-          ) : (
-            <div className="login-signup-container">
-              <button className="login-button" onClick={handleLogin} style={{ marginLeft: '600px' }}>
-                Login
-              </button>
-              <span className="button-spacing"></span>
-              <button className="signup-button">Sign Up</button>
-            </div>
-          )
-        ) : (
-          <button onClick={handleGetStarted}style={{ marginLeft: '660px' }}>Get Started</button>
-        )}
-        <br/><br/>
+        <img src={logo} alt="FastMove Logo" height="30" className="homeimg" />
+        <div className="content">
+          <h1 style={{ textShadow: 'none', fontWeight: 'lighter' }}>Reserve your Bus Seat at </h1>
+          <h1 style={{ textShadow: 'none', fontWeight: 'bold', color: '#004226' }}>Distance of Fingertip</h1>
+          <p style={{ textShadow: 'none', fontStyle: 'italic' }}> Book Fast - Travel Safe</p>
+          <button className="startbtn">Get Started</button>
         </div>
-
-        <div className="about-section" ref={aboutSectionRef}>
-          <div className="widget">
-            <div className="wid-topic">
-              <h2>Within fingertip reach</h2>
-            </div>
-            <div className="wid-body">
-              <p>
-                Discover the ultimate convenience of FastMove. With just a few simple taps and minimal steps, you can
-                reserve their bus seats effortlessly, revolutionizing their travel experience. It's fingertip access at
-                its finest!
-              </p>
-            </div>
-          </div>
-          <div className="widget">
-            <div className="wid-topic">
-              <h2>24 / 7 Service</h2>
-            </div>
-            <div className="wid-body">
-              <p>
-                Introducing our groundbreaking FastMove system, available round the clock. You can effortlessly reserve
-                bus seats anytime, ensuring a seamless and convenient journey. Experience 24/7 convenience at your
-                fingertips.
-              </p>
-            </div>
-          </div>
-          <div className="widget">
-            <div className="wid-topic">
-              <h2>Secure seat booking transactions</h2>
-            </div>
-            <div className="wid-body">
-              <p>
-                Secure smart bus pass system ensures protected transactions for seat bookings. Advanced safeguards
-                provide peace of mind. Experience convenient and safe bus seat reservations.
-              </p>
-            </div>
-          </div>
+        <div className="bgimge">
+          <img src={bgimg} alt="bgimge" style={{ width: '600px', height: '600px' }} />
         </div>
-
-        <div className="get-in-touch-section" ref={getInTouchSectionRef}>
-          <h2>Get in Touch</h2>
-          <p>If you have any questions or need assistance, feel free to reach out to us.</p>
-          <div className="contact-info">
-            <p>Email: info@fastmove.com</p>
-            <p>Phone: +94 11 269 1136</p>
-            <p>No:45,Main Street, Bambalapitiya</p>
+        <div className="widgets">
+          <div className="widget widget-left">
+            <div className="widget-content">
+            <h3>Within fingertip reach</h3>
+              <p>Discover the ultimate convenience of FastMove. With just a few simple taps
+                and minimal steps, you can reserve their bus seats effortlessly, revolutionizing their travel
+                experience. It's fingertip access at its finest!</p>
+            </div>
           </div>
-          <footer>&copy; 2023 FastMove | All rights reserved</footer>
-        </div>
+          <div className="widget widget-middle">
+            <div className="widget-content">
+              <h3>24 / 7 Service</h3>
+              <p>Experience the FastMove system, providing seamless bus seat reservations 24/7.
+                 Effortlessly book anytime for a hassle-free journey. Enjoy convenient convenience at your fingertips.</p>
+            </div>
+          </div>
+          <div className="widget widget-right">
+            <div className="widget-content">
+              <h3>Secure seat booking transactions</h3>
+              <p>Secure smart bus pass system ensures protected transactions for seat bookings.
+                Advanced safeguards provide peace of mind.
+                Experience convenient and safe bus seat reservations.</p>
+            </div>
+          </div>
+        </div>      
       </main>
     </div>
   );

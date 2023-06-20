@@ -1,0 +1,86 @@
+.login{
+    font-size: 15px;
+    border-radius: 30px;
+    height: 10px;
+    width: 400px;
+    margin-left: 0px;
+    margin-top: 18px;
+    padding-bottom: 37px;
+    padding-top: 17px;
+  }
+  
+  .startbtn{
+    font-size: 15px;
+    border-radius: 30px;
+    height: 30px;
+    width: 160px;
+    margin-left: 130px;
+    margin-top: 0px;
+    padding-bottom: 37px;
+    padding-top: 17px;
+    font-weight: 15px;
+  }
+  
+  .bgimg{
+    margin-top: -610px;
+    margin-left: 900px;
+  }
+  
+  .content{
+    margin-top: -70px;
+    margin-left: -700px;
+  }
+
+
+.inputs{
+    margin-left: -600px;
+}
+
+.inputfield{
+    border-radius: 25px;
+    max-width: 300px;
+}
+
+.logincard{
+    margin-top: -30px;
+    margin-left: -600px;
+    background-color:white;
+    width: 600px;
+    padding: 50px;
+}
+
+.login-card {
+    border: 1px solid #ddd;
+    border-radius: 18px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    padding: 50px;
+  }
+  
+  .input-group {
+    margin-bottom: 10px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .logo{
+    margin-left: 150px;
+  }
+
+
+  input[type="text"],
+  input[type="password"] {
+    width:400px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+  }
+
+  .forgotpw{
+    margin-top: -20px;
+    margin-left: 265px;
+  }
+
+  

@@ -10,7 +10,6 @@ import PassengerVerificationPage from "./pages/admin/PassengerVerificationPage";
 import ActivityPage from "./pages/admin/ActivityPage";
 import ProfilePage from "./pages/admin/ProfilePage";
 import SigninCharPage from "./pages/common/SigninCharPage/components/SigninCharPage";
-import Homepage from "./pages/common/Homepage/components/Home";
 import { useAuth0 } from "@auth0/auth0-react";
 import ConductorProfilePage from "./pages/conductor/ConductorProfilePage";
 import ConductorSchedulePage from "./pages/conductor/ConductorSchedulePage";
@@ -24,10 +23,14 @@ import DeposPage from "./pages/timeKeeper/deposPage/DeposPage";
 import TimeTable from "./pages/timeKeeper/busRoute/BusRoute";
 import LoginPage from "./pages/timeKeeper/auth/login";
 import MainPage from "./pages/timeKeeper/mainpage/MainPage";
+import Homepage from "./pages/common/Homepage/components/Home";
 import BusownerRegistration from "./components/busOwner/BusownerRegistration/BusownerRegistration";
 import PassengerRegistration from "./components/common/PassengerRegistration/PassengerReg";
 import OTPpage from "./components/common/OTPpage/OTPpage"
 import UserRegistration from "./components/common/UserRegistration/UserRegistration";
+import OTPVerification from "./components/common/OTPpage/OTPpage";
+import Loginpage from "./pages/common/Loginpage/Loginpage";
+
 
 const SidebarLayout = () => (
   <>
@@ -47,7 +50,7 @@ function App() {
       <div id= "wrapper">
       <Routes>
         {/* Admin routes         */}
-        <Route path="/" element={<UserRegistration/>}/>  
+        <Route path="/" element={<Homepage/>}/>  
         <Route path="/SignInchar" element={<SigninCharPage/>} />        
         <Route path="/Busfarepage" element={<Busfarepage />} />       
         <Route path="/Ownervarification" element={<OwnerVarificationPage />} />
@@ -63,6 +66,7 @@ function App() {
         <Route path="/ViewBuses" element={<ViewBusPage/>} />
         <Route path="/OwnerProfile" element={<OwnerProfilePage/>} />
         <Route path="/HelpPage" element={<OwnerHelpPage/>} />
+        <Route path="/Login" element={<Loginpage/>}/>
 
        
          {/*add conductor routes*/}
