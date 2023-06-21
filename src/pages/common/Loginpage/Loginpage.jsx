@@ -72,10 +72,7 @@ function Loginpage() {
 
                   <button className='login'>Login</button>
             </div>
-        </div>      
-        <div className="bgimg">
-          <img src={bgimg} alt="bgimg" style={{ width: '600px', height: '600px' }} />
-        </div>
+        </div> 
       </main>
     </div>
   );

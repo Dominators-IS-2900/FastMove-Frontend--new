@@ -31,7 +31,6 @@
     margin-left: -700px;
   }
 
-
 .inputs{
     margin-left: -600px;
 }
@@ -43,10 +42,9 @@
 
 .logincard{
     margin-top: -30px;
-    margin-left: -600px;
+    margin-left:500px;
     background-color:white;
-    width: 600px;
-    padding: 50px;
+    width: 500px;
 }
 
 .login-card {
