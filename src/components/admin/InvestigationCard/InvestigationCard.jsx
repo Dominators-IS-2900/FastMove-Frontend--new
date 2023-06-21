@@ -1,16 +1,20 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './InvestigationCard.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const InvestigationCard = () => {
   const [messages, setMessages] = useState([]);
   const [replyText, setReplyText] = useState('');
   const [showTextArea, setShowTextArea] = useState([]);
-
   useEffect(() => {
+    fetchMessages();
+  }, []);
+
+  const fetchMessages = () => {
     axios
-      .get("http://localhost:5000/Helpowner")
+      .get("http://localhost:5000/IssuesOwner")
       .then(res => {
         setMessages(res.data);
         setShowTextArea(new Array(res.data.length).fill(false));
@@ -18,7 +22,7 @@ const InvestigationCard = () => {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  };
 
   const handleReplyClick = index => {
     const updatedShowTextArea = [...showTextArea];
@@ -30,11 +34,24 @@ const InvestigationCard = () => {
     setReplyText(event.target.value);
   };
 
-  const handleReplySubmit = () => {
-    // Perform submission logic, e.g., send replyText to the server
-    // Redirect to the owner table of the inquiry information page
+  const handleReplySubmit = (InquiryID) => {
+    const requestBody = {
+      InquiryID,
+      Reply: replyText
+    };
 
-    // Reset the state after submission
+    axios
+      .post(`http://localhost:5000/Replyissues/${InquiryID}/${replyText}`)
+      .then(res => {
+        console.log('Reply submitted successfully');
+        toast.success('Reply  sent successfully'); // Show toast notification
+        fetchMessages(); // Fetch the updated data after submission
+      })
+      .catch(err => {
+        console.log('Error submitting reply:', err);
+        toast.error('Failed to send message'); // Show toast notification for error
+      });
+
     setShowTextArea(new Array(messages.length).fill(false));
     setReplyText('');
   };
@@ -47,12 +64,11 @@ const InvestigationCard = () => {
           <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
             <thead>
               <tr>
-               
-                <th>Inquiry ID</th>
-                <th>User ID</th>
-                <th>Type Of Issue</th>
-                <th>Complain</th>
-                <th>Action</th>
+                <th className="green-column">Inquiry ID</th>
+                <th className="green-column">User ID</th>
+                <th className="green-column">Type Of Issue</th>
+                <th className="green-column">Complain</th>
+                <th className="green-column">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -69,7 +85,7 @@ const InvestigationCard = () => {
                     {showTextArea[index] && (
                       <div>
                         <textarea value={replyText} onChange={handleTextAreaChange}></textarea>
-                        <button className="small-button" onClick={handleReplySubmit}>
+                        <button className="small-button" onClick={() => handleReplySubmit(message.InquiryID)}>
                           Send
                         </button>
                       </div>
@@ -81,6 +97,17 @@ const InvestigationCard = () => {
           </table>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

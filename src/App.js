@@ -28,7 +28,11 @@ import InfoPage from "./pages/admin/InfoPage";
 import PverifiedPage from "./pages/admin/PverifiedPage";
 import DecOwnerPage from "./pages/admin/DecOwnerPage";
 import IssuesOwnerPage from "./pages/admin/IssuesOwnerPage";
-import IssuesPPage from "./pages/admin/IssuesPPage";
+import IssuesPPage from "./pages/admin/IssuesPPage"; 
+import PassengerInquiryPage from "./pages/admin/PassengerInquiryPage";
+import UpdatedCPage from "./pages/admin/UpdatedCPage";
+import AdminDashboardPage from "./pages/admin/AdminDashboardPage";
+
 const SidebarLayout = () => (
   <>
     <SideBar />
@@ -47,8 +51,9 @@ function App() {
       <div id= "wrapper">
       <Routes>
         {/* Admin routes         */}
-        <Route path="/" element={<ProfilePage/>}/>  
-        <Route path="/SignInchar" element={<SigninCharPage/>} />        
+        <Route path="/" element={<AdminDashboardPage/>}/>
+        <Route path="/SignInchar" element={<SigninCharPage/>} />   
+        <Route path="/AdminDashboardPage" element={<AdminDashboardPage/>} />        
         <Route path="/Busfarepage" element={<Busfarepage />} />       
         <Route path="/Ownervarification" element={<OwnerVarificationPage />} />
         <Route path="/PassengerVerification" element={<PassengerVerificationPage/>} />
@@ -58,8 +63,11 @@ function App() {
         <Route path="/InfoPage" element={<InfoPage />} />
         <Route path="/PverifiedPage" element={<PverifiedPage/>} />
         <Route path="/DecOwnerPage" element={<DecOwnerPage/>} />
-        <Route path="/IssuesOwnerPage" element={<IssuesOwnerPage/>}/>
+        <Route path="/IssuesOwnerPage" element={<IssuesOwnerPage/>}/> 
+        <Route path="/PassengerInquiryPage" element={<PassengerInquiryPage/>}/>
         <Route path="/IssuesPPage" element={<IssuesPPage/>}/>
+        <Route path="/UpdatedCPage" element={<UpdatedCPage/>}/>
+       
         {/* Bus owner routes */}
         <Route path="/ownerDashboardpage" element={<OwnerDashboardPage/>} />
         <Route path="/DetailsownerPage" element={<detailsOwner/>} />

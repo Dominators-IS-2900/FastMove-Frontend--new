@@ -1,18 +1,18 @@
 import React from 'react'
-import UpdatedC from '../../../components/admin/UpdatedC/UpdatedC';
+import PassengerInq from '../../../components/admin/PassengerInq/PassengerInq'
 import Footer from '../../../components/common/footer/Footer'
 
-export default function UpdatedCPage(props) {
+export default function PassengerInquiry(props) {
     console.log(props);    
 
   return (
     <div id="content" style={{width: '1150px'}}>
 
     <div class="container-fluid mr-5" style={{width: '1100px'}}>
-        <h3 class="h3 mb-2 text-gray-800">Conductor Details</h3>
+        <h3 class="h3 mb-2 text-gray-800">Passenger Inquiry Details</h3>
         
       
-        <UpdatedC/>
+        <PassengerInq/>
         
     </div>
     <Footer/>

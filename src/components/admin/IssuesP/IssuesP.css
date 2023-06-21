@@ -1,0 +1,17 @@
+.delete-button {
+    background-color: rgb(86, 3, 3);
+    color: #fff;
+    }
+    
+.delete-button:hover {
+    background-color: rgb(86, 3, 3);
+    }
+ .toast-error {
+        background-color: #540903;
+        color: #fff;
+        }
+
+.green-column {
+            background-color:#01281a;
+            color: white;
+          }

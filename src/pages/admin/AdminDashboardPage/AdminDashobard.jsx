@@ -4,7 +4,7 @@ import { Route, Routes, Link } from "react-router-dom"
 
 
 
-export default function AdminDashboard() {
+export default function AdminDashobard() {
   return (
     
     <div id="content" style={{width:"1125px"} }>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './IssuesP.css';
 
 const IssuesP = () => {
@@ -8,6 +10,10 @@ const IssuesP = () => {
   const [showTextArea, setShowTextArea] = useState([]);
 
   useEffect(() => {
+    fetchMessages();
+  }, []);
+
+  const fetchMessages = () => {
     axios
       .get("http://localhost:5000/Helppassenger")
       .then(res => {
@@ -17,7 +23,7 @@ const IssuesP = () => {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  };
 
   const handleReplyClick = index => {
     const updatedShowTextArea = [...showTextArea];
@@ -30,27 +36,23 @@ const IssuesP = () => {
   };
 
   const handleReplySubmit = (InquiryID) => {
-    // Perform submission logic, e.g., send replyText to the server
-    // Redirect to the owner table of the inquiry information page
-
-    // Example code to send replyText to the server using axios
     const requestBody = {
       InquiryID,
-      reply: replyText
+      Reply: replyText
     };
 
     axios
-      .post('http://localhost:5000/Helppassenger/reply', requestBody)
+      .post(`http://localhost:5000/ownerreply/${InquiryID}/${replyText}`)
       .then(res => {
         console.log('Reply submitted successfully');
-        // Handle any further actions after successful submission
+        toast.success('Reply  sent successfully'); // Show toast notification
+        fetchMessages(); // Fetch the updated data after submission
       })
       .catch(err => {
         console.log('Error submitting reply:', err);
-        // Handle error scenarios
+        toast.error('Failed to send message'); // Show toast notification for error
       });
 
-    // Reset the state after submission
     setShowTextArea(new Array(messages.length).fill(false));
     setReplyText('');
   };
@@ -63,11 +65,11 @@ const IssuesP = () => {
           <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
             <thead>
               <tr>
-                <th>Inquiry ID</th>
-                <th>User ID</th>
-                <th>Bus No</th>
-                <th>Complain</th>
-                <th>Action</th>
+                <th className="green-column">Inquiry ID</th>
+                <th className="green-column">User ID</th>
+                <th className="green-column">Bus No</th>
+                <th className="green-column">Complain</th>
+                <th className="green-column">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -99,8 +101,20 @@ const IssuesP = () => {
           </table>
         </div>
       </div>
+      <ToastContainer
+       position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover/> 
     </div>
   );
 };
 
 export default IssuesP;
+
+

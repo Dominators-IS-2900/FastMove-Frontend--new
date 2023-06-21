@@ -14,7 +14,7 @@ export default function AdminSidebar() {
         <hr className="sidebar-divider my-0" />
 
         <li className="nav-item active">
-          <Link to="/" className="nav-link">
+          <Link to="/AdminDashboardPage" className="nav-link">
             <span>Dashboard</span>
           </Link>
         </li>
@@ -114,12 +114,13 @@ export default function AdminSidebar() {
           </a>
           <div id="collapseInquiryInfo" className="collapse" aria-labelledby="headingInquiryInfo" data-parent="#accordionSidebar">
             <div className="bg-white py-2 collapse-inner rounded">
-              <Link to="IssuesOwnerPage">
+              <Link to="/IssuesOwnerPage">
                 <a className="collapse-item" href="/route"><i className="fa fa-user-circle"></i> Bus Owner</a>
               </Link>
-              <Link to="InfoPassengerPage">
-                <a className="collapse-item" href="/route_2"><i className="fa fa-user-circle"></i> Passenger</a>
-              </Link>
+              <Link to="/PassengerInquiryPage">
+  <a className="collapse-item" href="/route_1"><i className="fa fa-user-circle"></i> Passenger</a>
+</Link>
+
             </div>
           </div>
         </li>

@@ -1,51 +1,78 @@
 import React, { useState, useEffect } from 'react';
 import './APaseenger.css';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PassengerVerification = () => {
-  const [passengers, setPassengers] = useState([]);
+  const [passengers, setPassengers] = useState({});
 
-  useEffect(()=>{
-    axios.get("http://localhost:5000/verification")
-    .then(res=>{
-      setPassengers(res.data) 
-      console.log (passengers);
-      
-    }).catch(
-    (err)=>{
-      console.log(err)
-    }
-  )
-  },[1])
- 
+  const fetchPassengerData = () => {
+    axios
+      .get("http://localhost:5000/verification")
+      .then(res => {
+        setPassengers(res.data);
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
+  useEffect(() => {
+    fetchPassengerData();
+  }, []);
 
-  const handleVerify = async (UserID) => {
-    try {
-
-       await axios.get(`http://localhost:5000/verficated/${UserID}`).then(
-        res=>{
-          console.log(res.data)
-        }
-       )
-      // const response = await axios.post('/passengerverify', (response.data)); // Updated API endpoint and payload
-      // console.log(response.data);
-      // alert('Passenger verified successfully');
-    } catch (error) {
-      console.error('Error verifying passenger:', error);
-      // Handle error
+  const showMessage = (message, isError = false) => {
+    if (isError) {
+      toast.error(message, {
+        className: 'toast-error',
+      });
+    } else {
+      toast.success(message);
     }
   };
 
-  const handleCancel = async () => {
+  const handleVerify = async (UserID) => {
     try {
-      const response = await axios.delete(`/deleteverifypa/${UserID}`); // Updated API endpoint
-      console.log(response.data);
-      alert('Passenger canceled successfully');
+      await axios.post(`http://localhost:5000/passengerverify/${UserID}`);
+      showMessage('Passenger verified successfully');
+      fetchPassengerData(); // Update passenger data in the state
     } catch (error) {
-      console.error('Error canceling passenger:', error);
-      // Handle error
+      console.error('Error verifying passenger:', error);
+      showMessage('Error verifying passenger', true);
     }
+  };
+
+  // //dilini
+  // const handleSendMail = async () => {
+  //   try {
+  //     await axios.post(`http://localhost:5000/passengerMail`);
+  //     // showMessage('Passenger verified successfully');
+  //     // fetchPassengerData(); // Update passenger data in the state
+  //   } catch (error) { 
+  //     console.error('Error in sending email to verified passen:', error);
+  //     showMessage('Error', true);
+  //   }
+  // };
+
+  // //dilini
+
+  const handleCancel = (UserID) => {
+    axios
+      .delete(`http://localhost:5000/deleteverifypa/${UserID}`)
+      .then(res => {
+        showMessage('Passenger deleted successfully');
+        setPassengers(prevPassengers => {
+          const updatedPassengers = { ...prevPassengers };
+          delete updatedPassengers[UserID];
+          return updatedPassengers;
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        showMessage('Error deleting row', true);
+      });
   };
 
   return (
@@ -67,25 +94,29 @@ const PassengerVerification = () => {
               </tr>
             </thead>
             <tbody>
-              {passengers.map(passengers=> (
-                <tr key={passengers.UserID}>
-                  <td>{passengers.UserID}</td>
-                  <td>{passengers.First_Name}</td>
-                  <td>{passengers.Last_Name}</td>
-                  <td>{passengers.Email}</td>
-                  <td>{passengers.Nic_Image}</td>
-                  <td>{passengers.Phone_Number}</td>
-                  <td>{passengers.Address}</td>
-                  <td>{passengers.Gender}</td>
+              {Object.values(passengers).map(passenger => (
+                <tr key={passenger.UserID}>
+                  <td>{passenger.UserID}</td>
+                  <td>{passenger.First_Name}</td>
+                  <td>{passenger.Last_Name}</td>
+                  <td>{passenger.Email}</td>
+                  <td className="nic-cell">
+                    <a href={passenger.Nic_Image} target="_blank" rel="noopener noreferrer">
+                      View NIC
+                    </a>
+                  </td>
+                  <td>{passenger.Phone_Number}</td>
+                  <td>{passenger.Address}</td>
+                  <td>{passenger.Gender}</td>
                   <td>
                     <div className="Button">
-                      <button className="btn btn-primary equal-width" onClick={() => handleVerify(passengers.UserID)}>
+                      <button className="btn btn-primary equal-width" onClick={() => handleVerify(passenger.UserID)}>
                         Verify
                       </button>
                     </div>
                     <span style={{ margin: '0 5px' }}></span>
                     <div className="Button">
-                      <button className="btn btn-danger equal-width" onClick={() => handleCancel(passengers.UserID)}>
+                      <button className="btn btn-danger equal-width delete-button" type="button" onClick={() => handleCancel(passenger.UserID)}>
                         Cancel
                       </button>
                     </div>
@@ -96,6 +127,17 @@ const PassengerVerification = () => {
           </table>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

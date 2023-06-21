@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './IssueO.css';
+import './PassengerInq.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const IssueO = () => {
+const PassengerInq = () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ const IssueO = () => {
 
   const fetchMessages = () => {
     axios
-      .get("http://localhost:5000/sendreplyowner")
+      .get("http://localhost:5000/sendreplypassenger")
       .then(res => {
         setMessages(res.data);
       })
@@ -34,7 +34,7 @@ const IssueO = () => {
 
   const handleDelete = (InquiryID) => {
     axios
-      .delete(`http://localhost:5000/eleteownereply/${InquiryID}`)
+      .delete(`http://localhost:5000/deletepassengerreply/${InquiryID}`)
       .then(res => {
         // Display success message
         showMessage('Bus Owner deleted successfully');
@@ -48,7 +48,6 @@ const IssueO = () => {
       });
   };
 
-
   return (
     <div className="card shadow mb-4">
       <div className="card-header py-3"></div>
@@ -57,9 +56,9 @@ const IssueO = () => {
           <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
             <thead>
               <tr>
-                <th className="green-column">Inquiry ID</th>
+                <th  className="green-column">Inquiry ID</th>
                 <th  className="green-column">User ID</th>
-                <th  className="green-column">Type Of Issue</th>
+                <th  className="green-column">Bus NO</th>
                 <th  className="green-column">Complain</th>
                 <th  className="green-column">Reply</th>
                 <th  className="green-column">Action</th>
@@ -70,8 +69,8 @@ const IssueO = () => {
                 <tr key={message.InquiryID}>
                   <td>{message.InquiryID}</td>
                   <td>{message.UserID}</td>
-                  <td>{message.type_of_issue}</td>
-                  <td>{message.complain}</td>
+                  <td>{message.BusNo}</td>
+                  <td>{message.Complain}</td>
                   <td>{message.Reply}</td>
                   <td>
                     <div className="Button">
@@ -101,4 +100,4 @@ const IssueO = () => {
   );
 };
 
-export default IssueO;
+export default PassengerInq;

@@ -1,35 +1,50 @@
-// DecOwner.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import './DecOwner.css';
 const DecOwner = () => {
   const [ownerData, setOwnerData] = useState([]);
 
   useEffect(() => {
+    fetchOwnerData();
+  }, []);
+
+  const fetchOwnerData = () => {
     axios
-      .get("http://localhost:5000/Infoowner")
+      .get('http://localhost:5000/Infoowner')
       .then(res => {
         setOwnerData(res.data);
       })
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  };
 
-  const handleRemove = async (userId) => {
-    try {
-      const response = await axios.delete(`http://localhost:5000/Infoowner/delete/${userId}`);
-      console.log(response.data);
-      // Handle success or perform any necessary UI updates
-      toast.success("Owner removed successfully");
-      setOwnerData(prevData => prevData.filter(owner => owner.UserID !== userId));
-    } catch (error) {
-      console.error('Error removing owner:', error);
-      // Handle error
-      toast.error("Failed to remove owner");
+  const showMessage = (message, isError = false) => {
+    if (isError) {
+      toast.error(message, {
+        className: 'toast-error',
+      });
+    } else {
+      toast.success(message);
     }
+  };
+
+  const handleDelete = (UserID) => {
+    axios
+      .delete(`http://localhost:5000/deleteowner/${UserID}`)
+      .then(res => {
+        // Display success message
+        showMessage('Bus Owner deleted successfully');
+
+        // Fetch updated passenger data
+        fetchOwnerData();
+      })
+      .catch(err => {
+        console.log(err);
+        showMessage('Error deleting row', true);
+      });
   };
 
   return (
@@ -39,11 +54,13 @@ const DecOwner = () => {
           <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
             <thead>
               <tr>
-                <th>UserID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Contact No</th>
-                <th>Action</th>
+                <th  className="green-column">UserID</th>
+                <th  className="green-column">Name</th>
+                <th  className="green-column">Email</th>
+                <th  className="green-column">Contact No</th>
+                <th  className="green-column">Account NO</th>
+                <th  className="green-column">NIC Scan Copy</th>
+                <th  className="green-column">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -53,10 +70,16 @@ const DecOwner = () => {
                   <td>{owner.Name}</td>
                   <td>{owner.Email}</td>
                   <td>{owner.Contact_No}</td>
+                  <td>{owner.Account_No}</td>
+                  <td className="nic-cell">
+                    <a href={owner.NIC_scancopy} target="_blank" rel="noopener noreferrer">
+                      View NIC
+                    </a>
+                  </td>
                   <td>
                     <div className="Button">
-                      <button className="btn btn-danger equal-width" onClick={() => handleRemove(owner.UserID)}>
-                        Remove
+                      <button className="btn btn-danger equal-width delete-button" onClick={() => handleDelete(owner.UserID)}>
+                        Delete
                       </button>
                     </div>
                   </td>
@@ -65,8 +88,18 @@ const DecOwner = () => {
             </tbody>
           </table>
         </div>
-        <ToastContainer />
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };
