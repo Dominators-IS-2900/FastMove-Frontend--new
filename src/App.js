@@ -30,6 +30,7 @@ import OTPpage from "./components/common/OTPpage/OTPpage"
 import UserRegistration from "./components/common/UserRegistration/UserRegistration";
 import OTPVerification from "./components/common/OTPpage/OTPpage";
 import Loginpage from "./pages/common/Loginpage/Loginpage";
+import BankDetails from "./components/common/BankDetails/BankDetails";
 
 
 const SidebarLayout = () => (
@@ -50,7 +51,7 @@ function App() {
       <div id= "wrapper">
       <Routes>
         {/* Admin routes         */}
-        <Route path="/" element={<Homepage/>}/>  
+        <Route path="/" element={<BankDetails/>}/>  
         <Route path="/SignInchar" element={<SigninCharPage/>} />        
         <Route path="/Busfarepage" element={<Busfarepage />} />       
         <Route path="/Ownervarification" element={<OwnerVarificationPage />} />

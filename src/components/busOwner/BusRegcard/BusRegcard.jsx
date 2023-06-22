@@ -217,7 +217,7 @@ const BusRegcard = ({ userEmail }) => {
                 </td>
               </tr>
               <tr>
-                <td>4</td>
+                <td>5</td>
                 <td>Scanned copy of bus license</td>
                 <td>
                   <input type="file" name="selectedFile" id="selectedFile" required onChange={handleFileSelect} />
@@ -243,9 +243,15 @@ const BusRegcard = ({ userEmail }) => {
               </tr>
             </tbody>
           </table>
-            <button type='submit' onClick={displayInfo} className='btn btn-primary'>
-              Add Bus
-            </button>
+          <button
+  type="submit"
+  onClick={displayInfo}
+  className="btn btn-primary"
+  style={{ borderRadius: '30px' }}
+>
+  Add Bus
+</button>
+
           </form>
         </div>
       </div>
