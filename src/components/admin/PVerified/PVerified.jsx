@@ -52,7 +52,7 @@ import 'react-toastify/dist/ReactToastify.css';
           <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
             <thead>
               <tr>
-                <th  className="green-column" >User ID</th>
+                <th  className="green-column" >Passenger ID</th>
                 <th className="green-column">First Name</th>
                 <th className="green-column">Last Name</th>
                 <th className="green-column">Email</th>

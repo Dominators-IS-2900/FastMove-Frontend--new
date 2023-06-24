@@ -66,13 +66,13 @@ const Ownervarification = () => {
           <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
             <thead>
               <tr>
-                <th>UserID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Contact No</th>
-                <th>Account NO</th>
-                <th>NIC Scan Copy</th>
-                <th>Action</th>
+                <th className="green-column">Owner ID</th>
+                <th className="green-column">Name</th>
+                <th className="green-column">Email</th>
+                <th className="green-column">Contact No</th>
+                <th className="green-column">Account NO</th>
+                <th className="green-column">NIC Scan Copy</th>
+                <th className="green-column">Action</th>
               </tr>
             </thead>
             <tbody>

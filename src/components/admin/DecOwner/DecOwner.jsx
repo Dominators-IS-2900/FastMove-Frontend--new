@@ -54,7 +54,7 @@ const DecOwner = () => {
           <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
             <thead>
               <tr>
-                <th  className="green-column">UserID</th>
+                <th  className="green-column">Owner ID</th>
                 <th  className="green-column">Name</th>
                 <th  className="green-column">Email</th>
                 <th  className="green-column">Contact No</th>

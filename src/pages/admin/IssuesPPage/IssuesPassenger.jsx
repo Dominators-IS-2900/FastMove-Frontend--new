@@ -8,8 +8,8 @@ export default function IssuesPassenger(props) {
   return (
     <div id="content" style={{width: '1150px'}}>
 
-    <div class="container-fluid mr-5" style={{width: '1100px'}}>
-        <h3 class="h3 mb-2 text-gray-800">Passenger Inquiry</h3>
+<div className="container-fluid mr-5" style={{ width: '1100px' }}>
+        <h3 className="h3 mb-2 text-gray-800 heading">Passenger Inquiry</h3>
         
       
         <IssuesP/>

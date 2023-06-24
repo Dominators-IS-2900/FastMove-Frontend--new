@@ -23,15 +23,7 @@ export default function AdminSidebar() {
         <div className="sidebar-heading">
           Admin
         </div>
-        <Link to="/ProfilePage">
-        <li className="nav-item">
-          <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilitiesConductor"
-            aria-expanded="true" aria-controls="collapseUtilitiesConductor">
-            <i className="fa fa-child"></i>
-            <span>Conductor Registration</span>
-          </a>
-        </li>
-        </Link>
+       
         <li className="nav-item">
           <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVerification"
             aria-expanded="true" aria-controls="collapseVerification">
@@ -46,6 +38,9 @@ export default function AdminSidebar() {
               <Link to="/PassengerVerification">
                 <a className="collapse-item" href="/route_1"><i className="fa fa-user-circle"></i> Passenger</a>
               </Link>
+              <Link to ="/ProfilePage">
+                <a className="collapse-item" href="/route_1"><i className="fa fa-user-circle"></i>Conductor</a>
+                </Link>                               
             </div>
           </div>
         </li>
