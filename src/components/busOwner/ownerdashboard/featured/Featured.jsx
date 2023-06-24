@@ -33,6 +33,7 @@ import "react-circular-progressbar/dist/styles.css";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import axios from 'axios';
+import './Featured.css'
 
 // const Featured = () => {
 //   const [totalAmount, setTotalAmount] = useState(0);
@@ -87,6 +88,11 @@ import axios from 'axios';
         </div> */}
         <p className="title">Total sales made today</p>
         <p className="amount">{totalAmount}.00 Lkr</p>
+        
+        <button type="submit" className="btn btn-primary ml-1" style={{ borderRadius: '25px' }}>
+            Retrieve
+        </button>
+
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ export default function ViewBus() {
             <ViewBusescard/>
             </div>
         </div>
-            <Footer/>
+            {/* <Footer/> */}
     </div>
   )
 }

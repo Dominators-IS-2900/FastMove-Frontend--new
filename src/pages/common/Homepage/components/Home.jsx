@@ -114,8 +114,6 @@
 import React, { useRef, useState } from 'react';
 import './Home.css';
 import logo from '../../../../Images/Logo.png';
-// import bgimg from '../../../../Images/bgimg.jpg';
-// import bg from '../../../../Images/BusBG.jpg'
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useEffect } from 'react';

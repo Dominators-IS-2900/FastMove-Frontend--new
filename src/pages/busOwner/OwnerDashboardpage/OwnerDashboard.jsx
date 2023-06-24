@@ -9,13 +9,7 @@ const OwnerDashboard = () => {
   return (
     <div className="home">
       
-      <div className="homeContainer">
-        {/* <div className="widgets">
-          <Widget type="user" />
-          <Widget type="order" />
-          <Widget type="earning" />
-          <Widget type="balance" />
-        </div> */}
+      <div className="homeContainer" style={{ backgroundColor: 'white' }}> 
         <div className="charts">
           <Featured />
           <Chart title="Last week revenue" aspect={2 / 1} />

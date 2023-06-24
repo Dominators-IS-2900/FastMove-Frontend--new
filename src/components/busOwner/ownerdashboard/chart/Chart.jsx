@@ -55,6 +55,7 @@
 
 import React, { useEffect, useState } from 'react';
 import './chart.scss';
+import './Chart.css'
 import axios from 'axios';
 
 const Chart = ({ title }) => {

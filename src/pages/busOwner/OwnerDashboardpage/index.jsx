@@ -9,14 +9,13 @@ import './index.css'
 
 export default function OwnerDashboardPage(){
     return(
-        <div className="BusRegPage">
+        <div className="OwnerDashboardPage" style={{ backgroundColor: 'white' }}>
 
               <div className="Topbar"> <BusownerTopBar/></div>
               <div className="flex">
               <div className="sidebar"> <BusownersideBar/></div>
                 <div className="Dash"> <DashOwner/></div>             
                 </div>
-                <Footer/>  
          </div>
 
     )

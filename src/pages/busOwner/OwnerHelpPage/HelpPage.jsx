@@ -10,7 +10,7 @@ export default function HelpPage() {
     <div class="container-fluid mr-5" style={{width: '1100px'}}> 
         <div className='Helpcard'><Help/></div>
     </div>
-    <Footer/>
+    {/* <Footer/> */}
 
 </div>
   )

@@ -44,6 +44,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './Table.css'
 
 const Table=()=>{
   const [BusIncome,SetBusIncome]=useState([]);

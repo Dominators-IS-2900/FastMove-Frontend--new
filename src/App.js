@@ -51,7 +51,7 @@ function App() {
       <div id= "wrapper">
       <Routes>
         {/* Admin routes         */}
-        <Route path="/" element={<BankDetails/>}/>  
+        <Route path="/" element={<OwnerDashboardPage/>}/>  
         <Route path="/SignInchar" element={<SigninCharPage/>} />        
         <Route path="/Busfarepage" element={<Busfarepage />} />       
         <Route path="/Ownervarification" element={<OwnerVarificationPage />} />
