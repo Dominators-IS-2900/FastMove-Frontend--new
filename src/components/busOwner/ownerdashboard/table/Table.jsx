@@ -44,52 +44,56 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Table.css'
+import './Table.css';
 
-const Table=()=>{
-  const [BusIncome,SetBusIncome]=useState([]);
+const Table = () => {
+  const [BusIncome, setBusIncome] = useState([]);
 
-  useEffect(()=>{
-    axios.get("http://localhost:5000/PaymentDetails")
-    .then(res=>{
-      SetBusIncome(res.data)
-      console.log(BusIncome);
-    }).catch(
-      (err)=>{
-        console.log(err)
-      }
-    )
-  },)
+  useEffect(() => {
+    axios
+      .get('http://localhost:5000/PaymentDetails')
+      .then(res => {
+        setBusIncome(res.data);
+        console.log(BusIncome);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
 
-  return(
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">            
+  const formatDateTime = dateTime => {
+    const formattedDateTime = new Date(dateTime).toLocaleString();
+    return formattedDateTime;
+  };
+
+  return (
+    <div className="card shadow mb-4">
+      <div className="card-header py-3"></div>
+      <div className="card-body">
+        <div className="table-responsive">
+          <table className="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Bus No</th>
+                <th>Amount</th>
+                <th>Date and Time</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {BusIncome.map(BusIncome => (
+                <tr key={BusIncome.Bus_No}>
+                  <td>{BusIncome.Bus_No}</td>
+                  <td>{BusIncome.Amount}.00 Lkr</td>
+                  <td>{formatDateTime(BusIncome.Transferred_at)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-        <div class="card-body">
-            <div class="table-responsive" >
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
-                <thead>
-                    <tr>
-                        <th>Bus No</th>
-                        <th>Amount</th>
-                        <th>Date and Time</th>
-                     </tr>
-                </thead>
-                    
-                    <tbody>
-                        {BusIncome.map(BusIncome => (
-                            <tr key={BusIncome.Bus_No}>
-                                <td>{BusIncome.Bus_No}</td>
-                                <td>{BusIncome.Amount}.00 Lkr</td>
-                                <td>{BusIncome.Transferred_at}</td>                                
-                            </tr>
-                    ))}
-                    </tbody>        
-                </table>
-            </div>
-        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default Table;
