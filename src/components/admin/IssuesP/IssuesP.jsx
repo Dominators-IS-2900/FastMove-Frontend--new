@@ -42,7 +42,7 @@ const IssuesP = () => {
     };
 
     axios
-      .post(`http://localhost:5000/ownerreply/${InquiryID}/${replyText}`)
+      .post(`http://localhost:5000/passengerreply/${InquiryID}/${replyText}`)
       .then(res => {
         console.log('Reply submitted successfully');
         toast.success('Reply  sent successfully'); // Show toast notification
@@ -66,7 +66,7 @@ const IssuesP = () => {
             <thead>
               <tr>
                 <th className="green-column">Inquiry ID</th>
-                <th className="green-column">User ID</th>
+                <th className="green-column">Email</th>
                 <th className="green-column">Bus No</th>
                 <th className="green-column">Complain</th>
                 <th className="green-column">Action</th>
@@ -76,7 +76,7 @@ const IssuesP = () => {
               {messages.map((message, index) => (
                 <tr key={message.InquiryID}>
                   <td>{message.InquiryID}</td>
-                  <td>{message.UserID}</td>
+                  <td>{message.Email}</td>
                   <td>{message.BusNo}</td>
                   <td>{message.Complain}</td>
                   <td>

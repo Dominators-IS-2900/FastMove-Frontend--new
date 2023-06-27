@@ -78,10 +78,10 @@ const UpdatedC = () => {
                     </a>
                   </td>
                   <td className="nic-cell">
-                    <a href={conductor.conductorLicense} target="_blank" rel="noopener noreferrer">
-                      View Licen
-                    </a>
-                  </td>
+  <a href={conductor.conductorLicen} target="_blank" rel="noopener noreferrer">
+    View Licen
+  </a>
+</td>
                   <td>
                     <div className="Button">
                       <button className="btn btn-danger equal-width delete-button" onClick={() => handleDelete(conductor.conductorId)}>

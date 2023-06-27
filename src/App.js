@@ -32,6 +32,7 @@ import IssuesPPage from "./pages/admin/IssuesPPage";
 import PassengerInquiryPage from "./pages/admin/PassengerInquiryPage";
 import UpdatedCPage from "./pages/admin/UpdatedCPage";
 import AdminDashboardPage from "./pages/admin/AdminDashboardPage";
+import EditBusfare from "./pages/admin/Busfarepage/EditBusfare"
 
 const SidebarLayout = () => (
   <>
@@ -67,6 +68,7 @@ function App() {
         <Route path="/PassengerInquiryPage" element={<PassengerInquiryPage/>}/>
         <Route path="/IssuesPPage" element={<IssuesPPage/>}/>
         <Route path="/UpdatedCPage" element={<UpdatedCPage/>}/>
+        <Route path="/EditBusfare/:id/:Bus_type" element={<EditBusfare/>}/>
        
         {/* Bus owner routes */}
         <Route path="/ownerDashboardpage" element={<OwnerDashboardPage/>} />

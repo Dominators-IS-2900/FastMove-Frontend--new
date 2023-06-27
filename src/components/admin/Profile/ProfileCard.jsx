@@ -100,10 +100,10 @@ const ConductorRegistration = () => {
                   </a>
                 </td>
                 <td className="nic-cell">
-                  <a href={conductors.conductorLicense} target="_blank" rel="noopener noreferrer">
-                    View Licen
-                  </a>
-                </td>
+  <a href={conductors.conductorLicen} target="_blank" rel="noopener noreferrer">
+    View Licen
+  </a>
+</td>
                
                   <td>
                     <div className="Button">

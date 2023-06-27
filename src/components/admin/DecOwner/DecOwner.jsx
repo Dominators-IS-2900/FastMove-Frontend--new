@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './DecOwner.css';
+
 const DecOwner = () => {
   const [ownerData, setOwnerData] = useState([]);
 
@@ -31,9 +32,9 @@ const DecOwner = () => {
     }
   };
 
-  const handleDelete = (UserID) => {
+  const handleDelete = (Email) => {
     axios
-      .delete(`http://localhost:5000/deleteowner/${UserID}`)
+      .delete(`http://localhost:5000/deleteowner/${Email}`)
       .then(res => {
         // Display success message
         showMessage('Bus Owner deleted successfully');
@@ -54,31 +55,32 @@ const DecOwner = () => {
           <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
             <thead>
               <tr>
-                <th  className="green-column">Owner ID</th>
-                <th  className="green-column">Name</th>
-                <th  className="green-column">Email</th>
-                <th  className="green-column">Contact No</th>
-                <th  className="green-column">Account NO</th>
-                <th  className="green-column">NIC Scan Copy</th>
-                <th  className="green-column">Action</th>
+               
+                <th className="green-column">Email</th>
+                <th className="green-column">First Name</th>
+                <th className="green-column">Last Name</th>
+                <th className="green-column">Address</th>
+                <th className="green-column">Contact NO</th>
+                <th className="green-column">NIC Scan copy</th>
+                <th className="green-column">Action</th>
               </tr>
             </thead>
             <tbody>
               {ownerData.map((owner) => (
-                <tr key={owner.UserID}>
-                  <td>{owner.UserID}</td>
-                  <td>{owner.Name}</td>
+                <tr key={owner.Email}>
                   <td>{owner.Email}</td>
+                  <td>{owner.FName}</td>
+                  <td>{owner.LName}</td>
+                  <td>{owner.Address}</td>
                   <td>{owner.Contact_No}</td>
-                  <td>{owner.Account_No}</td>
                   <td className="nic-cell">
-                    <a href={owner.NIC_scancopy} target="_blank" rel="noopener noreferrer">
+                    <a href={owner.NIC_ScanCopy} target="_blank" rel="noopener noreferrer">
                       View NIC
                     </a>
                   </td>
                   <td>
                     <div className="Button">
-                      <button className="btn btn-danger equal-width delete-button" onClick={() => handleDelete(owner.UserID)}>
+                      <button className="btn btn-danger equal-width delete-button" onClick={() => handleDelete(owner.Email)}>
                         Delete
                       </button>
                     </div>
