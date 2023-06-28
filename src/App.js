@@ -6,7 +6,6 @@ import BusRegisterPage from "./pages/busOwner/BusRegisterPage";
 import OwnerProfilePage from "./pages/busOwner/OwnerProfilePage";
 import Busfarepage from "./pages/admin/Busfarepage";
 import OwnerVarificationPage from "./pages/admin/OwnerVarificationPage";
-import PassengerVerificationPage from "./pages/admin/PassengerVerificationPage";
 import ProfilePage from "./pages/admin/ProfilePage";
 import SigninCharPage from "./pages/common/SigninCharPage/components/SigninCharPage";
 import Homepage from "./pages/common/Homepage/components/Home";
@@ -32,7 +31,8 @@ import IssuesPPage from "./pages/admin/IssuesPPage";
 import PassengerInquiryPage from "./pages/admin/PassengerInquiryPage";
 import UpdatedCPage from "./pages/admin/UpdatedCPage";
 import AdminDashboardPage from "./pages/admin/AdminDashboardPage";
-import EditBusfare from "./pages/admin/Busfarepage/EditBusfare"
+import EditBusfare from "./pages/admin/Busfarepage/EditBusfare";
+import PassengerVPage from "./pages/admin/PassengerVPage";
 
 const SidebarLayout = () => (
   <>
@@ -57,7 +57,6 @@ function App() {
         <Route path="/AdminDashboardPage" element={<AdminDashboardPage/>} />        
         <Route path="/Busfarepage" element={<Busfarepage />} />       
         <Route path="/Ownervarification" element={<OwnerVarificationPage />} />
-        <Route path="/PassengerVerification" element={<PassengerVerificationPage/>} />
         <Route path="/ProfilePage" element={<ProfilePage/>} /> 
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/InvestigationPage" element={<InvestigationPage/>} />
@@ -68,7 +67,9 @@ function App() {
         <Route path="/PassengerInquiryPage" element={<PassengerInquiryPage/>}/>
         <Route path="/IssuesPPage" element={<IssuesPPage/>}/>
         <Route path="/UpdatedCPage" element={<UpdatedCPage/>}/>
+        <Route path="/PassengerVPage" element={<PassengerVPage/>}/>
         <Route path="/EditBusfare/:id/:Bus_type" element={<EditBusfare/>}/>
+
        
         {/* Bus owner routes */}
         <Route path="/ownerDashboardpage" element={<OwnerDashboardPage/>} />

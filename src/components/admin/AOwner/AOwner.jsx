@@ -69,9 +69,9 @@ const Ownervarification = () => {
                 <th className="green-column">Email</th>
                 <th className="green-column">First Name</th>
                 <th className="green-column">Last Name</th>
+                <th className="green-column">Contact No</th>
                 <th className="green-column">Address</th>
-                <th className="green-column">Contact NO</th>
-                <th className="green-column">NIC Scan copy</th>
+                <th className="green-column">NIC Scan Copy</th>
                 <th className="green-column">Action</th>
               </tr>
             </thead>
@@ -81,10 +81,10 @@ const Ownervarification = () => {
                   <td>{owner.Email}</td>
                   <td>{owner.FName}</td>
                   <td>{owner.LName}</td>
-                  <td>{owner.Address}</td>
                   <td>{owner.Contact_No}</td>
+                  <td>{owner.address}</td>
                   <td className="nic-cell">
-                    <a href={owner.NIC_ScanCopy} target="_blank" rel="noopener noreferrer">
+                    <a href={owner.ID_scancopy} target="_blank" rel="noopener noreferrer">
                       View NIC
                     </a>
                   </td>

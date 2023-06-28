@@ -59,6 +59,7 @@ const PassengerInq = () => {
                 <th  className="green-column">Inquiry ID</th>
                 <th  className="green-column">Email</th>
                 <th  className="green-column">Bus NO</th>
+                <th  className="green-column">Type of Issue</th>
                 <th  className="green-column">Complain</th>
                 <th  className="green-column">Reply</th>
                 <th  className="green-column">Action</th>
@@ -70,6 +71,7 @@ const PassengerInq = () => {
                   <td>{message.InquiryID}</td>
                   <td>{message.Email}</td>
                   <td>{message.BusNo}</td>
+                  <td>{message.TypeOfIssue}</td>
                   <td>{message.Complain}</td>
                   <td>{message.Reply}</td>
                   <td>

@@ -35,7 +35,7 @@ export default function AdminSidebar() {
               <Link to="/Ownervarification">
                 <a className="collapse-item" href="/route"><i className="fa fa-user-circle"></i> Bus Owner</a>
               </Link>
-              <Link to="/PassengerVerification">
+              <Link to="/PassengerVPage">
                 <a className="collapse-item" href="/route_1"><i className="fa fa-user-circle"></i> Passenger</a>
               </Link>
               <Link to ="/ProfilePage">

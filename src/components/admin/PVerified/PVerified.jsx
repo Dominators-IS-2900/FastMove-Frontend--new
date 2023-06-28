@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
   
     const fetchpassengerData = () => {
       axios
-        .get('http://localhost:5000/verifiedpassenger')
+        .get('http://localhost:5000/passengertoget')
         .then(res => {
           setPassengerData(res.data);
         })
@@ -20,6 +20,7 @@ import 'react-toastify/dist/ReactToastify.css';
           console.log(err);
         });
     };
+  
     const showMessage = (message, isError = false) => {
       if (isError) {
         toast.error(message, {
@@ -29,9 +30,10 @@ import 'react-toastify/dist/ReactToastify.css';
         toast.success(message);
       }
     };
-    const handleDelete = (UserID) => {
+  
+    const handleDelete = (Email) => {
       axios
-        .delete(`http://localhost:5000/deletepassenger/${UserID}`)
+        .delete(`http://localhost:5000/deletetopassenger/${Email}`)
         .then(res => {
           // Display success message
           showMessage('Passenger deleted successfully');
@@ -44,7 +46,6 @@ import 'react-toastify/dist/ReactToastify.css';
           showMessage('Error deleting row', true);
         });
     };
-
   return (
     <div className="card shadow mb-4">
       <div className="card-body">
@@ -52,35 +53,32 @@ import 'react-toastify/dist/ReactToastify.css';
           <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
             <thead>
               <tr>
-                <th  className="green-column" >Passenger ID</th>
+              <th className="green-column">Email</th>
                 <th className="green-column">First Name</th>
                 <th className="green-column">Last Name</th>
-                <th className="green-column">Email</th>
-                <th className="green-column">NIC</th>
-                <th className="green-column">Phone Number</th>
+                <th className="green-column">Contact No</th>
                 <th className="green-column">Address</th>
-                <th className="green-column">Gender</th>
+                <th className="green-column">NIC Scan Copy</th>
                 <th className="green-column">Action</th>
               </tr>
             </thead>
             <tbody>
               {passengerData.map((passengerData) => (
-                <tr key={passengerData.UserID}>
-                  <td>{passengerData.UserID}</td>
-                  <td>{passengerData.First_Name}</td>
-                  <td>{passengerData.Last_Name}</td>
+                <tr key={passengerData.Email}>
                   <td>{passengerData.Email}</td>
+                  <td>{passengerData.FName}</td>
+                  <td>{passengerData.LName}</td>
+                  <td>{passengerData.Contact_No}</td>
+                  <td>{passengerData.address}</td>
                   <td className="nic-cell">
-                    <a href={passengerData.Nic_Image} target="_blank" rel="noopener noreferrer">
+                    <a href={passengerData.ID_scancopy} target="_blank" rel="noopener noreferrer">
                       View NIC
                     </a>
                   </td>
-                  <td>{passengerData.Phone_Number}</td>
-                  <td>{passengerData.Address}</td>
-                  <td>{passengerData.Gender}</td>
+                  
                   <td>
                     <div className="Button">
-                      <button className="btn btn-danger equal-width delete-button" onClick={() => handleDelete(passengerData.UserID)}>
+                      <button className="btn btn-danger equal-width delete-button" onClick={() => handleDelete(passengerData.Email)}>
                         Delete
                       </button>
                     </div>
