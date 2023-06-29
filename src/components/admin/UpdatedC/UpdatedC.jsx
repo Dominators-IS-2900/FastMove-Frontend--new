@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './UpdatedC.css';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './UpdatedC.css';
 
-const UpdatedC = () => {
-  const [conductorData, setConductorData] = useState([]);
+const  UpdatedC = () => {
+  const [conductorData, setconductorData] = useState([]);
 
   useEffect(() => {
-    fetchConductorData();
+    fetchconductorData();
   }, []);
 
-  const fetchConductorData = () => {
+  const fetchconductorData = () => {
     axios
-      .get('http://localhost:5000/verifiedconductor')
+      .get('http://localhost:5000/Infoconductor')
       .then(res => {
-        setConductorData(res.data);
+        setconductorData(res.data);
       })
       .catch(err => {
         console.log(err);
       });
   };
+
   const showMessage = (message, isError = false) => {
     if (isError) {
       toast.error(message, {
@@ -30,15 +31,16 @@ const UpdatedC = () => {
       toast.success(message);
     }
   };
-  const handleDelete = (conductorId) => {
+
+  const handleDelete = (Email) => {
     axios
-      .delete(`http://localhost:5000/deleteconductor/${conductorId}`)
+      .delete(`http://localhost:5000/deleteconductor/${Email}`)
       .then(res => {
         // Display success message
         showMessage('Conductor deleted successfully');
 
         // Fetch updated passenger data
-        fetchConductorData();
+        fetchconductorData();
       })
       .catch(err => {
         console.log(err);
@@ -48,43 +50,37 @@ const UpdatedC = () => {
 
   return (
     <div className="card shadow mb-4">
-      <div className="card-header py-3"></div>
       <div className="card-body">
         <div className="table-responsive">
           <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
             <thead>
               <tr>
-                <th className="green-column">Conductor ID</th>
-                <th className="green-column">User Name</th>
-                <th className="green-column">Password</th>
-                <th className="green-column">Mobile Number</th>
-                <th className="green-column">Email</th>
+               
+              <th className="green-column">Email</th>
+                <th className="green-column">First Name</th>
+                <th className="green-column">Last Name</th>
+                <th className="green-column">Contact No</th>
+                <th className="green-column">Address</th>
                 <th className="green-column">NIC Scan Copy</th>
-                <th className="green-column">Conductor License</th>
-                <th className="green-column">Action</th> 
+                <th className="green-column">Action</th>
               </tr>
             </thead>
             <tbody>
-              {conductorData.map(conductor => (
-                <tr key={conductor.conductorId}>
-                  <td>{conductor.conductorId}</td>
-                  <td>{conductor.username}</td>
-                  <td>{conductor.password}</td>
-                  <td>{conductor.mobileNumber}</td>
-                  <td>{conductor.email}</td>
+              {conductorData.map((conductor) => (
+                <tr key={conductor.Email}>
+                  <td>{conductor.Email}</td>
+                  <td>{conductor.FName}</td>
+                  <td>{conductor.LName}</td>
+                  <td>{conductor.Contact_No}</td>
+                  <td>{conductor.address}</td>
                   <td className="nic-cell">
-                    <a href={conductor.nicScanCopy} target="_blank" rel="noopener noreferrer">
+                    <a href={conductor.ID_scancopy} target="_blank" rel="noopener noreferrer">
                       View NIC
                     </a>
                   </td>
-                  <td className="nic-cell">
-  <a href={conductor.conductorLicen} target="_blank" rel="noopener noreferrer">
-    View Licen
-  </a>
-</td>
                   <td>
                     <div className="Button">
-                      <button className="btn btn-danger equal-width delete-button" onClick={() => handleDelete(conductor.conductorId)}>
+                      <button className="btn btn-danger equal-width delete-button" onClick={() => handleDelete(conductor.Email)}>
                         Delete
                       </button>
                     </div>

@@ -1,21 +1,20 @@
-import React, { useState, useEffect } from "react";
-import "./ProfileCard.css";
-import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const ConductorRegistration = () => {
-  const [conductors, setcondctors] = useState({});
+const ConductorVerification = () => {
+  const [conductors, setConductors] = useState([]);
 
   useEffect(() => {
-    fetchconductorData();
+    fetchConductors();
   }, []);
 
-  const  fetchconductorData = () => {
-    axios.get("http://localhost:5000/conductorverification")
+  const fetchConductors = () => {
+    axios
+      .get('http://localhost:5000/conductorverification')
       .then(res => {
-        setcondctors(res.data);
-        console.log(res.data);
+        setConductors(res.data);
       })
       .catch(err => {
         console.log(err);
@@ -32,35 +31,29 @@ const ConductorRegistration = () => {
     }
   };
 
-  const handleVerify = async (conductorId) => {
-    try {
-      await axios.post(`http://localhost:5000/conductorverify/${conductorId}`)
-        .then(res => {
-          showMessage('Conductor verified successfully');
-          // Update the owners data
-          fetchconductorData();
-        });
-    } catch (error) {
-      console.error('Error verifying Conductor:', error);
-      showMessage('Error verifying Conductor', true);
-      // Handle error
-    }
-  };
-  
-  const handleCancel = (conductorId) => {
+  const handleVerify = (email) => {
     axios
-      .delete(`http://localhost:5000/deleteverifyconductor/${conductorId}`)
-      .then((res) => {
-        showMessage("Conductor deleted successfully");
-        setcondctors((prevconductors) => {
-          const updatedconductors = { ...prevconductors };
-          delete updatedconductors[conductorId];
-          return updatedconductors;
-        });
+      .post(`http://localhost:5000/conductorverify/${email}`)
+      .then(res => {
+        showMessage('Conductor verified successfully');
+        fetchConductors();
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
-        showMessage("Error deleting row", true);
+        showMessage('Error verifying bus owner', true);
+      });
+  };
+
+  const handleCancel = (email) => {
+    axios
+      .delete(`http://localhost:5000/deleteverifyconductor/${email}`)
+      .then(res => {
+        showMessage('Conductor deleted successfully');
+        fetchConductors();
+      })
+      .catch(err => {
+        console.log(err);
+        showMessage('Error deleting bus owner', true);
       });
   };
 
@@ -68,59 +61,39 @@ const ConductorRegistration = () => {
     <div className="card shadow mb-4">
       <div className="card-body">
         <div className="table-responsive">
-          <table
-            className="table table-bordered"
-            id="dataTable"
-            width="100%"
-            cellSpacing="0"
-          >
+          <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
             <thead>
               <tr>
-              <th className="green-column">Conductor ID</th>
-                <th className="green-column">User Name</th>
-                <th className="green-column">Password</th>
-                <th className="green-column">Mobile Number</th>
                 <th className="green-column">Email</th>
+                <th className="green-column">First Name</th>
+                <th className="green-column">Last Name</th>
+                <th className="green-column">Contact No</th>
+                <th className="green-column">Address</th>
                 <th className="green-column">NIC Scan Copy</th>
-                <th className="green-column">Conductor License</th>
-                <th className="green-column">Action</th> 
+                <th className="green-column">Action</th>
               </tr>
             </thead>
             <tbody>
-              {Object.values(conductors).map((conductors) => (
-                <tr key={conductors.conductorId}>
-                <td>{conductors.conductorId}</td>
-                <td>{conductors.username}</td>
-                <td>{conductors.password}</td>
-                <td>{conductors.mobileNumber}</td>
-                <td>{conductors.email}</td>
-                <td className="nic-cell">
-                  <a href={conductors.nicScanCopy} target="_blank" rel="noopener noreferrer">
-                    View NIC
-                  </a>
-                </td>
-                <td className="nic-cell">
-  <a href={conductors.conductorLicen} target="_blank" rel="noopener noreferrer">
-    View Licen
-  </a>
-</td>
-               
+              {conductors.map((conductor) => (
+                <tr key={conductor.Email}>
+                  <td>{conductor.Email}</td>
+                  <td>{conductor.FName}</td>
+                  <td>{conductor.LName}</td>
+                  <td>{conductor.Contact_No}</td>
+                  <td>{conductor.address}</td>
+                  <td className="nic-cell">
+                    <a href={conductor.ID_scancopy} target="_blank" rel="noopener noreferrer">
+                      View NIC
+                    </a>
+                  </td>
                   <td>
                     <div className="Button">
-                       <button className="btn btn-primary equal-width" onClick={() => handleVerify(conductors.conductorId)}>
+                      <button className="btn btn-primary equal-width" onClick={() => handleVerify(conductor.Email)}>
                         Verify
-                      </button> 
-
-                      
-                    </div>
-                    <span style={{ margin: "0 5px" }}> </span>
-                    <div className="Button">
-                      <button
-                        className="btn btn-danger equal-width delete-button"
-                        type="button"
-                        onClick={() => handleCancel(conductors.conductorId)}
-                      >
-                        Cancel
+                      </button>
+                      <br /><br />
+                      <button className="btn btn-danger equal-width delete-button" onClick={() => handleCancel(conductor.Email)}>
+                        Delete
                       </button>
                     </div>
                   </td>
@@ -145,4 +118,4 @@ const ConductorRegistration = () => {
   );
 };
 
-export default ConductorRegistration;
+export default ConductorVerification;

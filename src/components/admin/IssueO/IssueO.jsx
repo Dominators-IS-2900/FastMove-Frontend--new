@@ -34,7 +34,7 @@ const IssueO = () => {
 
   const handleDelete = (InquiryID) => {
     axios
-      .delete(`http://localhost:5000/eleteownereply/${InquiryID}`)
+      .delete(`http://localhost:5000/deleteownereply/${InquiryID}`)
       .then(res => {
         // Display success message
         showMessage('Bus Owner deleted successfully');

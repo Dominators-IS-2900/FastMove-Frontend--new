@@ -84,4 +84,12 @@ cursor: pointer;
 .modal-footer button:hover {
 background-color: #aaa;
 }
+.update-button {
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+.increment {
+  margin-top: 10px;
+}
 
