@@ -1,0 +1,41 @@
+/* *{box-sizing: border-box} */
+
+.registraion-container{
+    padding: 100px;
+    border: solid;
+    margin: 10% 25% 10% 25%;
+    align-items: center;
+    width: auto;
+    background-color: rgb(159, 203, 178);
+    padding-top: 5%;
+    
+}
+
+.registration-heading{
+    align-items: center;
+}
+
+.heading-title{
+    text-align: center;
+    font-size:larger;
+    font-weight: bold;
+    margin-bottom: 5%;
+  
+    margin-top: 1%;
+}
+
+.otp-container{
+    padding-top:8%;
+    justify-self: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit-registration{
+    padding: auto;
+    align-self: center;
+    justify-self: center;
+    align-items: center;
+    margin-left: 10%;
+    padding-top: 5%;
+}

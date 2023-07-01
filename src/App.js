@@ -31,6 +31,7 @@ import UserRegistration from "./components/common/UserRegistration/UserRegistrat
 import OTPVerification from "./components/common/OTPpage/OTPpage";
 import Loginpage from "./pages/common/Loginpage/Loginpage";
 import BankDetails from "./components/common/BankDetails/BankDetails";
+import GetStarted from "./pages/common/Homepage";
 
 
 const SidebarLayout = () => (
@@ -51,7 +52,7 @@ function App() {
       <div id= "wrapper">
       <Routes>
         {/* Admin routes         */}
-        <Route path="/" element={<OwnerDashboardPage/>}/>  
+        <Route path="/" element={<BusRegisterPage/>}/>  
         <Route path="/SignInchar" element={<SigninCharPage/>} />        
         <Route path="/Busfarepage" element={<Busfarepage />} />       
         <Route path="/Ownervarification" element={<OwnerVarificationPage />} />

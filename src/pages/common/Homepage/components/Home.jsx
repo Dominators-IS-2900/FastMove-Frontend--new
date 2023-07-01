@@ -229,6 +229,21 @@ function Home() {
 
 
       </main>
+      {/* <footer className="fixed-header" style={{marginTop:"600px"}}>
+        <div className="homelogo">
+          <img src={logo} alt="FastMove Logo" height="30" />
+        </div>
+        <nav>
+          <ul>
+            <li onClick={handleHomeClick}>Home</li>
+            <li onClick={handleAboutClick}>About</li>
+            <li onClick={handleContactClick}>Contact us</li>
+            <Link to="/Login">
+              <button className="loginbtn">Log in</button>
+            </Link>
+          </ul>
+        </nav>
+      </footer> */}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 body {
   background-image: url('../../../../Images/BusBG.jpg');
   background-size: 1530px auto;
+  background-attachment: fixed;
   /* Additional CSS properties for background image */
 }
 
