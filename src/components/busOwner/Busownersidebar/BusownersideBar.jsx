@@ -47,6 +47,15 @@ export default function BusownersideBar() {
                 </div>
             </div>
         </li>
+
+        <Link to="/HelpPage">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fa fa-question-circle"></i>
+                <span>Bank Details</span>
+            </a>
+        </li></Link>
  
         <Link to="/HelpPage">
         <li class="nav-item">
@@ -56,6 +65,7 @@ export default function BusownersideBar() {
                 <span>Help</span>
             </a>
         </li></Link>
+
         </div>
   </ul>
         

@@ -1,0 +1,136 @@
+* {box-sizing: border-box}
+
+/* Add padding to containers */
+.container {
+    margin-top: -95px;
+    margin-left: 35%;
+  padding: 16px;
+  width: 600px;
+}
+
+
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit/register button */
+.registerbtn {
+  background-color:#3a6a57;
+  color: white;
+  padding: 16px 20px;
+  align-content: center;
+  align-self: center;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  margin-left: 40%;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.center-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    background-color: #f2f2f2;
+    margin-top: 10px;
+  }
+
+  .upload-button {
+    background-color: #f2f2f2;
+    color: #000;
+    border-radius: 4px;
+    width: 200px;
+    height: 50px;
+    margin-top: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .upload-button:hover {
+    background-color: rgb(72, 72, 202);
+    color: white;
+  }
+
+  .Regform{
+    margin-left: 300px;
+  }
+  
+  .download-link {
+    font-size: 14px; /* Adjust the font size as per your requirements */
+  }
+  
+  .download-link-input {
+    font-size: 14px; /* Adjust the font size as per your requirements */
+    /* Add any additional styles for the input field here */
+  }
+
+  .download-link {
+    font-size: 14px; /* Adjust the font size as per your requirements */
+    text-decoration: none;
+    color: #000000;
+    /* Remove or customize the box shadow as needed */
+    box-shadow: none;
+  }
+  .download-link {
+    font-size: 14px; /* Adjust the font size as per your requirements */
+    text-decoration: underline; /* Optional: Add underline to indicate it's a link */
+    color: blue; /* Optional: Customize the color as per your design */
+    cursor: pointer; /* Optional: Show pointer cursor on hover */
+  }
+  
+  .download-link:hover {
+    color: red; /* Optional: Customize the color on hover */
+  }
+
+  .file-text {
+    font-size: 18px; /* Adjust the font size as per your requirements */
+    /* Add any additional styles for the "View uploaded file" text here */
+  }
+  
+  .download-link {
+    font-size: 18px; /* Adjust the font size as per your requirements */
+    text-decoration: none;
+    color:blue;
+    box-shadow: none;
+  }
+  
+  .download-link:hover {
+    text-decoration: underline; /* Optional: Add underline on hover */
+    color: #000000; /* Optional: Customize the color on hover */
+  }

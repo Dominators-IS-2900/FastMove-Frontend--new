@@ -1,3 +1,11 @@
+.DashBoardPage {
+    background-color: white !important;
+  }
+  
+  .flex {
+    display: flex;
+  }
+
 .Topbar{
     margin-left: 15%;
 }
