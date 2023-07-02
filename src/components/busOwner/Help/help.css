@@ -88,4 +88,8 @@ table {
       border-bottom: 0;
     }
   }
+
+  .submitbtn{
+    border-radius: 20px;
+}
   

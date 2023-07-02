@@ -98,8 +98,13 @@ const Help=()=> {
                         {/* <p>Your inquiry: {inquiryValue}</p> display the inquiry value */}
                     </textarea>
                     <br />
-                    <button type="submit" class="btn btn-primary ml-1"  onClick={displayInfo}>
-                      Submit
+                    <button
+                        type="submit"
+                        className="btn btn-primary ml-1"
+                        onClick={displayInfo}
+                        style={{ borderRadius: '25px' }}
+                      >
+                          Submit
                     </button>
                   </th>
                 </tr>

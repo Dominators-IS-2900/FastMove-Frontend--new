@@ -1,7 +1,28 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import "./conductorSchedule.css"
 
-export default function ConductorSchedule() {
+const ConductorSchedule=() =>{
+
+        const [conductordata, setConductorData] = useState([]);
+        const [formData, setFormData] = useState({
+          selectedFile: null,
+          selectedFileURL: null,
+       
+        });
+      
+        useEffect(() => {
+          axios
+            .get('http://localhost:5000/ConductorActivity')
+            .then((res) => {
+              setConductorData(res.data);
+              console.log(res.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }, []);
+      
   return (
     <div className='tablestyle'>
     <div class="card shadow mb-4">
@@ -11,13 +32,7 @@ export default function ConductorSchedule() {
         </div>
         <br/>
      
-      <div>
-      <label>Conductor Id:</label>
-      <input type="number" class="input" />
-      <label>Date:</label>
-      <input type="Date" class="input" />
-      </div>
-      
+
             <div class="card-body">
             <div class="table-responsive" >
             <table class="table table-bordered" id="dataTable" width="0%" cellspacing="0" >
@@ -27,35 +42,26 @@ export default function ConductorSchedule() {
             <br/>
                     <tbody>
                         <tr>
+                            <th class="header">Ride ID</th>
                             <th class="header">Bus Number</th>
-                            <th class="header">Route Number</th>
                             <th class="header">Route</th>
-                            <th class="header" >Ride ID</th>
-                            <th class="header">Date</th>
-                            <th class="header">Time(Arrival time-Depature time)</th>
+                            <th class="header"> Start Date & Start Time</th>
+                            <th class="header">End Date & End Time</th>
 
                            
                         </tr>
-                        <tr>
-                            <td>1000</td>
-                            <td>255</td>
-                            <td>Mount Lavinia to Kottawa </td>
-                            <td>26</td>
-                            <td>01/04/2023 </td>
-                            <td>2.00pm-3.00pm </td>
-                            
-
+                     
+                    
+                  {conductordata.map((conductor) => (
+                  <tr key={conductor.busId}>
+                  <td>{conductor.id}</td>
+                  <td>{conductor.busId}</td>
+                  <td>{conductor.routeId}</td>
+                  <td>{conductor.startDateTime}</td>
+                  <td>{conductor.endDateTime}</td>
+            
                         </tr>
-                        <tr>
-
-                            <td>1000</td>
-                            <td>150</td>
-                            <td>Ambalangoda to Galle</td>
-                            <td>25</td>
-                            <td>01/04/2023 </td>
-                            <td>5.00pm-6.00pm </td>
-                            
-                        </tr>            
+                   ))}            
                     </tbody>
                 </table>
             </div>
@@ -65,3 +71,4 @@ export default function ConductorSchedule() {
     </div>
   )
 }
+export default ConductorSchedule; 

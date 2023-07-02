@@ -211,7 +211,7 @@ const BusRegcard = ({ userEmail }) => { // userEmail is passed as a prop from th
                 </td>
               </tr>
               <tr>
-                <td>4</td>
+                <td>5</td>
                 <td>Scanned copy of bus license</td>
                 <td>
                   <input type='file' name='LisenceRenewDate' id='LisenceRenewDate' required onChange={handleChange}/>
@@ -220,11 +220,25 @@ const BusRegcard = ({ userEmail }) => { // userEmail is passed as a prop from th
             </tbody>
 
           </table>
+<<<<<<< HEAD
           <button type='submit'onClick={displayInfo} className='btn btn-primary'>
             Add Bus
           </button>
         </form>
 
+=======
+          <button
+  type="submit"
+  onClick={displayInfo}
+  className="btn btn-primary"
+  style={{ borderRadius: '30px' }}
+>
+  Add Bus
+</button>
+
+          </form>
+        </div>
+>>>>>>> a1349782079c7ed00fbb5d22a3450fa5f3cfd1d6
       </div>
 
     </div>

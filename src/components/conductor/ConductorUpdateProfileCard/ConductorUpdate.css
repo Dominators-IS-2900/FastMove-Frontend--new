@@ -1,0 +1,55 @@
+.tablestyle{
+    width:85%;
+    height:20px;
+    margin-left: 10px;
+    
+
+}
+.inputfield{
+    width:75%;
+    height:25%;
+}
+
+.btn {
+    border: none;
+    padding: 14px 28px; 
+    cursor: pointer; 
+    float: right;
+    margin-right: 10px; 
+  }
+  
+  .submit{background-color: rgb(3, 29, 3); 
+    color: white; 
+  } 
+  .submit:hover {background-color: #08580a;}
+
+  .small-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  .nic-cell a {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #01281a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 14px; /* Adjust the font size as desired */
+    text-transform: uppercase;
+  }
+  
+  .nic-cell a:hover {
+    background-color: #01281a;
+  }
+  .error {
+    color: red;
+    font-size: 12px;
+  }
+
+  .upload-button{
+   
+      font-size: 12px;
+      padding: 4px 8px;
+    
+  }

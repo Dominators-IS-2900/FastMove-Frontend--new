@@ -1,12 +1,36 @@
 .Topbar{
+<<<<<<< HEAD
     margin-left: 15%;
+=======
+    margin-left: 200px;
+    margin-top: -98px;
+>>>>>>> a1349782079c7ed00fbb5d22a3450fa5f3cfd1d6
 }
 
 .sidebar{
-    margin-top: -5.4%;
+    margin-top: 0px;
 }
 
 
 .flex{
     display: flex;
+<<<<<<< HEAD
 }
+=======
+}
+
+.Helpcard{
+    margin-top: 90px;
+    margin-left: 130px;
+}
+
+.HelpHead{
+    margin-top: 100px;
+}
+
+.Help{
+    margin-left: -30px;
+    margin-top: -65px;
+}
+
+>>>>>>> a1349782079c7ed00fbb5d22a3450fa5f3cfd1d6

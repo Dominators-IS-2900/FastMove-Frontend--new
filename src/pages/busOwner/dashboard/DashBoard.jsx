@@ -1,14 +1,11 @@
 import React from 'react'
-import "./dashboard.css"
+import "./Dashboard.css"
 import { Route, Routes, Link } from "react-router-dom"
 
 export default function DashBoard() {
   return (
     
-    <div id="content" style={{width:"1125px"} }>
-        
-
-       
+    <div id="content" style={{width:"1125px"} }>    
 
         <div class="container-fluid">
 

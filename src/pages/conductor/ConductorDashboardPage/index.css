@@ -1,20 +1,22 @@
-.Topbar{
-    margin-left: 17%;
-    
-}
-
-.sidebar{
-    margin-top: -4.9%;
-    
-   
-    
-}
-
-
-.flex{
-    display: flex;
-}
 
 .body{
 overflow: hidden;
+
 }
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .flex-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .body {
+    flex: 1;
+  }
+  .footer {
+    margin-top: auto;
+  }  
