@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './PassengerInq.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './UpdatedC.css';
 
-const  UpdatedC = () => {
-  const [conductorData, setconductorData] = useState([]);
+const PassengerInq = () => {
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    fetchconductorData();
+    fetchMessages();
   }, []);
 
-  const fetchconductorData = () => {
+  const fetchMessages = () => {
     axios
-      .get('http://localhost:5000/Infoconductor')
+      .get("http://localhost:5000/sendreplypassenger")
       .then(res => {
-        setconductorData(res.data);
+        setMessages(res.data);
       })
       .catch(err => {
         console.log(err);
@@ -32,15 +32,15 @@ const  UpdatedC = () => {
     }
   };
 
-  const handleDelete = (Email) => {
+  const handleDelete = (InquiryID) => {
     axios
-      .delete(`http://localhost:5000/deleteconductor/${Email}`)
+      .delete(`http://localhost:5000/deletepassengerreply/${InquiryID}`)
       .then(res => {
         // Display success message
-        showMessage('Conductor deleted successfully');
+        showMessage('Bus Owner deleted successfully');
 
         // Fetch updated passenger data
-        fetchconductorData();
+        fetchMessages();
       })
       .catch(err => {
         console.log(err);
@@ -50,37 +50,33 @@ const  UpdatedC = () => {
 
   return (
     <div className="card shadow mb-4">
+      <div className="card-header py-3"></div>
       <div className="card-body">
         <div className="table-responsive">
           <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
             <thead>
               <tr>
-               
-              <th className="green-column">Email</th>
-                <th className="green-column">First Name</th>
-                <th className="green-column">Last Name</th>
-                <th className="green-column">Contact No</th>
-                <th className="green-column">Address</th>
-                <th className="green-column">NIC Scan Copy</th>
-                <th className="green-column">Action</th>
+                <th  className="green-column">Inquiry ID</th>
+                <th  className="green-column">Email</th>
+                <th  className="green-column">Bus NO</th>
+                <th  className="green-column">Type of Issue</th>
+                <th  className="green-column">Complain</th>
+                <th  className="green-column">Reply</th>
+                <th  className="green-column">Action</th>
               </tr>
             </thead>
             <tbody>
-              {conductorData.map((conductor) => (
-                <tr key={conductor.Email}>
-                  <td>{conductor.Email}</td>
-                  <td>{conductor.FName}</td>
-                  <td>{conductor.LName}</td>
-                  <td>{conductor.Contact_No}</td>
-                  <td>{conductor.address}</td>
-                  <td className="nic-cell">
-                    <a href={conductor.ID_scancopy} target="_blank" rel="noopener noreferrer">
-                      View NIC
-                    </a>
-                  </td>
+              {messages.map(message => (
+                <tr key={message.InquiryID}>
+                  <td>{message.InquiryID}</td>
+                  <td>{message.Email}</td>
+                  <td>{message.BusNo}</td>
+                  <td>{message.TypeOfIssue}</td>
+                  <td>{message.Complain}</td>
+                  <td>{message.Reply}</td>
                   <td>
                     <div className="Button">
-                      <button className="btn btn-danger equal-width delete-button" onClick={() => handleDelete(conductor.Email)}>
+                      <button className="btn btn-danger equal-width delete-button" onClick={() => handleDelete(message.InquiryID)}>
                         Delete
                       </button>
                     </div>
@@ -106,4 +102,4 @@ const  UpdatedC = () => {
   );
 };
 
-export default UpdatedC;
+export default PassengerInq;

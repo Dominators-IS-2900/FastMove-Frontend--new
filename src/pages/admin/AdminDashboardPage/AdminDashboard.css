@@ -10,3 +10,31 @@
 .flex{
     display: flex;
 }
+
+.popup-container {
+    position: relative;
+  }
+  
+  .popup {
+    position: absolute;
+    display: none;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+  }
+  
+  .popup.show {
+    display: block;
+  }
+  
+  .popup .popuptext {
+    max-width: 300px;
+  }
+  
+  .popup .btn {
+    margin-top: 10px;
+  }
+  

@@ -1,91 +1,118 @@
-import React, { useState, useEffect } from 'react';
-import './APaseenger.css';
+
+import React, { useEffect, useState } from "react";
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PassengerVerification = () => {
   const [passengers, setPassengers] = useState([]);
 
-  useEffect(()=>{
-    axios.get("http://localhost:5000/verification")
-    .then(res=>{
-      setPassengers(res.data) 
-      console.log (passengers);
-      
-    }).catch(
-    (err)=>{
-      console.log(err)
-    }
-  )
-  },[1])
- 
 
+  useEffect(() => {
+    fetchpassengerData();
+  }, []);
 
-  const handleVerify = async (UserID) => {
-    try {
+  const fetchpassengerData = () => {
+    axios
+      .get('http://localhost:5000/passengerverification')
+      .then(res => {
+        setPassengers(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  
 
-       await axios.get(`http://localhost:5000/verficated/${UserID}`).then(
-        res=>{
-          console.log(res.data)
-        }
-       )
-      // const response = await axios.post('/passengerverify', (response.data)); // Updated API endpoint and payload
-      // console.log(response.data);
-      // alert('Passenger verified successfully');
-    } catch (error) {
-      console.error('Error verifying passenger:', error);
-      // Handle error
+  const showMessage = (message, isError = false) => {
+    if (isError) {
+      toast.error(message, {
+        className: 'toast-error',
+      });
+    } else {
+      toast.success(message);
     }
   };
 
-  const handleCancel = async () => {
-    try {
-      const response = await axios.delete(`/deleteverifypa/${UserID}`); // Updated API endpoint
-      console.log(response.data);
-      alert('Passenger canceled successfully');
-    } catch (error) {
-      console.error('Error canceling passenger:', error);
-      // Handle error
-    }
+  const handleVerify = (Email) => {
+    axios
+      .post(`http://localhost:5000/passengerify/${Email}`)
+      .then(res => {
+        showMessage('Bus Owner verified successfully');
+        fetchpassengerData();
+      })
+      .catch(err => {
+        console.log(err);
+        showMessage('Error verifying bus owner', true);
+      });
   };
 
+  const handleCancel = (Email) => {
+    axios
+      .delete(`http://localhost:5000/deleteverifypassenger/${Email}`)
+      .then(res => {
+        showMessage('Bus Owner deleted successfully');
+        fetchpassengerData();
+      })
+      .catch(err => {
+        console.log(err);
+        showMessage('Error deleting bus owner', true);
+      });
+  };
   return (
     <div className="card shadow mb-4">
       <div className="card-body">
         <div className="table-responsive">
-          <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
+          <table
+            className="table table-bordered"
+            id="dataTable"
+            width="100%"
+            cellSpacing="0"
+          >
             <thead>
               <tr>
-                <th>User ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>NIC</th>
-                <th>Phone Number</th>
-                <th>Address</th>
-                <th>Gender</th>
-                <th>Action</th>
+                <th className="green-column">Email</th>
+                <th className="green-column">First Name</th>
+                <th className="green-column">Last Name</th>
+                <th className="green-column">Contact No</th>
+                <th className="green-column">Address</th>
+                <th className="green-column">NIC Scan Copy</th>
+                <th className="green-column">Action</th>
               </tr>
             </thead>
             <tbody>
-              {passengers.map(passengers=> (
-                <tr key={passengers.UserID}>
-                  <td>{passengers.UserID}</td>
-                  <td>{passengers.First_Name}</td>
-                  <td>{passengers.Last_Name}</td>
-                  <td>{passengers.Email}</td>
-                  <td>{passengers.Nic_Image}</td>
-                  <td>{passengers.Phone_Number}</td>
-                  <td>{passengers.Address}</td>
-                  <td>{passengers.Gender}</td>
+            {passengers.map((passenger) => (
+                <tr key={passenger.Email}>
+                  <td>{passenger.Email}</td>
+                  <td>{passenger.FName}</td>
+                  <td>{passenger.LName}</td>
+                  <td>{passenger.Contact_No}</td>
+                  <td>{passenger.address}</td>
+                  <td className="nic-cell">
+                    <a
+                      href={passenger.ID_scancopy}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View NIC
+                    </a>
+                  </td>
+                 
                   <td>
                     <div className="Button">
-                      <button className="btn btn-primary equal-width" onClick={() => handleVerify(passengers.UserID)}>
+                       <button className="btn btn-primary equal-width" onClick={() => handleVerify(passenger.Email)}>
                         Verify
-                      </button>
+                      </button> 
+
+                      
                     </div>
-                    <span style={{ margin: '0 5px' }}></span>
+                    <span style={{ margin: "0 5px" }}> </span>
                     <div className="Button">
-                      <button className="btn btn-danger equal-width" onClick={() => handleCancel(passengers.UserID)}>
+                      <button
+                        className="btn btn-danger equal-width delete-button"
+                        type="button"
+                        onClick={() => handleCancel(passenger.Email)}
+                      >
                         Cancel
                       </button>
                     </div>
@@ -96,6 +123,17 @@ const PassengerVerification = () => {
           </table>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

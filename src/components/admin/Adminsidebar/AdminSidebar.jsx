@@ -14,7 +14,7 @@ export default function AdminSidebar() {
         <hr className="sidebar-divider my-0" />
 
         <li className="nav-item active">
-          <Link to="/" className="nav-link">
+          <Link to="/AdminDashboardPage" className="nav-link">
             <span>Dashboard</span>
           </Link>
         </li>
@@ -23,15 +23,7 @@ export default function AdminSidebar() {
         <div className="sidebar-heading">
           Admin
         </div>
-        <Link to="/ProfilePage">
-        <li className="nav-item">
-          <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilitiesConductor"
-            aria-expanded="true" aria-controls="collapseUtilitiesConductor">
-            <i className="fa fa-child"></i>
-            <span>Conductor Registration</span>
-          </a>
-        </li>
-        </Link>
+       
         <li className="nav-item">
           <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVerification"
             aria-expanded="true" aria-controls="collapseVerification">
@@ -43,9 +35,12 @@ export default function AdminSidebar() {
               <Link to="/Ownervarification">
                 <a className="collapse-item" href="/route"><i className="fa fa-user-circle"></i> Bus Owner</a>
               </Link>
-              <Link to="/PassengerVerification">
+              <Link to="/PassengerVPage">
                 <a className="collapse-item" href="/route_1"><i className="fa fa-user-circle"></i> Passenger</a>
               </Link>
+              <Link to ="/ProfilePage">
+                <a className="collapse-item" href="/route_1"><i className="fa fa-user-circle"></i>Conductor</a>
+                </Link>                               
             </div>
           </div>
         </li>
@@ -114,12 +109,13 @@ export default function AdminSidebar() {
           </a>
           <div id="collapseInquiryInfo" className="collapse" aria-labelledby="headingInquiryInfo" data-parent="#accordionSidebar">
             <div className="bg-white py-2 collapse-inner rounded">
-              <Link to="IssuesOwnerPage">
+              <Link to="/IssuesOwnerPage">
                 <a className="collapse-item" href="/route"><i className="fa fa-user-circle"></i> Bus Owner</a>
               </Link>
-              <Link to="InfoPassengerPage">
-                <a className="collapse-item" href="/route_2"><i className="fa fa-user-circle"></i> Passenger</a>
-              </Link>
+              <Link to="/PassengerInquiryPage">
+  <a className="collapse-item" href="/route_1"><i className="fa fa-user-circle"></i> Passenger</a>
+</Link>
+
             </div>
           </div>
         </li>
