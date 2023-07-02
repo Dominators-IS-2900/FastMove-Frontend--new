@@ -4,10 +4,6 @@ import App from './App';
 import { BrowserRouter } from "react-router-dom"
 import { Auth0Provider } from '@auth0/auth0-react';
 
-//popup notification
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(

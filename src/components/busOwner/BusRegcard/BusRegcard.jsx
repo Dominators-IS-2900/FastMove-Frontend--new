@@ -1,33 +1,111 @@
+// import React, { useState } from 'react';
+// import axios from 'axios';
+
+// //backend port
+// const API_BASE_URL = 'http://localhost:5000';
+
+// //usestate to keep values empty
+// const BusRegcard = () => {
+//   const [formData, setFormData] = useState({
+//     BusNo: '',
+//     BusType: '',
+//     NumOfSeats: '',
+//     LisenceRenewDate: '',
+//   });
+
+//   //converting input data
+//   const handleChange = (e) => {
+//     const { name, value, type, files } = e.target;
+//     if (type === 'date') {
+//       setFormData({
+//         ...formData,
+//         [name]: new Date(value), // convert to a Date object
+//       });
+
+//       //decide the number of seats of a bus based on the bus type
+//     } else if (name === 'BusType') {
+//       let numSeats = [];
+//       switch (value) {
+//         case 'Normal':
+//           numSeats = ['44', '49', '54', '59'];
+//           break;
+//         case 'Semi Luxury':
+//           numSeats = ['54', '69'];
+//           break;
+//         case 'Luxury':
+//           numSeats = ['30', '45'];
+//           break;
+//         default:
+//           numSeats = [];
+//           break;
+//       }
+//       setFormData({
+//         ...formData,
+//         [name]: value,
+//         NumOfSeats: numSeats[0],
+//         numSeatsOptions: numSeats,
+//       });
+//     } else {
+//       setFormData({
+//         ...formData,
+//         [name]: files ? files[0] : value,
+//       });
+//     }
+//   };
+
+// //display input data in console
+//   function displayInfo() {
+//     console.log(formData);
+//   }
+
+// //send input data to backend to catch the database
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     const { BusNo, BusType, NumOfSeats, LisenceRenewDate } = formData;
+
+//     const formDataToSubmit = ({
+//       Bus_No: BusNo,
+//       Bus_type: BusType,
+//       No_ofSeats: NumOfSeats,
+//       Bus_Lisence_startDate: LisenceRenewDate,
+//     });
+
+//     try {
+//       console.log(formDataToSubmit);
+//       axios.post(`${API_BASE_URL}/addBus`, formDataToSubmit).then((res) => {
+//         console.log(res.data);
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+
 import React, { useState } from 'react';
 import axios from 'axios';
-import { storage } from './firebase';
-import './BusRegcard.css';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
+//backend port
 const API_BASE_URL = 'http://localhost:5000';
 
-const BusRegcard = ({ userEmail }) => {
+//usestate to keep values empty
+const BusRegcard = ({ userEmail }) => { // userEmail is passed as a prop from the parent component
   const [formData, setFormData] = useState({
     BusNo: '',
     BusType: '',
     NumOfSeats: '',
     LisenceRenewDate: '',
-    selectedFile: null,
   });
 
+  //converting input data
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
-    let error = '';
-
     if (type === 'date') {
-      // Handle date input
       setFormData({
         ...formData,
-        [name]: new Date(value),
+        [name]: new Date(value), // convert to a Date object
       });
+
+      //decide the number of seats of a bus based on the bus type
     } else if (name === 'BusType') {
-      // Handle BusType input
       let numSeats = [];
       switch (value) {
         case 'Normal':
@@ -49,138 +127,56 @@ const BusRegcard = ({ userEmail }) => {
         NumOfSeats: numSeats[0],
         numSeatsOptions: numSeats,
       });
-    } else if (name === 'selectedFile') {
-      // Handle selectedFile input
-      setFormData({
-        ...formData,
-        BusLisence: value,
-        selectedFile: files ? files[0] : null,
-      });
     } else {
-      // Handle other inputs
       setFormData({
         ...formData,
-        [name]: value,
+        [name]: files ? files[0] : value,
       });
-
-      // Perform real-time validation for BusNo input
-      if (name === 'BusNo') {
-        const regex = /^[A-Z]{2}-\d{4}$/;
-        if (!regex.test(value)) {
-          error = 'Please enter a value in the format AB-7896.';
-        }
-      }
-    }
-
-    // Set the error message
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [`${name}Error`]: error,
-    }));
-  };
-
-  const handleFileSelect = (e) => {
-    setFormData({
-      ...formData,
-      selectedFile: e.target.files[0],
-    });
-  };
-
-  const handleFileUpload = () => {
-    if (formData.selectedFile) {
-      const storageRef = storage.ref();
-      const fileRef = storageRef.child(formData.selectedFile.name);
-      fileRef
-        .put(formData.selectedFile)
-        .then((snapshot) => {
-          console.log('File uploaded successfully.');
-          // download URL of file
-          return snapshot.ref.getDownloadURL();
-        })
-        .then((downloadURL) => {
-          // Update the formData with the download URL
-          setFormData({
-            ...formData,
-            selectedFileURL: downloadURL,
-          });
-        })
-        .catch((error) => {
-          console.log('Error uploading file:', error);
-        });
     }
   };
 
-  const displayInfo = () => {
+  //display input data in console
+  function displayInfo() {
     console.log(formData);
-  };
+  }
 
+  //send input data to backend to catch the database
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { BusNo, BusType, NumOfSeats, LisenceRenewDate, selectedFileURL } = formData;
-  
-    const formDataToSubmit = {
+    const { BusNo, BusType, NumOfSeats, LisenceRenewDate } = formData;
+
+    const formDataToSubmit = ({
       Bus_No: BusNo,
       Bus_type: BusType,
       No_ofSeats: NumOfSeats,
       Bus_Lisence_startDate: LisenceRenewDate,
-      BusLisence_scancopy: selectedFileURL || '',
-    };
-  
+      // User_Email: userEmail, // add the user email to the form data
+    });
+
     try {
-      const response = await axios.post(`${API_BASE_URL}/addBus`, formDataToSubmit);
-      console.log(response.data);
-      if (response.data.sqlState === '23000' && response.data.sqlMessage.includes('Duplicate entry')) {
-        // Display error message for duplicate entry
-        toast.error('The bus is already registered.', {
-          className: 'red-toast',
-          bodyClassName: 'red-toast-body',
-        });
-        console.log(response.data);
-      } else {
-        // Display success message
-        toast.success('Your Bus is registered successfully');
-        // Clear the form data
-        setFormData({
-          BusNo: '',
-          BusType: '',
-          NumOfSeats: '',
-          LisenceRenewDate: '',
-          selectedFile: null,
-          selectedFileURL: '',
-        });
-      }
+      console.log(formDataToSubmit);
+      axios.post(`${API_BASE_URL}/addBus`, formDataToSubmit).then((res) => {
+        console.log(res.data);
+      });
     } catch (error) {
       console.log(error);
     }
   };
-  
 
   return (
-    <div className='regbody'>
-      <div className='card shadow mb-4'>
-        <div className='card-header py-3'>
-          <h6 className='m-0 font-weight-bold text-primary'>Fill the Information</h6>
-        </div>
-        <div className='card-body'>
-          <form onSubmit={handleSubmit}>
-            <table className='table table-bordered' id='dataTable' width='100%' cellSpacing='0'>
-              <tbody>
-                <tr>
+    <div className='card shadow mb-4'>
+      <div className='card-header py-3'>
+        <h6 className='m-0 font-weight-bold text-primary'>Fill the Information </h6>
+      </div>
+      <div className='card-body'>
+        <form onSubmit={handleSubmit}>
+          <table className='table table-bordered' id='dataTable' width='100%' cellSpacing='0'>
+            <tbody>
+              <tr>
                 <td>1</td>
                 <td>Bus Number</td>
                 <td>
-                <input
-                  type='text'
-                  name='BusNo'
-                  id='BusNo'
-                  required
-                  onChange={handleChange}
-                  placeholder='ex: AB-7896'
-                  pattern='^[A-Z]{2}-\d{4}$'
-                />
-                {formData.BusNoError && <span className="error-message">{formData.BusNoError}</span>}
-
-
+                  <input type='text' name='BusNo' id='BusNo' required onChange={handleChange} />
                 </td>
               </tr>
               <tr>
@@ -198,14 +194,12 @@ const BusRegcard = ({ userEmail }) => {
               <tr>
                 <td>3</td>
                 <td>Number of seats</td>
+                {/* number of seats that displayed are based on the bus type */}
                 <td>
                   <select name='NumOfSeats' id='NumOfSeats' required onChange={handleChange}>
-                    {formData.numSeatsOptions &&
-                      formData.numSeatsOptions.map((option) => (
-                        <option key={option} value={option}>
-                          {option}
-                        </option>
-                      ))}
+                    {formData.numSeatsOptions && formData.numSeatsOptions.map(option => (
+                      <option value={option}>{option}</option>
+                    ))}
                   </select>
                 </td>
               </tr>
@@ -213,45 +207,29 @@ const BusRegcard = ({ userEmail }) => {
                 <td>4</td>
                 <td>Lisence renew date</td>
                 <td>
-                  <input type='date' name='LisenceRenewDate' id='LisenceRenewDate' required onChange={handleChange} />
+                  <input type='date' name='LisenceRenewDate' id='LisenceRenewDate' required onChange={handleChange}/>
                 </td>
               </tr>
               <tr>
                 <td>4</td>
                 <td>Scanned copy of bus license</td>
                 <td>
-                  <input type="file" name="selectedFile" id="selectedFile" required onChange={handleFileSelect} />
-                  <br />
-                  {formData.selectedFile && (
-                    <>
-                      <button type="button" onClick={handleFileUpload} className="upload-button">
-                        Upload file
-                      </button>
-                      <br />
-                      {formData.selectedFileURL && (
-                        <a href={formData.selectedFileURL} target="_blank" rel="noopener noreferrer">
-                          View the uploaded file
-                        </a>
-                      )}
-                       <input type="text" value={formData.selectedFileURL} readOnly 
-                       name='BusLisence'
-                       id='BusLisence'
-                       required onChange={handleFileSelect}/>
-                    </>
-                  )}
+                  <input type='file' name='LisenceRenewDate' id='LisenceRenewDate' required onChange={handleChange}/>
                 </td>
               </tr>
             </tbody>
+
           </table>
-            <button type='submit' onClick={displayInfo} className='btn btn-primary'>
-              Add Bus
-            </button>
-          </form>
-        </div>
+          <button type='submit'onClick={displayInfo} className='btn btn-primary'>
+            Add Bus
+          </button>
+        </form>
+
       </div>
-      <ToastContainer />
+
     </div>
-  );
-};
+  )}
 
 export default BusRegcard;
+
+

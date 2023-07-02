@@ -1,6 +1,5 @@
 .Topbar{
     margin-left: 15%;
-    width: 1270px;
 }
 
 .sidebar{
@@ -10,14 +9,5 @@
 
 .flex{
     display: flex;
-}
-
-.Dash{
-    padding-top: 20px;
-    padding-left: 100px;
-}
-
-.bustable{
-    margin-top: 80px;
 }
 

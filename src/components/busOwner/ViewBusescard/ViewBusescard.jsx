@@ -6,6 +6,8 @@ import axios from 'axios';
 const ViewBusescard = () => {
     const [busData, setBusData] = useState([]);
 
+ 
+
   useEffect(()=>{
     axios.get("http://localhost:5000/busDetails")
     .then(res=>{
@@ -17,7 +19,7 @@ const ViewBusescard = () => {
       console.log(err)
     }
   )
-  },)
+  },[])
 
   return (
     <div class="card shadow mb-4">
@@ -43,7 +45,7 @@ const ViewBusescard = () => {
                                 <td>{bus.Bus_No}</td>
                                 <td>{bus.Bus_type}</td>
                                 <td>{bus.No_ofSeats}</td>
-                                <td>{bus.Bus_Lisence_expireDate.split('T')[0]}</td>
+                                <td>{bus.Bus_Lisence_expireDate}</td>
                             </tr>
                     ))}
                     </tbody>        
@@ -55,4 +57,3 @@ const ViewBusescard = () => {
 }
 
 export default ViewBusescard;
-

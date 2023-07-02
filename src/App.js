@@ -12,8 +12,9 @@ import ProfilePage from "./pages/admin/ProfilePage";
 import SigninCharPage from "./pages/common/SigninCharPage/components/SigninCharPage";
 import Homepage from "./pages/common/Homepage/components/Home";
 import { useAuth0 } from "@auth0/auth0-react";
+import ConductorDashboardPage from "./pages/conductor/ConductorDashboardPage";
 import ConductorProfilePage from "./pages/conductor/ConductorProfilePage";
-import ConductorSchedulePage from "./pages/conductor/ConductorSchedulePage";
+import ConductorSchedulePage from "./pages/conductor/ConductorSchedulePage/components/MySchedule";
 import ConductorEmergencyPage from "./pages/conductor/ConductorEmergencyPage";
 import ScanPage from "./pages/conductor/ScanPage";
 import OwnerDashboardPage from "./pages/busOwner/OwnerDashboardpage";
@@ -24,10 +25,9 @@ import DeposPage from "./pages/timeKeeper/deposPage/DeposPage";
 import TimeTable from "./pages/timeKeeper/busRoute/BusRoute";
 import LoginPage from "./pages/timeKeeper/auth/login";
 import MainPage from "./pages/timeKeeper/mainpage/MainPage";
-import BusownerRegistration from "./components/busOwner/BusownerRegistration/BusownerRegistration";
-import PassengerRegistration from "./components/common/PassengerRegistration/PassengerReg";
-import OTPpage from "./components/common/OTPpage/OTPpage"
-import UserRegistration from "./components/common/UserRegistration/UserRegistration";
+import ConductorUpdate from "./components/conductor/ConductorUpdateProfileCard/ConductorUpdate";
+import QrCodeGenarate from "./pages/conductor/QrGeneratePage/TicketGenerationPage"
+
 
 const SidebarLayout = () => (
   <>
@@ -46,8 +46,9 @@ function App() {
     <div className="App">
       <div id= "wrapper">
       <Routes>
+      <Route path="/" element={<ConductorDashboardPage/>} />
         {/* Admin routes         */}
-        <Route path="/" element={<UserRegistration/>}/>  
+        <Route path="/" element={<DeposPage/>}/>  
         <Route path="/SignInchar" element={<SigninCharPage/>} />        
         <Route path="/Busfarepage" element={<Busfarepage />} />       
         <Route path="/Ownervarification" element={<OwnerVarificationPage />} />
@@ -66,11 +67,14 @@ function App() {
 
        
          {/*add conductor routes*/}
-
+        <Route path="/ConductorDashboardPage" element={<ConductorDashboardPage/>} />
         <Route path="/Scan" element={<ScanPage/>} />
-        <Route path="/Profile" element={<ConductorProfilePage/>} />
+        <Route path="/ConductorProfile" element={<ConductorProfilePage/>} />
         <Route path="/MySchedule" element={<ConductorSchedulePage/>} />
         <Route path="/Emergency" element={<ConductorEmergencyPage/>} />
+        <Route path="/ConductorUpdate" element={<ConductorUpdate/>} />
+        <Route path="/QrGenaratePage" element={<QrCodeGenarate/>} />
+       
 
           {/*add Timekeeper routes*/}
            <Route element={<SidebarLayout />}>

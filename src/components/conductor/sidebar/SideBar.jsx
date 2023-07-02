@@ -1,91 +1,106 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import './sidebar.css'
 
 export default function SideBar() {
+  const [route, setRoute] = useState("");
+  const [isResponsive, setIsResponsive] = useState(false);
 
-    const [route, setRoute] = useState("");
+  const handleButtonClick = () => {
+    setIsResponsive(prevIsResponsive => !prevIsResponsive);
+  };
+
+
   return (
+    
+    <div className="fixed-sidebar">
+      <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    <div>
-      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-            <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fa fa-bus"></i>
-            </div>
-            <Link to='/' class="nav-link" style={{color: "white"}}>
-                <div class="mx-3">FastMove</div>
-            </Link>
-            
+        {/* Sidebar Brand */}
+        <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+          <div className="sidebar-brand-icon rotate-n-15">
+            <i className="fa fa-bus"></i>
+          </div>
+          <Link to='/' className="nav-link" style={{ color: "white" }}>
+            <div className="mx-3">FastMove</div>
+          </Link>
         </a>
 
-        
-        <hr class="sidebar-divider my-0"/>
-        <li class="nav-item active">
-            
-                <Link to='/' class="nav-link">
-                    <span>Dashboard</span>
-                </Link>
-            
-                
+        {/* Divider */}
+        <hr className="sidebar-divider my-0" />
+
+        {/* Dashboard */}
+        <li className="nav-item active">
+          <Link to='/' className="nav-link">
+            <span>Dashboard</span>
+          </Link>
         </li>
-        
-        <hr class="sidebar-divider"/>
-        <div class="sidebar-heading">
-            Bus Conductor
-        </div>
 
-        {/* Nav Item - Pages Collapse Menu  */}
+        {/* Divider */}
+        <hr className="sidebar-divider" />
 
+        {/* Bus Conductor */}
+        <div className="sidebar-heading">Bus Conductor</div>
+
+        {/* Scan */}
         <Link to="/Scan">
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fa fa-qrcode"></i>
-                <span>  Scan </span>
+          <li className="nav-item">
+            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+              aria-expanded="true" aria-controls="collapseUtilities">
+              <i className="fa fa-qrcode"></i>
+              <span>Scan</span>
             </a>
-        </li></Link>
-        
-        <Link to="/Profile">
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fa fa-id-card"></i>
-                <span>Profile</span>
+          </li>
+        </Link>
+
+        {/* Profile */}
+        <Link to="/ConductorProfile">
+          <li className="nav-item">
+            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+              aria-expanded="true" aria-controls="collapseUtilities">
+              <i className="fa fa-id-card"></i>
+              <span>Profile</span>
             </a>
-        </li></Link>
-        
+          </li>
+        </Link>
+
+        {/* Emergency */}
         <Link to="/Emergency">
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fa fa-exclamation"></i>
-                <span>Emergency</span>
+          <li className="nav-item">
+            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+              aria-expanded="true" aria-controls="collapseUtilities">
+              <i className="fa fa-exclamation"></i>
+              <span>Emergency</span>
             </a>
-        </li></Link>
-        
+          </li>
+        </Link>
+
+        {/* Activity Schedule */}
         <Link to="/MySchedule">
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fa fa-calendar"></i>
-                <span>Activity Schedule</span>
+          <li className="nav-item">
+            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+              aria-expanded="true" aria-controls="collapseUtilities">
+              <i className="fa fa-calendar"></i>
+              <span>Activity Schedule</span>
             </a>
-        </li></Link>
-        <br/>  <br/> <br/>  <br/>
-        <Link to='/' class="nav-link">
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#"  data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fa fa-chevron-circle-left"></i>
-                <span>Back</span>
+          </li>
+        </Link>
+
+        <br /> <br /> <br /> <br />
+
+        {/* Back */}
+        <Link to='/' className="nav-link">
+          <li className="nav-item">
+            <a className="nav-link collapsed" href="#" data-target="#collapseUtilities"
+              aria-expanded="true" aria-controls="collapseUtilities">
+              <i className="fa fa-chevron-circle-left"></i>
+              <span>Back</span>
             </a>
-        </li></Link>
-        
-  </ul>
-        
-      
+          </li>
+        </Link>
+
+      </ul>
     </div>
   )
 }
