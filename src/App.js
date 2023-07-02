@@ -24,6 +24,14 @@ import DeposPage from "./pages/timeKeeper/deposPage/DeposPage";
 import TimeTable from "./pages/timeKeeper/busRoute/BusRoute";
 import LoginPage from "./pages/timeKeeper/auth/login";
 import MainPage from "./pages/timeKeeper/mainpage/MainPage";
+import Register from "./components/common/Register";
+import UserRegistration from "./components/common/UserRegister/UserRegistration";
+import OTPVerification from "./components/common/OTPVerification/OTPVerification";
+import LoginCard from "./components/common/Login/LoginCard";
+import Username from "./components/common/ResetPassword/Username";
+import Reset from "./components/common/ResetPassword/Reset";
+import Profile from "./components/common/ViewProfile/Profile";
+
 const SidebarLayout = () => (
   <>
     <SideBar />
@@ -42,7 +50,7 @@ function App() {
       <div id= "wrapper">
       <Routes>
         {/* Admin routes         */}
-        <Route path="/" element={<DeposPage/>}/>  
+        <Route path="/" element={<Homepage/>}/>  
         <Route path="/SignInchar" element={<SigninCharPage/>} />        
         <Route path="/Busfarepage" element={<Busfarepage />} />       
         <Route path="/Ownervarification" element={<OwnerVarificationPage />} />
@@ -50,6 +58,12 @@ function App() {
         <Route path="/ProfilePage" element={<ProfilePage/>} />
         <Route path="/Activity" element={<ActivityPage/>} />    
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/otpVerification" element={<OTPVerification/>} />
+        <Route path="/register" element={<Register/>} />
+        <Route path="/username" element={<Username/>} />
+        <Route path="/reset" element={<Reset/>} />
+        <Route path="/login" element={<LoginCard/>} />
+        <Route path="/profileView" element={<Profile/>} />
 
         {/* Bus owner routes */}
         <Route path="/ownerDashboardpage" element={<OwnerDashboardPage/>} />
@@ -76,6 +90,8 @@ function App() {
             <Route path="/depo" element={<DeposPage />} />
         </Route>
         <Route path="/login" element={<LoginPage />} />
+
+        
         
 
       </Routes>     
