@@ -1,116 +1,125 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import './AdminSidebar.css';
+import Logo from '../../../Images/Logo.png';
 
 export default function AdminSidebar() {
+  const [route, setRoute] = useState("");
 
-    const [route, setRoute] = useState("");
   return (
-
     <div>
-      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-            <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i>
-            </div>
-            <Link to='/' class="nav-link" style={{color: "white"}}>
-                <div class="mx-3">FastMove</div>
-            </Link>
-            
-        </a>
+      <img src={Logo} alt="Logo" />
+      <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <hr className="sidebar-divider my-0" />
 
-        
-        <hr class="sidebar-divider my-0"/>
-
-        
-        <li class="nav-item active">
-            
-                <Link to='/' class="nav-link">
-                    <span>Dashboard</span>
-                </Link>
-            
-                
+        <li className="nav-item active">
+          <Link to="/AdminDashboardPage" className="nav-link">
+            <span>Dashboard</span>
+          </Link>
         </li>
-        
-        <hr class="sidebar-divider"/>
-        <div class="sidebar-heading">
-            Admin
+
+        <hr className="sidebar-divider" />
+        <div className="sidebar-heading">
+          Admin
         </div>
-        <Link to="/ProfilePage">
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fa fa-address-book"></i>
-                <span>Conductor Registration</span>
-            </a>
-        </li></Link>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fa fa-user-circle"></i>
-                <span>Inquiry </span>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-             
-              <Link to="/InquiryOwnerP"> <a class="collapse-item" href="/route"><i class="fa fa-user-circle"></i> Bus Owner</a></Link>
-              <Link to="/InquiryPassengerP"> <a class="collapse-item" href="/route_1"><i class="fa fa-user-circle"></i> Passenger</a></Link>
-                    </div>
+       
+        <li className="nav-item">
+          <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVerification"
+            aria-expanded="true" aria-controls="collapseVerification">
+            <i className="fa fa-check-circle"></i>
+            <span>Verification</span>
+          </a>
+          <div id="collapseVerification" className="collapse" aria-labelledby="headingVerification" data-parent="#accordionSidebar">
+            <div className="bg-white py-2 collapse-inner rounded">
+              <Link to="/Ownervarification">
+                <a className="collapse-item" href="/route"><i className="fa fa-user-circle"></i> Bus Owner</a>
+              </Link>
+              <Link to="/PassengerVPage">
+                <a className="collapse-item" href="/route_1"><i className="fa fa-user-circle"></i> Passenger</a>
+              </Link>
+              <Link to ="/ProfilePage">
+                <a className="collapse-item" href="/route_1"><i className="fa fa-user-circle"></i>Conductor</a>
+                </Link>                               
             </div>
+          </div>
         </li>
- 
-      
-        <Link to="/Busfarepage">
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fa fa-bus" ></i>
-                <span>Bus Fare </span>
-            </a>
-        </li></Link>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fa fa-user-circle"></i>
-                <span> Verification</span>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-             
-              <Link to="/Ownervarification"> <a class="collapse-item" href="/route"><i class="fa fa-user-circle"></i> Bus Owner</a></Link>
-              <Link to="/PassengerVerification"> <a class="collapse-item" href="/route_1"><i class="fa fa-user-circle"></i> Passenger</a></Link>
-                    </div>
+        <li className="nav-item">
+          <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsersInfo"
+            aria-expanded="true" aria-controls="collapseUsersInfo">
+            <i className="fa fa-user-circle"></i>
+            <span>Users Information</span>
+          </a>
+          <div id="collapseUsersInfo" className="collapse" aria-labelledby="headingUsersInfo" data-parent="#accordionSidebar">
+            <div className="bg-white py-2 collapse-inner rounded">
+              <Link to="/DecOwnerPage">
+                <a className="collapse-item" href="/route"><i className="fa fa-user-circle"></i> Bus Owner</a>
+              </Link>
+              <Link to="/PverifiedPage">
+                <a className="collapse-item" href="/route_1"><i className="fa fa-user-circle"></i>Passenger</a>
+              </Link>
+            <Link to="/UpdatedCPage">
+            <a className="collapse-item" href="/route_1"><i className="fa fa-user-circle"></i>Conductor</a>
+            </Link>
             </div>
+          </div>
         </li>
- 
-        <Link to="/Activity">
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fa fa-bell"></i>
-                <span>Activity Schedule</span>
-            </a>
-        </li></Link>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fa fa-user-circle"></i>
-                <span>Users Informations</span>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-             
-              <Link to="/DetailsownerPage"> <a class="collapse-item" href="/route"><i class="fa fa-user-circle"></i> Bus Owner</a></Link>
-              <Link to="/DetailsconductorPage"> <a class="collapse-item" href="/route_1"><i class="fa fa-user-circle"></i> Passenger</a></Link>
-              <Link to="/DetailsPassengerPage"> <a class="collapse-item" href="/route_1"><i class="fa fa-user-circle"></i> Conductor </a></Link>
-                    </div>
+        <Link to="/InfoPage">
+        <li className="nav-item">
+          <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseActivity"
+            aria-expanded="true" aria-controls="collapseActivity">
+            <i className="fa fa-bell"></i>
+            <span> Registered Bus Details </span>
+          </a>
+        </li>
+        </Link>
+        <Link to="/Busfarepage">
+        <li className="nav-item">
+          <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBusFare"
+            aria-expanded="true" aria-controls="collapseBusFare">
+            <i className="fa fa-bus"></i>
+            <span>Bus Fare</span>
+          </a>
+        </li>
+       </Link>
+        <li className="nav-item">
+          <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInquiry"
+            aria-expanded="true" aria-controls="collapseInquiry">
+            <i className="fa fa-reply"></i>
+            <span>Inquiry</span>
+          </a>
+          <div id="collapseInquiry" className="collapse" aria-labelledby="headingInquiry" data-parent="#accordionSidebar">
+            <div className="bg-white py-2 collapse-inner rounded">
+              <Link to="/InvestigationPage">
+                <a className="collapse-item" href="/route"><i className="fa fa-user-circle"></i> Bus Owner</a>
+              </Link>
+              <Link to="/IssuesPPage">
+                <a className="collapse-item" href="/route_1"><i className="fa fa-user-circle"></i> Passenger</a>
+              </Link>
             </div>
+          </div>
         </li>
-  </ul>
-        
-      
+
+        <li className="nav-item">
+          <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInquiryInfo"
+            aria-expanded="true" aria-controls="collapseInquiryInfo">
+            <i className="fa fa-reply-all"></i>
+            <span>Inquiry Information</span>
+          </a>
+          <div id="collapseInquiryInfo" className="collapse" aria-labelledby="headingInquiryInfo" data-parent="#accordionSidebar">
+            <div className="bg-white py-2 collapse-inner rounded">
+              <Link to="/IssuesOwnerPage">
+                <a className="collapse-item" href="/route"><i className="fa fa-user-circle"></i> Bus Owner</a>
+              </Link>
+              <Link to="/PassengerInquiryPage">
+  <a className="collapse-item" href="/route_1"><i className="fa fa-user-circle"></i> Passenger</a>
+</Link>
+
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
-  )
+  );
 }

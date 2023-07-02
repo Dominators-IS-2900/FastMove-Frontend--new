@@ -1,62 +1,121 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export default function ProfileCard() {
-  const [formData, setFormData] = useState({
-    conductorId: '',
-    username: '',
-    password: '',
-    mobileNumber: '',
-    email: '',
-    nicScanCopy: null
-  })
+const ConductorVerification = () => {
+  const [conductors, setConductors] = useState([]);
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target
-    setFormData({ ...formData, [name]: value })
-  }
+  useEffect(() => {
+    fetchConductors();
+  }, []);
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0]
-    setFormData({ ...formData, nicScanCopy: file })
-  }
+  const fetchConductors = () => {
+    axios
+      .get('http://localhost:5000/conductorverification')
+      .then(res => {
+        setConductors(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    // Handle form submission
-  }
+  const showMessage = (message, isError = false) => {
+    if (isError) {
+      toast.error(message, {
+        className: 'toast-error',
+      });
+    } else {
+      toast.success(message);
+    }
+  };
+
+  const handleVerify = (email) => {
+    axios
+      .post(`http://localhost:5000/conductorverify/${email}`)
+      .then(res => {
+        showMessage('Conductor verified successfully');
+        fetchConductors();
+      })
+      .catch(err => {
+        console.log(err);
+        showMessage('Error verifying bus owner', true);
+      });
+  };
+
+  const handleCancel = (email) => {
+    axios
+      .delete(`http://localhost:5000/deleteverifyconductor/${email}`)
+      .then(res => {
+        showMessage('Conductor deleted successfully');
+        fetchConductors();
+      })
+      .catch(err => {
+        console.log(err);
+        showMessage('Error deleting bus owner', true);
+      });
+  };
 
   return (
-    <div class="card shadow mb-4">
-      <div class="card-body">
-        <form onSubmit={handleSubmit}>
-          <div class="form-group">
-            <label for="conductorId">Conductor ID</label>
-            <input type="text" class="form-control" id="conductorId" name="conductorId" value={formData.conductorId} onChange={handleInputChange} />
-          </div>
-          <div class="form-group">
-            <label for="username">User name</label>
-            <input type="text" class="form-control" id="username" name="username" value={formData.username} onChange={handleInputChange} />
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" value={formData.password} onChange={handleInputChange} />
-          </div>
-          <div class="form-group">
-            <label for="mobileNumber">Mobile Number</label>
-            <input type="text" class="form-control" id="mobileNumber" name="mobileNumber" value={formData.mobileNumber} onChange={handleInputChange} />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" value={formData.email} onChange={handleInputChange} />
-          </div>
-          <div class="form-group">
-            <label for="nicScanCopy">NIC Scan copy</label>
-            <input type="file" class="form-control-file" id="nicScanCopy" name="nicScanCopy" accept="image/*" onChange={handleFileChange} />
-          </div>
-          <button type="button" class="btn btn-primary ml-1">ADD</button>
-          
-        </form>
+    <div className="card shadow mb-4">
+      <div className="card-body">
+        <div className="table-responsive">
+          <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
+            <thead>
+              <tr>
+                <th className="green-column">Email</th>
+                <th className="green-column">First Name</th>
+                <th className="green-column">Last Name</th>
+                <th className="green-column">Contact No</th>
+                <th className="green-column">Address</th>
+                <th className="green-column">NIC Scan Copy</th>
+                <th className="green-column">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {conductors.map((conductor) => (
+                <tr key={conductor.Email}>
+                  <td>{conductor.Email}</td>
+                  <td>{conductor.FName}</td>
+                  <td>{conductor.LName}</td>
+                  <td>{conductor.Contact_No}</td>
+                  <td>{conductor.address}</td>
+                  <td className="nic-cell">
+                    <a href={conductor.ID_scancopy} target="_blank" rel="noopener noreferrer">
+                      View NIC
+                    </a>
+                  </td>
+                  <td>
+                    <div className="Button">
+                      <button className="btn btn-primary equal-width" onClick={() => handleVerify(conductor.Email)}>
+                        Verify
+                      </button>
+                      <br /><br />
+                      <button className="btn btn-danger equal-width delete-button" onClick={() => handleCancel(conductor.Email)}>
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
-  )
-}
+  );
+};
+
+export default ConductorVerification;

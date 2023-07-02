@@ -1,10 +1,9 @@
-<<<<<<< HEAD
-=======
+
 body{
     margin-top: 100px;
 }
 
->>>>>>> a1349782079c7ed00fbb5d22a3450fa5f3cfd1d6
+
 .Topbar{
     margin-left: 15%;
 }
@@ -19,10 +18,7 @@ body{
     display: flex;
 }
 
-<<<<<<< HEAD
-.ftrbusreg{
-    
-=======
+
 .Topbar{
     width: 1270px;
 }
@@ -30,5 +26,5 @@ body{
 .regcard{
     margin-top: -45px;
     padding-top: 0px;
->>>>>>> a1349782079c7ed00fbb5d22a3450fa5f3cfd1d6
+
 }
