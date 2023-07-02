@@ -61,8 +61,8 @@
 //                 <tr key={bus.Bus_No}>
 //                   <td>{bus.Bus_No}</td>
 //                   <td>{bus.Bus_type}</td>
-//                   <td>{bus.No_ofSeats}</td>
-//                   <td>{bus.Bus_Lisence_expireDate.split('T')[0]}</td>
+                  // <td>{bus.No_ofSeats}</td>
+                  // <td>{bus.Bus_Lisence_expireDate.split('T')[0]}</td>
 //                   <td>
 //                     <button
 //                       className="btn btn-primary"
@@ -124,8 +124,6 @@
 
 // export default ViewBusescard;
 
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
@@ -134,37 +132,49 @@ import { storage } from './firebase';
 
 const ViewBusescard = () => {
   const [busData, setBusData] = useState([]);
+  const [internalFileUrl, setInternalFileUrl] = useState('');
 
   const handleViewFile = (fileUrl) => {
     window.open(fileUrl, '_blank');
   };
 
   const handleUpdateFile = (busNo, file) => {
-    const formData = new FormData();
-    formData.append('file', file);
+    const storageRef = storage.ref();
+    const fileRef = storageRef.child(`${busNo}/${file.name}`);
 
-    // Send the formData to the server using axios or any other method
-    // You can include the busNo in the formData if needed
-
-    // Example using axios
-    axios
-      .post('http://localhost:5000/upload', formData)
-      .then((res) => {
-        // Handle success
-        toast.success('File updated successfully', {
-          position: 'top-right',
-          autoClose: 3000,
-          hideProgressBar: false,
+    
+    fileRef
+      .put(file)
+      .then(() => fileRef.getDownloadURL())
+      .then((url) => {
+        // Update the busData with the URL or send the URL to the server
+        const updatedBusData = busData.map((bus) => {
+          if (bus.Bus_No === busNo) {
+            return { ...bus, Bus_License: url };
+          }
+          return bus;
         });
+        setBusData(updatedBusData);
+        setInternalFileUrl(url); // Set the internal file URL
+        const confirmMessage = window.confirm('Confirm updating Bus Lisence?');
+        if (confirmMessage) {
+          // Call the updatebuslisence endpoint
+          axios
+            .post('http://localhost:5000/updatebuslisence', { busNo, url })
+            .then((response) => {
+              // Handle the response or show success message
+              console.log(response.data);
+            })
+            .catch((error) => {
+              // Handle the error or show error message
+              console.log(error);
+            });
+        }
+
       })
       .catch((error) => {
-        // Handle error
         console.log(error);
-        toast.error('Failed to update file', {
-          position: 'top-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-        });
+
       });
   };
 
@@ -206,9 +216,9 @@ const ViewBusescard = () => {
               <tr>
                 <th>Bus No</th>
                 <th>Bus Type</th>
-                <th>Num of Seats</th>
-                <th>Lisence Renew Date</th>
-                <th>Bus Lisence</th>
+                <th>Number of Seats</th>
+                <th>License Renew Date</th>
+                <th>Bus License</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -220,6 +230,7 @@ const ViewBusescard = () => {
                   <td>{bus.Bus_type}</td>
                   <td>{bus.No_ofSeats}</td>
                   <td>{bus.Bus_Lisence_expireDate.split('T')[0]}</td>
+
                   <td>
                     <button
                       className="btn btn-primary"
@@ -231,10 +242,11 @@ const ViewBusescard = () => {
                         width: '90px',
                         padding: '7px',
                       }}
-                      onClick={() => handleViewFile(bus.BusLisence_scancopy)}
+                      onClick={() => handleViewFile(bus.Bus_License)}
                     >
                       View file
                     </button>
+
                     <input
                       type="file"
                       accept="image/*"
@@ -256,6 +268,7 @@ const ViewBusescard = () => {
                       Update file
                     </label>
                   </td>
+
                   <td>
                     <button
                       className="btn btn-primary"
