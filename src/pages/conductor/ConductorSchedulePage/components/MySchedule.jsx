@@ -1,6 +1,5 @@
 import React from 'react'
 import ConductorSchedule from "../../../../components/conductor/ConductorSchedule/ConductorSchedule";
-import TopBar from '../../../../components/conductor/ConducortopBar/TopBar';
 import SideBar from '../../../../components/conductor/sidebar/SideBar';
 import "./MySchedule.css"
 
@@ -12,7 +11,7 @@ function MySchedule() {
 
               <div className="ScanPage">
               <div className="body">
-              <div className="Topbar"> <TopBar/></div>
+              
               <div className="flex">
               <div className="sidebar"> <SideBar/></div>
                

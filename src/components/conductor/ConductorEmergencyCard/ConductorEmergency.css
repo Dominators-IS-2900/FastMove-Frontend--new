@@ -1,0 +1,57 @@
+.main-login {
+    width:fit-content;
+    margin-bottom: -5%;
+    overflow: hidden;
+    background: -webkit-gradient(linear, left top, right top, color-stop(50%,#b7d6ce ), color-stop(50%, #4dd6b6));
+    background: linear-gradient(to right, #b7d6ce 50%, #b7d6ce 50%);
+  }
+  
+  .tablestyle{
+      width:100%;
+      height: 100%;
+      margin-left: 10px;
+      
+  
+  }
+  .inputfield{
+      width:75%;
+      height:25%;
+  }
+    .black{
+      color:black;
+    }
+   
+  .form-control:hover{
+    border-color: black;
+  }
+  .btn {
+    border: none;
+    padding: 10px 28px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .send {
+    background-color: rgb(3, 29, 3);
+    color: white;
+    margin-top: 50px;
+    margin-left: 300%;
+    border-radius: 4px;
+  }
+  
+  .send:hover {
+    background-color: #062b07;
+  }
+  
+  .cancel {
+    background-color: rgb(3, 29, 3);
+    color: white;
+    margin-top: 50px;
+    margin-left: 300%;
+    border-radius: 4px;
+  }
+  
+  .cancel:hover {
+    background-color: #062b07;
+  }
+  

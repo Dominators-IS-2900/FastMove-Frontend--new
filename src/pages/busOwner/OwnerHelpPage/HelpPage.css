@@ -1,6 +1,5 @@
 .Topbar{
     margin-left: 15%;
-    margin-top: -98px;
 }
 
 .sidebar{
@@ -11,12 +10,3 @@
 .flex{
     display: flex;
 }
-
-.Helpcard{
-    margin-top: 80px;
-}
-
-.HelpHead{
-    margin-top: 100px;
-}
-

@@ -14,14 +14,6 @@
   }
   */
 
-  .BusownersideBar{
-    position: fixed;
-    /* margin-top: -120px; */
-  }
-  .sidebarowner{
-    margin-right: 10px;
-  }
-
   @media (max-width: 767px) {
     .navbar-nav {
       flex-direction: column;

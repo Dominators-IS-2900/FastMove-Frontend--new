@@ -1,6 +1,6 @@
 import React  from 'react';
 import ConductorProfilecard from '../../../../components/conductor/ConductorProfileCard/ConductorProfileCard';
-import "./Profile.css"
+
         
 function Profile() {
 
@@ -8,9 +8,9 @@ function Profile() {
     
             <>
                 <div class="container-fluid">  
-                <h2 class="black">Edit Profile </h2><div id="content" style={{ width: '1100px' }}>
+                <h2 class="black">Your Profile </h2><div id="content" style={{ width: '1100px'  }}>
     
-                    <ConductorProfilecard />                
+                <ConductorProfilecard />                
                 </div>
                 </div>
                 </>

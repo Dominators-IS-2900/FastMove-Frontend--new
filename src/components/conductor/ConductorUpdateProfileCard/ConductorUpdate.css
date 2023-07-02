@@ -42,58 +42,14 @@
   .nic-cell a:hover {
     background-color: #01281a;
   }
-.tablefield1{
-  width: 10%;
-}
-
-.tablefield2{
-  width: 50%;
-}
-
-
-/* Mobile Styles */
-@media only screen and (max-width: 375px) {
-  .tablestyle {
-    width: 100%;
-    margin: 0;
+  .error {
+    color: red;
+    font-size: 12px;
   }
 
-  .btn-group {
-    display: flex;
+  .upload-button{
    
+      font-size: 12px;
+      padding: 4px 8px;
+    
   }
-
-  .btn {
-    margin-top: 10px;
-  }
-
-  .table {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-  }
-
-  th,
-  td {
-    white-space: nowrap;
-  }
-}
-
-/* Tablet Styles */
-@media only screen and (min-width: 376px) and (max-width: 767px) {
-  .tablestyle {
-    width: 100%;
-    margin: 0;
-  }
-
-  .table {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-  }
-
-  th,
-  td {
-    white-space: nowrap;
-  }
-}
