@@ -7,7 +7,7 @@ import DashOwner from "./OwnerDashboard";
 
 export default function OwnerDashboardPage(){
     return(
-        <div className="BusRegPage">
+        <div className="OwnerDashboardPage" style={{ backgroundColor: 'white' }}>
 
               <div className="Topbar"> <BusownerTopBar/></div>
               <div className="flex">
@@ -15,7 +15,10 @@ export default function OwnerDashboardPage(){
                 <div className="Dash"> <DashOwner/></div>            
                    
                 </div>
+<<<<<<< HEAD
                     
+=======
+>>>>>>> a1349782079c7ed00fbb5d22a3450fa5f3cfd1d6
          </div>
 
     )

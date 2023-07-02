@@ -11,7 +11,7 @@ export default function ViewBus() {
             <h1 class="h3 mb-2 text-gray-800">MY BUSES</h1>
             <ViewBusescard/>
         </div>
-            <Footer/>
+            {/* <Footer/> */}
     </div>
   )
 }

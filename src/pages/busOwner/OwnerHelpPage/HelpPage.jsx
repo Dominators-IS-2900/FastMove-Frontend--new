@@ -11,7 +11,7 @@ export default function HelpPage() {
         <h1 class="h3 mb-2 text-gray-800">Help</h1>
         <Help/>
     </div>
-    <Footer/>
+    {/* <Footer/> */}
 
 </div>
   )

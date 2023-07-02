@@ -10,7 +10,6 @@ import PassengerVerificationPage from "./pages/admin/PassengerVerificationPage";
 import ActivityPage from "./pages/admin/ActivityPage";
 import ProfilePage from "./pages/admin/ProfilePage";
 import SigninCharPage from "./pages/common/SigninCharPage/components/SigninCharPage";
-import Homepage from "./pages/common/Homepage/components/Home";
 import { useAuth0 } from "@auth0/auth0-react";
 import ConductorDashboardPage from "./pages/conductor/ConductorDashboardPage";
 import ConductorProfilePage from "./pages/conductor/ConductorProfilePage";
@@ -25,8 +24,20 @@ import DeposPage from "./pages/timeKeeper/deposPage/DeposPage";
 import TimeTable from "./pages/timeKeeper/busRoute/BusRoute";
 import LoginPage from "./pages/timeKeeper/auth/login";
 import MainPage from "./pages/timeKeeper/mainpage/MainPage";
+<<<<<<< HEAD
 import ConductorUpdate from "./components/conductor/ConductorUpdateProfileCard/ConductorUpdate";
 import QrCodeGenarate from "./pages/conductor/QrGeneratePage/TicketGenerationPage"
+=======
+import Homepage from "./pages/common/Homepage/components/Home";
+import BusownerRegistration from "./components/busOwner/BusownerRegistration/BusownerRegistration";
+import PassengerRegistration from "./components/common/PassengerRegistration/PassengerReg";
+import OTPpage from "./components/common/OTPpage/OTPpage"
+import UserRegistration from "./components/common/UserRegistration/UserRegistration";
+import OTPVerification from "./components/common/OTPpage/OTPpage";
+import Loginpage from "./pages/common/Loginpage/Loginpage";
+import BankDetails from "./components/common/BankDetails/BankDetails";
+import GetStarted from "./pages/common/Homepage";
+>>>>>>> a1349782079c7ed00fbb5d22a3450fa5f3cfd1d6
 
 
 const SidebarLayout = () => (
@@ -48,7 +59,11 @@ function App() {
       <Routes>
       <Route path="/" element={<ConductorDashboardPage/>} />
         {/* Admin routes         */}
+<<<<<<< HEAD
         <Route path="/" element={<DeposPage/>}/>  
+=======
+        <Route path="/" element={<BusRegisterPage/>}/>  
+>>>>>>> a1349782079c7ed00fbb5d22a3450fa5f3cfd1d6
         <Route path="/SignInchar" element={<SigninCharPage/>} />        
         <Route path="/Busfarepage" element={<Busfarepage />} />       
         <Route path="/Ownervarification" element={<OwnerVarificationPage />} />
@@ -64,6 +79,7 @@ function App() {
         <Route path="/ViewBuses" element={<ViewBusPage/>} />
         <Route path="/OwnerProfile" element={<OwnerProfilePage/>} />
         <Route path="/HelpPage" element={<OwnerHelpPage/>} />
+        <Route path="/Login" element={<Loginpage/>}/>
 
        
          {/*add conductor routes*/}
