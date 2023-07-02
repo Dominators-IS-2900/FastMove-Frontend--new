@@ -67,15 +67,10 @@ function App() {
       <Routes>
       <Route path="/" element={<ConductorDashboardPage/>} />
         {/* Admin routes         */}
-<<<<<<< HEAD
-        <Route path="/" element={<ProfilePage/>}/>  
-=======
-<<<<<<< HEAD
-        <Route path="/" element={<DeposPage/>}/>  
-=======
+*
+
         <Route path="/" element={<BusRegisterPage/>}/>  
->>>>>>> a1349782079c7ed00fbb5d22a3450fa5f3cfd1d6
->>>>>>> main
+
         <Route path="/SignInchar" element={<SigninCharPage/>} />        
         <Route path="/Busfarepage" element={<Busfarepage />} />       
         <Route path="/Ownervarification" element={<OwnerVarificationPage />} />
