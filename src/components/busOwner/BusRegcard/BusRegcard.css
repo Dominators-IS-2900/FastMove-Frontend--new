@@ -1,0 +1,24 @@
+body{
+  background-color: white;
+}
+.upload-button {
+    width: 150px;
+    height: 30px;
+    background-color: lightgray;
+    color: black;
+    font-size: 15px;
+    border-radius: 30px;
+    padding-bottom: 40px;
+    margin-top: 10px;
+  }
+  
+  .regbody{
+    margin-top: 45px;
+  }
+
+  .error-message {
+    font-size: small;
+    color: red;
+  }
+  
+  

@@ -1,11 +1,6 @@
-.Topbar{
-    margin-left: 3%;
+.nav{
+    margin-left: 2px;
 }
-
-.sidebar{
-    margin-top: -5.4%;
-}
-
 
 .flex{
     display: flex;
@@ -13,3 +8,34 @@
 .fontcolor{
     color: darkgreen;
 }
+
+
+.card {
+    box-shadow: 0 4px 8px 0 rgb(4, 1, 1);
+    transition: 1s;
+    
+    border-radius: 1rem;
+   
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  .topnav {
+    overflow: hidden;
+   
+  }
+  
+  .topnav a {
+    float: left;
+    color: #030101;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+
+  
+ 

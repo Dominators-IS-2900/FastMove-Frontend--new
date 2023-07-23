@@ -10,7 +10,7 @@ export default function ViewBusPage(){
 
             <div className="Topbar"> <BusownerTopBar/></div>
             <div className="flex">
-                <div className="sidebar"> <BusownersideBar/></div>
+                <div className="sidebar" style={{marginTop:"0px"}}> <BusownersideBar/></div>
                 <div className="Dash"> <ViewBus/></div>            
                    
             </div>

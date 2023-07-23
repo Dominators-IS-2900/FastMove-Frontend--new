@@ -1,10 +1,7 @@
-.Topbar{
-    margin-left: 16.5%;
-    
-}
+
 
 .sidebar{
-    margin-top: -5%;
+   
     height: 100%;
     position:fixed;
 }
@@ -15,4 +12,10 @@
 }
 .body{
     overflow: hidden;
-    }
+    } 
+ @media screen and (max-width:480px) {
+    .body{
+        background:blue;
+        }
+        
+      }

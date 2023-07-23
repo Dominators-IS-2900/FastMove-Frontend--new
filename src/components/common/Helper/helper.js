@@ -20,7 +20,6 @@ export async function getUsername(){
 export async function authenticate(user_type,username ){
     try {
         console.log(user_type)
-        console.log(username)
         return await axios.post('/api/authenticate', {user_type,username} )
     } catch (error) {
         return { error : "Username doesn't exist...!"}
@@ -42,30 +41,35 @@ export async function getUser({ username,user_type }){
 
 /** register user function */
 export async function registerUser(credentials){
+
     
     
     try {
-        const { data : { msg }, status } = await axios.post(`/api/register`, credentials);
+        const { data : { msg, token }, status } = await axios.post(`/api/register`, credentials);
+        console.log(credentials)
 
-        let { username, email } = credentials;
+        let { email } = credentials;
+        console.log(credentials)
+        let name=(credentials.fname+" "+credentials.lname);
+        console.log(name)
 
         /** send email */
         if(status === 201){
-            await axios.post('/api/registerMail', { username, userEmail : email, text : msg,  subject : "Register Mail"})
+            await axios.post('/api/registerMail', { name, userEmail : email, text : msg,  subject : "Register Mail"})
         }
 
-        console.log(msg);
-        return Promise.resolve(msg)
+        console.log(token)
+        return Promise.resolve(token)
     } catch (error) {
         return Promise.reject({ error })
     }
 }
 
 /** login function */
-export async function verifyPassword({ username, password }){
+export async function verifyPassword({ username, password, user_type }){
     try {
         if(username){
-            const { data } = await axios.post('/api/login', { username, password })
+            const { data } = await axios.post('/api/login', { username, password,user_type })
             console.log({data})
             return Promise.resolve({ data });
         }
@@ -112,10 +116,12 @@ export async function generateOTP(user_type,username){
 
 export async function generaterRegisterOTP(username,email)  {
     try {
+        console.log(username,email);
 
         const {data : { code }, status } = await axios.get('/api/registerOTP',);
 
         // send mail with the OTP
+        console.log(code);
         if(status === 201){
             let name=username;
             let text = `Your OTP is ${code}. Please verify your Email.`;
@@ -127,10 +133,10 @@ export async function generaterRegisterOTP(username,email)  {
     }
 }
 /** verify OTP */
-export async function verifyOTP({ username, code }){
+export async function verifyOTP({ username,user_type, code }){
     console.log(username, code)
     try {
-       const { data, status } = await axios.get('/api/verifyOTP', { params : { username, code }})
+       const { data, status } = await axios.get('/api/verifyOTP', { params : { username,user_type, code }})
        return { data, status }
     } catch (error) {
         return Promise.reject(error);
@@ -149,11 +155,11 @@ export async function verifyRegisterOTP({ code }){
 }
 
 /** reset password */
-export async function resetPassword({ username, password }){
+export async function resetPassword({ username,user_type, password }){
   
-  
+  console.log(user_type);
     try {
-        const { data, status } = await axios.put('/api/resetPassword', { username, password });
+        const { data, status } = await axios.put('/api/resetPassword', { username,user_type,password });
         return status;
     } catch (error) {
         return ({ error })

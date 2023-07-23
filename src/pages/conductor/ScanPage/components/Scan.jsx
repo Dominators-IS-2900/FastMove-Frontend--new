@@ -1,51 +1,14 @@
-import SideBar from "../../../../components/conductor/sidebar/SideBar";
-import TopBar from "../../../../components/conductor/ConducortopBar/TopBar";
-import React, { useRef } from 'react';
-import Webcam from 'react-webcam';
-import jsQR from 'jsqr';
-import './scan.css'
+import React from 'react';
+import ScanCard from "../../../../components/conductor/ScanCard/Scan";
 
 function Scan() {
-  const webcamRef = useRef(null);
-
-  const capture = () => {
-    const imageSrc = webcamRef.current.getScreenshot();
-    const code = jsQR(imageSrc);
-
-    if (code) {
-      alert(`QR code detected: ${code.data}`);
-    } else {
-      alert('No QR code found');
-    }
-  };
-
   return (
-    <div className="ScanPage">
-    <div className="body">
-    <div className="Topbar"> <TopBar/></div>
-    <div className="flex">
-    <div className="sidebar"> <SideBar/></div>  
-    <div class="container-fluid">
-              
-              <h2 class="black">Scan QR Code</h2>
-              <p>Scan Passenger's Qr Code Here</p>
-    <div>
-      {/* Render the webcam component */}
-      <Webcam
-        audio={false}
-        ref={webcamRef}
-        screenshotFormat="image/jpeg"
-        width="500px"
-      />
-      {/* Render the capture button */}
-      <button  class="btn1 cap " onClick={capture}>Capture QR Code</button>
+    <div className="container-fluid">
+      <div id="content" style={{ maxWidth: '1100px', margin: '0 auto' }}>
+        <ScanCard />
+      </div>
     </div>
-    </div>
-    </div>
-    </div> 
-    </div>  
   );
 }
 
 export default Scan;
-

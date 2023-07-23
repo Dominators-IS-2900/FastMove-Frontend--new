@@ -25,7 +25,7 @@ const OTPVerification = () => {
   const userInfo = {
     username: userDataReg.userData.fname + " " + userDataReg.userData.lname,
     email: userDataReg.userData.email,
-    userType:userDataReg.userData.user_type,
+    user_type:userDataReg.userData.user_type,
     
  
     
@@ -42,10 +42,10 @@ const OTPVerification = () => {
   
     if(nextUrl==="/reset"){
       username= userInfo.email;
-      
+      user_type=userInfo.user_type;
       
       try{
-          let { status } = await verifyOTP({ code: otp, username} );
+          let { status } = await verifyOTP({ code: otp, username,user_type} );
         if (status === 201) {
           alert("Verify Successfully!");
         return navigate('/reset')
@@ -72,11 +72,10 @@ const OTPVerification = () => {
     }
     if(isVerified===true){
          
-        registerUser(userDataReg)
-        .then((msg) => {
-          
-          console.log(msg);
-          navigate(nextUrl);
+        registerUser(userDataReg.userData)
+        .then(token => {
+          localStorage.setItem('token', token);          
+          navigate('/welcome');
           alert("Registration Successfully!");  
         })
         .catch((error) => {
@@ -128,14 +127,14 @@ const OTPVerification = () => {
    
     const genOtp = async () => {
       
-    
+    console.log(userDataReg)
       if(!otpSession){
         if(nextUrl==="/reset"){
-        const generatedOtp = await generateOTP(userInfo.userType, userInfo.email);
+        const generatedOtp = await generateOTP(userInfo.user_type, userInfo.email);
         console.log(generatedOtp, otpSession);
         setOtpSession(true);
         }
-        else if(nextUrl==="/ownerDashboardpage"){
+        else if(nextUrl==="/ownerdashboard"){
           const generatedOtp = await generaterRegisterOTP(userInfo.username, userInfo.email);
           console.log(generatedOtp, otpSession);
           setOtpSession(true); 
@@ -147,52 +146,10 @@ const OTPVerification = () => {
     };
     return () => genOtp();
   }, []);
-  // return (
-  //   <div className="registraion-container">
-      
-  //     <div className="registration-heading">
-  //       <div className="heading-title">OTP Verification</div>
-  //       <div className="heading-subtitle">
-  //         We have send OTP Verification code to the
-  //         <em className="otp-email"> {userDataReg.userData.email}.</em> <br />
-  //         Please check your email.
-  //       </div>
-  //     </div>
-
-  //     <Form onSubmit={handleSubmit}>
-  //       <div>
-  //         <Form.Group className="submit-registration">
-  //           <OTPInput
-  //             value={otp}
-  //             onChange={setOtp}
-  //             autoFocus
-  //             OTPLength={4}
-  //             otpType="number"
-  //             disabled={false}
-              
-  //             className="otp-container"
-  //           />
-  //         </Form.Group>
-  //       </div>
-
-  //       <Form.Group className="submit-registration">
-  //         <Button variant="primary" type="submit" className="verify-otp">
-  //           {loading && <CgSpinner size={30} className="animate-spin" />}
-
-  //           <span>Verify OTP</span>
-  //         </Button>
-  //       </Form.Group>
-
-  //       <Form.Group className="otp-resend-btn mt-3  ">
-        
-  //         <ResendOTP renderButton={renderButton} renderTime={renderTime} />
-  //       </Form.Group>
 
 
-        
-  //     </Form>
-  //   </div>
-  // );
+  
+  
   
   return (
     <div className="registraion-container" style={{marginTop:"70px", marginLeft: '510px' , backgroundColor: 'white', borderWidth: '1px',boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)" }}>

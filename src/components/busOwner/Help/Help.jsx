@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect,useState } from 'react';
+import { getUsername } from '../../common/Helper/helper';
 import axios from 'axios';
 import './help.css'
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_DOMAIN;
 
-const API_BASE_URL = 'http://localhost:5000';
 
 const Help=()=> {
+    const [userID, setUserID]=useState('');
     const [formData, setFormData] = useState({ 
-      issueType:'',
+      // issueType:'',
       inquirybox: '' });
       // const [
 
@@ -20,6 +22,21 @@ const Help=()=> {
         setFormData({ ...formData, [name]: value });
         // setInquiryValue(value); // update the inquiry value on every change
       };
+
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const { username, user_type } = await getUsername();
+            setUserID(username);
+            
+          } catch (error) {
+            console.log(error);
+          }
+        };
+      
+        fetchData(); 
+      
+      }, []); 
     
       function displayInfo() {
         // console.log(formData);
@@ -28,12 +45,11 @@ const Help=()=> {
     
       const handleSubmit = async (e) => {
         e.preventDefault();
-        const {issueType,inquirybox}=formData;
-        console.log(issueType);
+        const {inquirybox}=formData;
     
         const formDataToSubmit=({
             // email:
-            type_of_issue:issueType,
+            Email:userID,
             complain:inquirybox,
           });
           console.log(formDataToSubmit);
@@ -41,12 +57,13 @@ const Help=()=> {
             // console.log(formDataToSubmit);
           // const response = await axios.post(`${API_BASE_URL}/submit-inquiry`, formData);
           // console.log(response.data);
-          axios.post(`${API_BASE_URL}/submit-inquiry`, formDataToSubmit).then((res) => {
+          axios.post(`/api/busowner/inquiry`, formDataToSubmit).then((res) => {
             setFormData({ 
-              issueType:'',
+              // issueType:'',
               inquirybox: '' });
             console.log(res.data);
           });
+          alert('Inquiry is submitted successfully!');
         } catch (error) {
           console.log(error);
         }
@@ -78,19 +95,19 @@ const Help=()=> {
 
                   <th>
 
-                  <select name='issueType' id='issueType' required onChange={handleChange}>
+                  {/* <select name='issueType' id='issueType' required onChange={handleChange}>
                     <option value=''>Select the type of inquiry</option>
                     <option value='Unregister the Bus'>Unregister the Bus</option>
                     <option value='Income issue'>Income issue</option>
                     <option value='Other'>Other</option>
-                  </select>
+                  </select> */}
                   <br/><br/>
-                    <textarea
+                    <textarea style={{marginTop:"-40px"}}
                       placeholder='Describe your issue(Optional)'
                       id="inquirybox"
                       name="inquirybox"
                       className="inquirybox"
-                      rows="6"
+                      rows="10"
                       cols="50"
                       value={formData.inquirybox}
                       onChange={handleChange}
@@ -98,8 +115,13 @@ const Help=()=> {
                         {/* <p>Your inquiry: {inquiryValue}</p> display the inquiry value */}
                     </textarea>
                     <br />
-                    <button type="submit" class="btn btn-primary ml-1"  onClick={displayInfo}>
-                      Submit
+                    <button
+                        type="submit"
+                        className="btn btn-primary ml-1"
+                        onClick={displayInfo}
+                        style={{ borderRadius: '25px', fontSize:"16px",height:"50px",width:"120px" }}
+                      >
+                          Submit
                     </button>
                   </th>
                 </tr>

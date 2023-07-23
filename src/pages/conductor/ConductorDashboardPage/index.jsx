@@ -1,20 +1,18 @@
 import React from "react";
-import SideBar from "../../../components/conductor/sidebar/SideBar";
-import TopBar from "../../../components/conductor/ConducortopBar/TopBar";
-
+import Footer from '../../../components/common/footer/Footer';
 import DashBoardConductor from "./components/DashBoardConductor";
-import "./index.css"
+import "./index.css";
 
-export default function ConductorDashboardPage(){
-    return(
-        
-            
-            <div className="body">
-            <div className="Topbar"><TopBar/></div><div className="flex">
-            <div className="sidebar"><SideBar/></div>
-            <div className="Dash"> <DashBoardConductor /></div>
-            </div>
-            </div>
-        
-    )
+export default function ConductorDashboardPage() {
+  return (
+    <>
+      <div className="body" >
+        <DashBoardConductor />
+       
+     
+      </div>
+     
+
+    </>
+  );
 }
