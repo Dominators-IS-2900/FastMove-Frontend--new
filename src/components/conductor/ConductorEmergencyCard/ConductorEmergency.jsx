@@ -105,7 +105,7 @@ const Emergency=()=> {
     };
     // Make the HTTP POST request to the backend API endpoint
     try {
-      const response = await fetch("http://localhost:5000/api/emergencies", {
+      const response = await fetch("http://localhost:5000/api/conductorEmergencies", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

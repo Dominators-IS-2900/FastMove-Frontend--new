@@ -8,10 +8,16 @@ const Info = () => {
   const [busData, setBusData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredBusData, setFilteredBusData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   useEffect(() => {
     fetchBusData();
   }, []);
+
+  useEffect(() => {
+    filterBusData();
+  }, [searchTerm, busData, currentPage, itemsPerPage]);
 
   const fetchBusData = () => {
     axios
@@ -35,10 +41,24 @@ const Info = () => {
     }
   };
 
-  const handleSearch = () => {
-    const filteredData = busData.filter(bus => bus.Bus_No.includes(searchTerm));
+  const filterBusData = () => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const filteredData = busData.filter(bus =>
+      bus.Bus_No.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      bus.Email.toLowerCase().includes(searchTerm.toLowerCase())
+    ).slice(startIndex, endIndex);
     setFilteredBusData(filteredData);
-    setSearchTerm(''); // Clearing the search term after filtering
+  };
+
+  const handleSearch = () => {
+    setCurrentPage(1);
+    filterBusData();
+    setSearchTerm('');
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
   };
 
   const handleDelete = (busNo) => {
@@ -55,6 +75,11 @@ const Info = () => {
         showMessage('Error deleting row', true);
       });
   };
+  const formatDate = (date) => {
+    const formattedDate = new Date(date).toLocaleDateString();
+    return formattedDate;
+  };
+
 
   return (
     <div className="card shadow mb-4">
@@ -81,7 +106,7 @@ const Info = () => {
             <thead>
               <tr>
                 <th className="green-column">Bus No</th>
-                <th className="green-column">User ID</th>
+                <th className="green-column">Email</th>
                 <th className="green-column">No of Seats</th>
                 <th className="green-column">Bus Type</th>
                 <th className="green-column">License Start Date</th>
@@ -94,12 +119,12 @@ const Info = () => {
               {filteredBusData.map((bus, index) => (
                 <tr key={bus.Bus_No}>
                   <td>{bus.Bus_No}</td>
-                  <td>{bus.UserID}</td>
+                  <td>{bus.Email}</td>
                   <td>{bus.No_ofSeats}</td>
                   <td>{bus.Bus_type}</td>
-                  <td>{bus.Bus_Lisence_startDate}</td>
-                  <td>{bus.Bus_Lisence_expireDate}</td>
-                  <td className="nic-cell a">
+                  <td>{formatDate(bus.Bus_Lisence_startDate)}</td>
+                  <td>{formatDate(bus.Bus_Lisence_expireDate)}</td>
+                  <td className="nic-cell">
                     <a href={bus.BusLisence_scancopy} target="_blank" rel="noopener noreferrer">
                       View NIC
                     </a>
@@ -120,6 +145,24 @@ const Info = () => {
             </tbody>
           </table>
         </div>
+        <div className="pagination">
+          <button
+            className="btn btn-secondary previous-button"
+            disabled={currentPage === 1}
+            onClick={() => handlePageChange(currentPage - 1)}
+          >
+            Previous
+          </button>
+          <span>{currentPage}</span>
+          <button
+             className="btn btn-secondary next-button"
+              disabled={filteredBusData.length < itemsPerPage}
+              onClick={() => handlePageChange(currentPage + 1)}
+              >
+                 Next
+              </button>
+
+        </div>
       </div>
       <ToastContainer
         position="top-right"
@@ -136,6 +179,4 @@ const Info = () => {
   );
 };
 
-export default Info;
-
-
+export default Info;

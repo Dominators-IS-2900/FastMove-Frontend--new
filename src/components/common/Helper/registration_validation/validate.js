@@ -5,12 +5,19 @@ import { authenticate } from "../helper";
 export async function usernameValidate(values){
   const errors = usernameVerify({}, values);
 
-  if(values.username){
+  let { user_type, email } = values;
+
+  console.log(user_type);
+
+  if(values.email){
       // check user exist or not
-      const {status}  = await authenticate(values.username);
-      console.log(status);
+      const {status}  = await authenticate(user_type,email);
+      
       if(status !== 200){
           errors.exist = toast.error('User does not exist...!')
+          return status;
+      }else{
+        return status;
       }
   }
 

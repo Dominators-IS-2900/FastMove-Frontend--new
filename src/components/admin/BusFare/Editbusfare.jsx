@@ -26,7 +26,7 @@ const Editbusfare = () => {
     e.preventDefault();
     axios.put("http://localhost:5000/updated/" + id, { min, inc }).then((res) => {
       if (res.data.updated) {
-        navigate("/Busfarepage");
+        navigate("/busfare");
       } else {
         alert("not updated");
       }

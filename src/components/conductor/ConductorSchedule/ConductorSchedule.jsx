@@ -1,74 +1,105 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import "./conductorSchedule.css"
+import './conductorSchedule.css';
 
-const ConductorSchedule=() =>{
+const ConductorSchedule = () => {
+  const [conductordata, setConductorData] = useState([]);
 
-        const [conductordata, setConductorData] = useState([]);
-        const [formData, setFormData] = useState({
-          selectedFile: null,
-          selectedFileURL: null,
-       
-        });
-      
-        useEffect(() => {
-          axios
-            .get('http://localhost:5000/ConductorActivity')
-            .then((res) => {
-              setConductorData(res.data);
-              console.log(res.data);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }, []);
-      
+  useEffect(() => {
+    axios
+      .get('http://localhost:5000/api/conductorActivity')
+      .then((res) => {
+        if (Array.isArray(res.data)) {
+          setConductorData(res.data);
+        } else {
+          console.log('The response data is not an array:', res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const handleParticipation = (index, status) => {
+    const updatedData = [...conductordata];
+    updatedData[index].participation = status;
+
+    axios
+      .put('http://localhost:5000/api/updateParticipation', {
+        id: updatedData[index].id,
+        participation: status,
+      })
+      .then(() => {
+        setConductorData(updatedData);
+        alert('Participation status updated successfully.');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // Helper function to format date and time without additional characters
+  const formatDateAndTime = (dateTimeString) => {
+    const date = new Date(dateTimeString);
+    return date.toLocaleString();
+  };
+
   return (
-    <div className='tablestyle'>
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Veiw Conductor Schedule </h6>
-            
+    <div className="tablestyle">
+      <div className="card shadow mb-4">
+        <div className="card-header py-3">
+          <h6 className="m-0 font-weight-bold text-primary">View Conductor Schedule</h6>
         </div>
-        <br/>
-     
+        <br />
 
-            <div class="card-body">
-            <div class="table-responsive" >
-            <table class="table table-bordered" id="dataTable" width="0%" cellspacing="0" >
-            
-        
-    
-            <br/>
-                    <tbody>
-                        <tr>
-                            <th class="header">Ride ID</th>
-                            <th class="header">Bus Number</th>
-                            <th class="header">Route</th>
-                            <th class="header"> Start Date & Start Time</th>
-                            <th class="header">End Date & End Time</th>
+        <div className="card-body">
+          <div className="table-responsive">
+            <table className="table table-bordered" id="dataTable" width="0%" cellSpacing="0">
+              <br />
+              <tbody>
+                <tr>
+                  <th className="header">Journey ID</th>
+                  <th className="header">Email</th>
+                  <th className="header">Bus Number</th>
+                  <th className="header">Route</th>
+                  <th className="header">Start Date & Time</th>
+                  <th className="header">End Date & Time</th>
+                  <th className="header">Participation</th>
+                </tr>
 
-                           
-                        </tr>
-                     
-                    
-                  {conductordata.map((conductor) => (
-                  <tr key={conductor.busId}>
-                  <td>{conductor.id}</td>
-                  <td>{conductor.busId}</td>
-                  <td>{conductor.routeId}</td>
-                  <td>{conductor.startDateTime}</td>
-                  <td>{conductor.endDateTime}</td>
-            
-                        </tr>
-                   ))}            
-                    </tbody>
-                </table>
-            </div>
+                {Array.isArray(conductordata) &&
+                  conductordata.map((conductor, index) => (
+                    <tr key={conductor.busId}>
+                      <td>{conductor.id}</td>
+                      <td>{conductor.email}</td>
+                      <td>{conductor.busId}</td>
+                      <td>{conductor.routeId}</td>
+                      <td>{formatDateAndTime(conductor.startDateTime)}</td>
+                      <td>{formatDateAndTime(conductor.endDateTime)}</td>
+                      <td>
+                        <button
+                          className={`small-button ${conductor.participation ? 'active' : ''}`}
+                          onClick={() => handleParticipation(index, !conductor.participation)}
+                        >
+                          Yes
+                        </button>
+                        <br />
+                        <button
+                          className={`small-button ${!conductor.participation ? 'active' : ''}`}
+                          onClick={() => handleParticipation(index, !conductor.participation)}
+                        >
+                          No
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-       
+      </div>
     </div>
-    </div>
-  )
-}
-export default ConductorSchedule; 
+  );
+};
+
+export default ConductorSchedule;

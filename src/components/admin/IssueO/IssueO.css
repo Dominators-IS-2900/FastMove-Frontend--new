@@ -1,4 +1,32 @@
 .green-column {
-    background-color:#01281a;
-    color: white;
-  }
+  background-color:#01281a;
+  color: white;
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-label {
+  margin-right: 10px;
+}
+
+.search-input {
+  display: flex;
+}
+
+.search-input input {
+  margin-right: 10px;
+}
+
+.search-input button {
+  padding: 10px;
+}
+.previous-button {
+  background-color: #01281a;
+}
+
+.next-button {
+  background-color: #01281a;
+}

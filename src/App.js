@@ -1,141 +1,138 @@
-import { Route, Routes, Outlet} from "react-router-dom"
 
-import ViewBusPage from "./pages/busOwner/ViewBusPage";
-import OwnerHelpPage from "./pages/busOwner/OwnerHelpPage";
-import BusRegisterPage from "./pages/busOwner/BusRegisterPage";
-import OwnerProfilePage from "./pages/busOwner/OwnerProfilePage";
-import Busfarepage from "./pages/admin/Busfarepage";
-import OwnerVarificationPage from "./pages/admin/OwnerVarificationPage";
-import ProfilePage from "./pages/admin/ProfilePage";
-import SigninCharPage from "./pages/common/SigninCharPage/components/SigninCharPage";
-import { useAuth0 } from "@auth0/auth0-react";
-import ConductorDashboardPage from "./pages/conductor/ConductorDashboardPage";
-import ConductorProfilePage from "./pages/conductor/ConductorProfilePage";
-import ConductorSchedulePage from "./pages/conductor/ConductorSchedulePage/components/MySchedule";
-import ConductorEmergencyPage from "./pages/conductor/ConductorEmergencyPage";
-import ScanPage from "./pages/conductor/ScanPage";
-import OwnerDashboardPage from "./pages/busOwner/OwnerDashboardpage";
-import SideBar from "./components/timeKeeper/sidebar/SideBar";
-import ArrivalPage from "./pages/timeKeeper/arrivalPage/ArrivalPage";
-import DeparturePage from "./pages/timeKeeper/departurePage/DeparturePage";
-import DeposPage from "./pages/timeKeeper/deposPage/DeposPage";
-import TimeTable from "./pages/timeKeeper/busRoute/BusRoute";
-import LoginPage from "./pages/timeKeeper/auth/login";
-import MainPage from "./pages/timeKeeper/mainpage/MainPage";
-<<<<<<< HEAD
-import InvestigationPage from "./pages/admin/InvestigationPage";
-import InfoPage from "./pages/admin/InfoPage";
-import PverifiedPage from "./pages/admin/PverifiedPage";
-import DecOwnerPage from "./pages/admin/DecOwnerPage";
-import IssuesOwnerPage from "./pages/admin/IssuesOwnerPage";
-<<<<<<< HEAD
-import IssuesPPage from "./pages/admin/IssuesPPage";
-=======
-<<<<<<< HEAD
-import ConductorUpdate from "./components/conductor/ConductorUpdateProfileCard/ConductorUpdate";
-import QrCodeGenarate from "./pages/conductor/QrGeneratePage/TicketGenerationPage"
-=======
-import Homepage from "./pages/common/Homepage/components/Home";
-import BusownerRegistration from "./components/busOwner/BusownerRegistration/BusownerRegistration";
-import PassengerRegistration from "./components/common/PassengerRegistration/PassengerReg";
-import OTPpage from "./components/common/OTPpage/OTPpage"
-import UserRegistration from "./components/common/UserRegistration/UserRegistration";
-import OTPVerification from "./components/common/OTPpage/OTPpage";
-import Loginpage from "./pages/common/Loginpage/Loginpage";
-import BankDetails from "./components/common/BankDetails/BankDetails";
+import { Route, Routes, Navigate} from "react-router-dom"
+import { AuthorizeUser } from "./middleware/auth";
+
+import OTPVerification from "./components/common/OTPVerification/OTPVerification";
+import LoginCard from "./components/common/Login/LoginCard";
+import Username from "./components/common/ResetPassword/Username";
+import Reset from "./components/common/ResetPassword/Reset";
+import Profile from "./components/common/ViewProfile/Profile";
 import GetStarted from "./pages/common/Homepage";
->>>>>>> a1349782079c7ed00fbb5d22a3450fa5f3cfd1d6
-
-
->>>>>>> main
-=======
-import IssuesPPage from "./pages/admin/IssuesPPage"; 
-import PassengerInquiryPage from "./pages/admin/PassengerInquiryPage";
-import UpdatedCPage from "./pages/admin/UpdatedCPage";
+import Registration from "./components/common/Register";
+import BusRegisterPage from "./pages/busOwner/BusRegisterPage";
+import OwnerDashboardPage from "./pages/busOwner/OwnerDashboardpage";
+import OwnerHelpPage from "./pages/busOwner/OwnerHelpPage";
+import ViewBusPage from "./pages/busOwner/ViewBusPage";
+import ConductorDashboardPage from "./pages/conductor/ConductorDashboardPage";
+import ConductorEmergencyPage from "./pages/conductor/ConductorEmergencyPage";
+import ConductorSchedulePage from "./pages/conductor/ConductorSchedulePage";
+import QRGenerator from "./pages/conductor/QrGeneratePage";
+import ScanPage from "./pages/conductor/ScanPage";
+import BankDetailsPage from "./pages/busOwner/BankDetailsPage";
 import AdminDashboardPage from "./pages/admin/AdminDashboardPage";
-import EditBusfare from "./pages/admin/Busfarepage/EditBusfare";
+import Busfarepage from "./pages/admin/Busfarepage";
+import DecOwnerPage from "./pages/admin/DecOwnerPage";
+import InfoPage from "./pages/admin/InfoPage";
+import InvestigationPage from "./pages/admin/InvestigationPage";
+import IssuesOwnerPage from "./pages/admin/IssuesOwnerPage";
+import IssuesPPage from "./pages/admin/IssuesPPage";
+import OwnerVarificationPage from "./pages/admin/OwnerVarificationPage";
+import PassengerInquiryPage from "./pages/admin/PassengerInquiryPage";
 import PassengerVPage from "./pages/admin/PassengerVPage";
+import FirstPage from "./pages/admin/PverifiedPage";
+import UpdatedCPage from "./pages/admin/UpdatedCPage";
+import ProfilePage from "./pages/admin/ProfilePage";
+import WelcomePage from "./pages/common/Welcome/WelcomePage";
+import PassengerDashboardPage from "./pages/passenger/PassengerDashboard";
+import EditBusfare from "./pages/admin/Busfarepage/EditBusfare";
+import ConductorEmergencyHandle from "./components/timeKeeper/ConductorEmergencyHandle";
 
->>>>>>> e8ad81e113afc25ef3963efaca02088bc41a1d28
-const SidebarLayout = () => (
-  <>
-    <SideBar />
-    <Outlet />
-  </>
-);
+
 function App() { 
-  //use auth0 for authentication of users
-  const{loginWithRedirect,
-        logout,
-        user,
-        isAuthenticated}
-        =useAuth0();
+
+  const token = localStorage.getItem('token');
+  const isAuthenticated = !!token;
+  
+  
   return (
     <div className="App">
       <div id= "wrapper">
       <Routes>
-      <Route path="/" element={<ConductorDashboardPage/>} />
-        {/* Admin routes         */}
-<<<<<<< HEAD
-*
-
-        <Route path="/" element={<BusRegisterPage/>}/>  
-
-        <Route path="/SignInchar" element={<SigninCharPage/>} />        
-=======
-        <Route path="/" element={<AdminDashboardPage/>}/>
-        <Route path="/SignInchar" element={<SigninCharPage/>} />   
-        <Route path="/AdminDashboardPage" element={<AdminDashboardPage/>} />        
->>>>>>> e8ad81e113afc25ef3963efaca02088bc41a1d28
-        <Route path="/Busfarepage" element={<Busfarepage />} />       
-        <Route path="/Ownervarification" element={<OwnerVarificationPage />} />
-        <Route path="/ProfilePage" element={<ProfilePage/>} /> 
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/InvestigationPage" element={<InvestigationPage/>} />
-        <Route path="/InfoPage" element={<InfoPage />} />
-        <Route path="/PverifiedPage" element={<PverifiedPage/>} />
-        <Route path="/DecOwnerPage" element={<DecOwnerPage/>} />
-        <Route path="/IssuesOwnerPage" element={<IssuesOwnerPage/>}/> 
-        <Route path="/PassengerInquiryPage" element={<PassengerInquiryPage/>}/>
-        <Route path="/IssuesPPage" element={<IssuesPPage/>}/>
-        <Route path="/UpdatedCPage" element={<UpdatedCPage/>}/>
-        <Route path="/PassengerVPage" element={<PassengerVPage/>}/>
-        <Route path="/EditBusfare/:id/:Bus_type" element={<EditBusfare/>}/>
-
        
-        {/* Bus owner routes */}
-        <Route path="/ownerDashboardpage" element={<OwnerDashboardPage/>} />
-        <Route path="/DetailsownerPage" element={<detailsOwner/>} />
-        <Route path="/BusReg" element={<BusRegisterPage/>} />
-        <Route path="/ViewBuses" element={<ViewBusPage/>} />
-        <Route path="/OwnerProfile" element={<OwnerProfilePage/>} />
-        <Route path="/HelpPage" element={<OwnerHelpPage/>} />
-        <Route path="/Login" element={<Loginpage/>}/>
-
-       
-         {/*add conductor routes*/}
-        <Route path="/ConductorDashboardPage" element={<ConductorDashboardPage/>} />
-        <Route path="/Scan" element={<ScanPage/>} />
-        <Route path="/ConductorProfile" element={<ConductorProfilePage/>} />
-        <Route path="/MySchedule" element={<ConductorSchedulePage/>} />
-        <Route path="/Emergency" element={<ConductorEmergencyPage/>} />
-        <Route path="/ConductorUpdate" element={<ConductorUpdate/>} />
-        <Route path="/QrGenaratePage" element={<QrCodeGenarate/>} />
+        <Route path="/" element={<GetStarted/>}/>  
+        <Route path="/login" element={<LoginCard/>} />  
+        <Route path="/register" element={<Registration/>}/> 
+        <Route path="/username" element={<Username/>}/>  
+        <Route path="/otpVerification" element={<OTPVerification/>} />
+        <Route path="/reset" element={<Reset/>} />
        
 
-          {/*add Timekeeper routes*/}
-           <Route element={<SidebarLayout />}>
-            <Route path="/main" element={<MainPage />} />
-            <Route path="/arrival" element={<ArrivalPage />} />
-            <Route path="/departure" element={<DeparturePage />} />
-            <Route path="/timetable" element={<TimeTable/>} />
-            <Route path="/depo" element={<DeposPage />} />
-        </Route>
-        <Route path="/login" element={<LoginPage />} />
+
+        {isAuthenticated ? (
+            <>
+              <Route path="/profileView" element={<Profile/>} />
+              <Route path="/ownerdashboard" element={<OwnerDashboardPage/>} />
+              <Route path="/busregister" element={<BusRegisterPage />} />
+              <Route path="/ownerhelp" element={<OwnerHelpPage />} />
+              <Route path="/viewbus" element={<ViewBusPage />} />
+              <Route path="/bankdetails" element={<BankDetailsPage />} />
+
+              <Route path="/conductordashboard" element={<ConductorDashboardPage />} />
+              <Route path="/conductoremergrncy" element={<ConductorEmergencyPage />} />
+              <Route path="/conductorschedule" element={<ConductorSchedulePage />} />
+              <Route path="/ticket" element={<QRGenerator />} />
+              <Route path="/scan" element={<ScanPage />} />
+
+              <Route path="/admindashboard" element={<AdminDashboardPage />} />
+              <Route path="/busfare" element={<Busfarepage/>} />
+              <Route path="/decowner" element={<DecOwnerPage/>} />
+              <Route path="/regbusinfo" element={<InfoPage/>} />
+              <Route path="/ownerinquiry" element={<InvestigationPage/>} />
+              <Route path="/ownerissues" element={<IssuesOwnerPage/>} />
+              <Route path="/issues" element={<IssuesPPage/>} />
+              <Route path="/ownerverification" element={<OwnerVarificationPage/>} />
+              <Route path="/passengerinquiry" element={<PassengerInquiryPage/>} />
+              <Route path="/passengerverification" element={<PassengerVPage/>} />
+              <Route path="/passengerdetails" element={<FirstPage/>} />
+              <Route path="/updateconductor" element={<UpdatedCPage/>} />
+              <Route path="/conductorverification" element={<ProfilePage/>} />
+              <Route path="/welcome" element={<WelcomePage/>}/>              
+              <Route path="/EditBusfare/:id/:Bus_type" element={<EditBusfare/>} />
+             
+              <Route path="/passengerdashboard" element={<PassengerDashboardPage/>} />
+
+              <Route path="/conductorEmergencyhandle" element={<ConductorEmergencyHandle/>} />
+
+
+             
+            </>
+        ):(
+          <>
+          <Route path="/profileView" element={<LoginCard/>} />
+              <Route path="/ownerdashboard" element={<LoginCard/>} />
+              <Route path="/busregister" element={<LoginCard />} />
+              <Route path="/ownerhelp" element={<LoginCard />} />
+              <Route path="/viewbus" element={<LoginCard />} />
+              <Route path="/bankdetails" element={<LoginCard />} />
+
+              <Route path="/conductordashboard" element={<LoginCard />} />
+              <Route path="/conductoremergrncy" element={<LoginCard />} />
+              <Route path="/conductorschedule" element={<LoginCard />} />
+              <Route path="/ticket" element={<LoginCard />} />
+              <Route path="/scan" element={<LoginCard />} />
+
+              <Route path="/admindashboard" element={<LoginCard />} />
+              <Route path="/busfare" element={<LoginCard/>} />
+              <Route path="/decowner" element={<LoginCard/>} />
+              <Route path="/regbusinfo" element={<LoginCard/>} />
+              <Route path="/ownerinquiry" element={<LoginCard/>} />
+              <Route path="/ownerissues" element={<LoginCard/>} />
+              <Route path="/issues" element={<LoginCard/>} />
+              <Route path="/ownerverification" element={<LoginCard/>} />
+              <Route path="/passengerinquiry" element={<LoginCard/>} />
+              <Route path="/passengerverification" element={<LoginCard/>} />
+              <Route path="/passengerdetails" element={<LoginCard/>} />
+              <Route path="/updateconductor" element={<LoginCard/>} />
+              <Route path="/conductorverification" element={<LoginCard/>} />
+              <Route path="/welcome" element={<LoginCard/>}/>
+
+              <Route path="/passengerdashboard" element={<LoginCard/>} />
+          </>
+        ) }      
+
         
-
       </Routes>     
-         
+             
       </div>
     </div>
     

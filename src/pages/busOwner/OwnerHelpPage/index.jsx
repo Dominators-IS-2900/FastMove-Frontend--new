@@ -9,10 +9,10 @@ export default function OwnerHelpPage(){
     return(
         <div className="Dashboard-page">
 
-              <div className="Topbar"> <BusownerTopBar/></div>
+              {/* <div className="Topbar"> <BusownerTopBar/></div> */}
               <div className="flex">
-              <div className="sidebar"> <BusownersideBar/></div>
-                <div className="Help"> <HelpPage/></div>            
+              <div className="sidebar" style={{marginTop:"0px"}}> <BusownersideBar/></div>
+                <div className="Help" style={{marginTop:"10px"}}> <HelpPage/></div>            
                    
                 </div>
          </div>

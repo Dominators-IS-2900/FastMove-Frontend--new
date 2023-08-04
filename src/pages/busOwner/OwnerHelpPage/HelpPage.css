@@ -1,22 +1,15 @@
 .Topbar{
-<<<<<<< HEAD
-    margin-left: 15%;
-=======
     margin-left: 200px;
     margin-top: -98px;
->>>>>>> a1349782079c7ed00fbb5d22a3450fa5f3cfd1d6
 }
 
 .sidebar{
-    margin-top: 0px;
+    margin-top: 100px;
 }
 
 
 .flex{
     display: flex;
-<<<<<<< HEAD
-}
-=======
 }
 
 .Helpcard{
@@ -33,4 +26,3 @@
     margin-top: -65px;
 }
 
->>>>>>> a1349782079c7ed00fbb5d22a3450fa5f3cfd1d6

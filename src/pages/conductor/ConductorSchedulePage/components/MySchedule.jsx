@@ -13,7 +13,7 @@ function MySchedule() {
               <div className="body">
               
               <div className="flex">
-              <div className="sidebar"> <SideBar/></div>
+              
                
               <div class="container-fluid">
               <h2 class="black">Schedule</h2><div id="content" style={{ width: '1300px'}}>

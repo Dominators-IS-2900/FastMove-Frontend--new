@@ -4,6 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 import './scan.css'
 
+
 const QRScanner = () => {
   const [scannedData, setScannedData] = useState("");
   const [ticketData, setTicketData] = useState({
@@ -13,7 +14,7 @@ const QRScanner = () => {
     source: "",
     destination: "",
     bus_number: "",
-    seat_number: "",
+    amount: "",
   });
 
   const handleScan = (data) => {
@@ -33,14 +34,18 @@ const QRScanner = () => {
        `http://localhost:5000/api/tickets/${ticketCode}`,
        {
          headers: { "Content-Type": "application/json" },
-       }
+       },
+      
      );
+     
 
      if (response.status === 404) {
        toast.error("Ticket not found.");
      } else if (response.status === 200) {
        const data = await response.json();
-       const ticket = data.ticket;
+       
+       const ticket = data[0];
+
        setTicketData(ticket);
        toast.success("Successfully retrieved ticket.");
      }
@@ -73,16 +78,16 @@ const QRScanner = () => {
                 </div>
               )}
               {ticketData.id && (
-                <div>
-                  <h2>Ticket Data:</h2>
-                  <p>ID: {ticketData.id}</p>
-                  <p>Ticket Code: {ticketData.ticket_code}</p>
-                  <p>passenger Name: {ticketData.passenger_name}</p>
-                  <p>Source: {ticketData.source}</p>
-                  <p>Destination: {ticketData.destination}</p>
-                  <p>Bus Number: {ticketData.bus_number}</p>
-                  <p>Seat Number: {ticketData.seat_number}</p>
-                </div>
+               <div>
+               <h2>Ticket Data:</h2>
+               <p>ID: {ticketData.id}</p>
+               <p>Ticket Code: {ticketData.ticket_code}</p>
+               <p>passenger Name: {ticketData.passenger_name}</p>
+               <p>Start-End: {ticketData.source}</p>
+               <p>Seat Number: {ticketData.destination}</p>
+               <p>Bus Number: {ticketData.bus_number}</p>
+               <p>Amount: {ticketData.amount}</p>
+             </div>
               )}
            
           </div>

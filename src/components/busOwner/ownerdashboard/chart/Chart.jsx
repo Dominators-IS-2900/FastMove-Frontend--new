@@ -1,23 +1,13 @@
-import "./chart.scss";
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+// import "./chart.scss";
+// import {
+//   AreaChart,
+//   Area,
+//   XAxis,
+//   CartesianGrid,
+//   Tooltip,
+//   ResponsiveContainer,
+// } from "recharts";
 
-<<<<<<< HEAD
-const data = [
-  { name: "January", Total: 1200 },
-  { name: "February", Total: 2100 },
-  { name: "March", Total: 800 },
-  { name: "April", Total: 1600 },
-  { name: "May", Total: 900 },
-  { name: "June", Total: 1700 },
-];
-=======
 // const data = [
 //   { name: "January", Total: 120000 },
 //   { name: "February", Total: 21000 },
@@ -67,14 +57,16 @@ import React, { useEffect, useState } from 'react';
 import './chart.scss';
 import './Chart.css'
 import axios from 'axios';
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_DOMAIN;
 
 const Chart = ({ title }) => {
   const [dailyRevenue, setDailyRevenue] = useState([]);
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/PaymentDetails')
+      .get('api/busowner/PaymentDetails')
       .then((res) => {
+    
         setDailyRevenue(res.data);
       })
       .catch((err) => {
@@ -105,39 +97,60 @@ const Chart = ({ title }) => {
   // Set the desired spacing and width of bars
   const barSpacing = 30;
   const barWidth = 50;
->>>>>>> a1349782079c7ed00fbb5d22a3450fa5f3cfd1d6
 
-const Chart = ({ aspect, title }) => {
   return (
     <div className="chart">
       <div className="title">{title}</div>
-      <ResponsiveContainer width="100%" aspect={aspect}>
-        <AreaChart
-          width={730}
-          height={250}
-          data={data}
-          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-        >
-          <defs>
-            <linearGradient id="total" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <XAxis dataKey="name" stroke="gray" />
-          <CartesianGrid strokeDasharray="3 3" className="chartGrid" />
-          <Tooltip />
-          <Area
-            type="monotone"
-            dataKey="Total"
-            stroke="#8884d8"
-            fillOpacity={1}
-            fill="url(#total)"
-          />
-        </AreaChart>
-      </ResponsiveContainer>
+      <svg className="chart-svg" width="600" height="400">
+        
+        {/* X-axis labels */}
+        {dates.map((date, index) => (
+          <text
+            key={index}
+            x={index * (barWidth + barSpacing) + barWidth / 2}
+            y="380"
+            className="axis-label"
+            textAnchor="middle"
+            fontSize="12"
+          >
+            {date}
+          </text>
+        ))}
+
+        {/* Bars and amount labels */}
+        {dates.map((date, index) => (
+          <g key={index}>
+            <rect
+              x={index * (barWidth + barSpacing)}
+              y={360 - (revenueByDate[date] / maxRevenue) * graphHeight}
+              width={barWidth}
+              height={(revenueByDate[date] / maxRevenue) * graphHeight}
+              fill="#42b983"
+            />
+            <text
+              x={index * (barWidth + barSpacing) + barWidth / 2}
+              y={360 - (revenueByDate[date] / maxRevenue) * graphHeight - 10}
+              className="amount-label"
+              textAnchor="middle"
+              fontSize="12"
+            >
+              {/* {revenueByDate[date]} */}
+            </text>
+            <text
+              x={index * (barWidth + barSpacing) + barWidth / 2}
+              y={360 - (revenueByDate[date] / maxRevenue) * graphHeight + 20}
+              className="revenue-label"
+              textAnchor="middle"
+              fontSize="12"
+            >
+              Lkr{revenueByDate[date]}.00
+            </text>
+          </g>
+        ))}
+      </svg>
     </div>
   );
 };
 
 export default Chart;
+

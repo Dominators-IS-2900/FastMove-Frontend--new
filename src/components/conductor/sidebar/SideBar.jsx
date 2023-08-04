@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import Logo from '../../../Images/Logo.png'
 import './sidebar.css'
 
 export default function SideBar() {
@@ -13,19 +14,13 @@ export default function SideBar() {
 
 
   return (
-    
+
     <div className="fixed-sidebar">
+      <img src={Logo} style={{ width: '80px', height: '80px' }} />
       <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-        {/* Sidebar Brand */}
-        <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-          <div className="sidebar-brand-icon rotate-n-15">
-            <i className="fa fa-bus"></i>
-          </div>
-          <Link to='/' className="nav-link" style={{ color: "white" }}>
-            <div className="mx-3">FastMove</div>
-          </Link>
-        </a>
+
+
 
         {/* Divider */}
         <hr className="sidebar-divider my-0" />
@@ -44,7 +39,7 @@ export default function SideBar() {
         <div className="sidebar-heading">Bus Conductor</div>
 
         {/* Scan */}
-        <Link to="/Scan">
+        <Link to="/scan">
           <li className="nav-item">
             <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
               aria-expanded="true" aria-controls="collapseUtilities">
@@ -55,7 +50,7 @@ export default function SideBar() {
         </Link>
 
         {/* Profile */}
-        <Link to="/ConductorProfile">
+        <Link to="/profileView">
           <li className="nav-item">
             <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
               aria-expanded="true" aria-controls="collapseUtilities">
@@ -66,7 +61,7 @@ export default function SideBar() {
         </Link>
 
         {/* Emergency */}
-        <Link to="/Emergency">
+        <Link to="/conductoremergrncy ">
           <li className="nav-item">
             <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
               aria-expanded="true" aria-controls="collapseUtilities">
@@ -77,7 +72,7 @@ export default function SideBar() {
         </Link>
 
         {/* Activity Schedule */}
-        <Link to="/MySchedule">
+        <Link to="/conductorschedule">
           <li className="nav-item">
             <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
               aria-expanded="true" aria-controls="collapseUtilities">
@@ -86,8 +81,26 @@ export default function SideBar() {
             </a>
           </li>
         </Link>
+        <Link to="/ticket">
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+              aria-expanded="true" aria-controls="collapseUtilities">
+              <i class="fa fa-ticket" aria-hidden="true"></i>
+              <span>Generateticket</span>
+            </a>
+          </li></Link>
 
-        <br /> <br /> <br /> <br />
+          <Link to="/conductorEmergencyhandle">
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+              aria-expanded="true" aria-controls="collapseUtilities">
+              <i class="fa fa-ticket" aria-hidden="true"></i>
+              <span>Emergency Handle</span>
+            </a>
+          </li></Link>
+
+        <br />
+
 
         {/* Back */}
         <Link to='/' className="nav-link">
@@ -101,6 +114,6 @@ export default function SideBar() {
         </Link>
 
       </ul>
-    </div>
-  )
+    </div>
+  )
 }

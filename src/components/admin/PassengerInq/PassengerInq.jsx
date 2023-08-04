@@ -6,10 +6,18 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const PassengerInq = () => {
   const [messages, setMessages] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredMessages, setFilteredMessages] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   useEffect(() => {
     fetchMessages();
   }, []);
+
+  useEffect(() => {
+    filterMessages();
+  }, [searchTerm, messages, currentPage, itemsPerPage]);
 
   const fetchMessages = () => {
     axios
@@ -32,6 +40,29 @@ const PassengerInq = () => {
     }
   };
 
+  const filterMessages = () => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const filteredData = messages.filter(
+      (message) =>
+        message.Complain.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        message.Email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        message.Reply.toLowerCase().includes(searchTerm.toLowerCase())
+    ).slice(startIndex, endIndex);
+    setFilteredMessages(filteredData);
+  };
+  
+
+  const handleSearch = () => {
+    setCurrentPage(1);
+    filterMessages();
+    setSearchTerm('');
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   const handleDelete = (InquiryID) => {
     axios
       .delete(`http://localhost:5000/deletepassengerreply/${InquiryID}`)
@@ -50,28 +81,40 @@ const PassengerInq = () => {
 
   return (
     <div className="card shadow mb-4">
-      <div className="card-header py-3"></div>
+      <div className="card-header py-3">
+        <div className="search-bar">
+          <label htmlFor="searchInput" className="search-label">Search :</label>
+          <div className="search-input">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Enter"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button className="btn btn-primary" onClick={handleSearch}>
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
       <div className="card-body">
         <div className="table-responsive">
           <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
             <thead>
               <tr>
-                <th  className="green-column">Inquiry ID</th>
-                <th  className="green-column">Email</th>
-                <th  className="green-column">Bus NO</th>
-                <th  className="green-column">Type of Issue</th>
-                <th  className="green-column">Complain</th>
-                <th  className="green-column">Reply</th>
-                <th  className="green-column">Action</th>
+                <th className="green-column">Inquiry ID</th>
+                <th className="green-column">Email</th>
+                <th className="green-column">Complain</th>
+                <th className="green-column">Reply</th>
+                <th className="green-column">Action</th>
               </tr>
             </thead>
             <tbody>
-              {messages.map(message => (
+              {filteredMessages.map(message => (
                 <tr key={message.InquiryID}>
                   <td>{message.InquiryID}</td>
                   <td>{message.Email}</td>
-                  <td>{message.BusNo}</td>
-                  <td>{message.TypeOfIssue}</td>
                   <td>{message.Complain}</td>
                   <td>{message.Reply}</td>
                   <td>
@@ -85,6 +128,23 @@ const PassengerInq = () => {
               ))}
             </tbody>
           </table>
+        </div>
+        <div className="pagination">
+          <button
+            className="btn btn-secondary previous-button"
+            disabled={currentPage === 1}
+            onClick={() => handlePageChange(currentPage - 1)}
+          >
+            Previous
+          </button>
+          <span>{currentPage}</span>
+          <button
+            className="btn btn-secondary next-button"
+            disabled={filteredMessages.length < itemsPerPage}
+            onClick={() => handlePageChange(currentPage + 1)}
+          >
+            Next
+          </button>
         </div>
       </div>
       <ToastContainer
@@ -102,4 +162,4 @@ const PassengerInq = () => {
   );
 };
 
-export default PassengerInq;
+export default PassengerInq;

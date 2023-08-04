@@ -14,7 +14,7 @@ export default function AdminSidebar() {
         <hr className="sidebar-divider my-0" />
 
         <li className="nav-item active">
-          <Link to="/AdminDashboardPage" className="nav-link">
+          <Link to="/admindashboard" className="nav-link">
             <span>Dashboard</span>
           </Link>
         </li>
@@ -32,13 +32,13 @@ export default function AdminSidebar() {
           </a>
           <div id="collapseVerification" className="collapse" aria-labelledby="headingVerification" data-parent="#accordionSidebar">
             <div className="bg-white py-2 collapse-inner rounded">
-              <Link to="/Ownervarification">
+              <Link to="/ownerverification">
                 <a className="collapse-item" href="/route"><i className="fa fa-user-circle"></i> Bus Owner</a>
               </Link>
-              <Link to="/PassengerVPage">
+              <Link to="/passengerverification">
                 <a className="collapse-item" href="/route_1"><i className="fa fa-user-circle"></i> Passenger</a>
               </Link>
-              <Link to ="/ProfilePage">
+              <Link to ="/conductorverification">
                 <a className="collapse-item" href="/route_1"><i className="fa fa-user-circle"></i>Conductor</a>
                 </Link>                               
             </div>
@@ -53,19 +53,19 @@ export default function AdminSidebar() {
           </a>
           <div id="collapseUsersInfo" className="collapse" aria-labelledby="headingUsersInfo" data-parent="#accordionSidebar">
             <div className="bg-white py-2 collapse-inner rounded">
-              <Link to="/DecOwnerPage">
+              <Link to="/decowner">
                 <a className="collapse-item" href="/route"><i className="fa fa-user-circle"></i> Bus Owner</a>
               </Link>
-              <Link to="/PverifiedPage">
+              <Link to="/passengerdetails">
                 <a className="collapse-item" href="/route_1"><i className="fa fa-user-circle"></i>Passenger</a>
               </Link>
-            <Link to="/UpdatedCPage">
+            <Link to="/updateconductor">
             <a className="collapse-item" href="/route_1"><i className="fa fa-user-circle"></i>Conductor</a>
             </Link>
             </div>
           </div>
         </li>
-        <Link to="/InfoPage">
+        <Link to="/regbusinfo">
         <li className="nav-item">
           <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseActivity"
             aria-expanded="true" aria-controls="collapseActivity">
@@ -74,7 +74,7 @@ export default function AdminSidebar() {
           </a>
         </li>
         </Link>
-        <Link to="/Busfarepage">
+        <Link to="/busfare">
         <li className="nav-item">
           <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBusFare"
             aria-expanded="true" aria-controls="collapseBusFare">
@@ -91,10 +91,10 @@ export default function AdminSidebar() {
           </a>
           <div id="collapseInquiry" className="collapse" aria-labelledby="headingInquiry" data-parent="#accordionSidebar">
             <div className="bg-white py-2 collapse-inner rounded">
-              <Link to="/InvestigationPage">
+              <Link to="/ownerinquiry">
                 <a className="collapse-item" href="/route"><i className="fa fa-user-circle"></i> Bus Owner</a>
               </Link>
-              <Link to="/IssuesPPage">
+              <Link to="/issues">
                 <a className="collapse-item" href="/route_1"><i className="fa fa-user-circle"></i> Passenger</a>
               </Link>
             </div>
@@ -109,16 +109,18 @@ export default function AdminSidebar() {
           </a>
           <div id="collapseInquiryInfo" className="collapse" aria-labelledby="headingInquiryInfo" data-parent="#accordionSidebar">
             <div className="bg-white py-2 collapse-inner rounded">
-              <Link to="/IssuesOwnerPage">
+              <Link to="/ownerissues">
                 <a className="collapse-item" href="/route"><i className="fa fa-user-circle"></i> Bus Owner</a>
               </Link>
-              <Link to="/PassengerInquiryPage">
+              <Link to="/passengerinquiry">
   <a className="collapse-item" href="/route_1"><i className="fa fa-user-circle"></i> Passenger</a>
 </Link>
 
             </div>
           </div>
         </li>
+
+        
       </ul>
     </div>
   );

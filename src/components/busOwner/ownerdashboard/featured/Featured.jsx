@@ -1,23 +1,17 @@
-<<<<<<< HEAD
-import "./featured.scss";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { CircularProgressbar } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
-=======
 import React, { useEffect, useState } from "react";
+import { getUsername } from '../../../common/Helper/helper';
 import axios from "axios";
 import "./Featured.css";
-
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_DOMAIN;
 const Featured = () => {
+  const [userID, setUserID]=useState('');
   const [totalAmount, setTotalAmount] = useState(0);
 
   const handleRetrieve = () => {
     axios
-      .post("http://localhost:5000/payout", {
+      .post("api/payout", {
         amount: totalAmount,
-        recipientUserId: "USER001",
+        recipientUserId:userID,
       })
       .then((response) => {
         console.log("Payout response:", response.data);
@@ -29,7 +23,7 @@ const Featured = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/currentrevenue")
+      .get("api/busowner/currentRevenue")
       .then((res) => {
         setTotalAmount(res.data.totalAmount);
       })
@@ -37,49 +31,25 @@ const Featured = () => {
         console.log(err);
       });
   }, []);
->>>>>>> a1349782079c7ed00fbb5d22a3450fa5f3cfd1d6
 
-const Featured = () => {
+   useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const { username, user_type } = await getUsername();
+            setUserID(username);
+            
+          } catch (error) {
+            console.log(error);
+          }
+        };
+      
+        fetchData(); 
+      
+      }, []); 
+
   return (
     <div className="featured">
       <div className="top">
-<<<<<<< HEAD
-        <h1 className="title">Total Revenue</h1>
-        <MoreVertIcon fontSize="small" />
-      </div>
-      <div className="bottom">
-        <div className="featuredChart">
-          <CircularProgressbar value={70} text={"70%"} strokeWidth={5} />
-        </div>
-        <p className="title">Total sales made today</p>
-        <p className="amount">$420</p>
-        <p className="desc">
-          Previous transactions processing. Last payments may not be included.
-        </p>
-        <div className="summary">
-          <div className="item">
-            <div className="itemTitle">Target</div>
-            <div className="itemResult negative">
-              <KeyboardArrowDownIcon fontSize="small"/>
-              <div className="resultAmount">$12.4k</div>
-            </div>
-          </div>
-          <div className="item">
-            <div className="itemTitle">Last Week</div>
-            <div className="itemResult positive">
-              <KeyboardArrowUpOutlinedIcon fontSize="small"/>
-              <div className="resultAmount">$12.4k</div>
-            </div>
-          </div>
-          <div className="item">
-            <div className="itemTitle">Last Month</div>
-            <div className="itemResult positive">
-              <KeyboardArrowUpOutlinedIcon fontSize="small"/>
-              <div className="resultAmount">$12.4k</div>
-            </div>
-          </div>
-        </div>
-=======
         {/* <MoreVertIcon fontSize="small" /> */}
       </div>
       <div className="bottom">
@@ -89,12 +59,12 @@ const Featured = () => {
         <button
           type="submit"
           className="btn btn-primary ml-1"
-          style={{ borderRadius: "25px" }}
+          style={{ borderRadius: "25px", height:"50px", width:"110px"}}
           onClick={handleRetrieve}
         >
+          <i class="fa fa-download"></i>
           Retrieve
         </button>
->>>>>>> a1349782079c7ed00fbb5d22a3450fa5f3cfd1d6
       </div>
     </div>
   );

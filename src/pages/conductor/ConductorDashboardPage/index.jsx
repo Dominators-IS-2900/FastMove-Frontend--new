@@ -6,9 +6,9 @@ import "./index.css";
 export default function ConductorDashboardPage() {
   return (
     <>
-      <div className="body" style={{ backgroundColor: '#01281a' }}>
+      <div className="body" >
         <DashBoardConductor />
-        <Footer className="footer" />
+       
      
       </div>
      

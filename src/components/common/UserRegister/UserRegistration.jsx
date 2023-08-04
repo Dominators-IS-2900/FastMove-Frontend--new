@@ -156,7 +156,7 @@ const UserRegistration = ({ userEmail }) => {
 
           {renderInputs()} {/* Render inputs based on selected account type */}
         </div>
-        <button type='submit' className='registerbtn'>
+        <button type='submit' className='registerbtn' style={{height:"50px"}}>
             Register
           </button>
           <div className="text-center py-4">

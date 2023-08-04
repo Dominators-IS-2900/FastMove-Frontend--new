@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-
+import logo from '../../../Images/Logo.png'
 import { CgSpinner } from "react-icons/cg";
 import { Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +20,17 @@ const OTPVerification = () => {
   const [otpSession, setOtpSession] = useState(false);
   const nextUrl=userDataReg.nextUrl;
   const navigate = useNavigate();
+  let username="";
+  let user_type="";
+  const userInfo = {
+    username: userDataReg.userData.fname + " " + userDataReg.userData.lname,
+    email: userDataReg.userData.email,
+    user_type:userDataReg.userData.user_type,
+    
+ 
+    
+  };
+ 
 
   
   
@@ -27,10 +38,14 @@ const OTPVerification = () => {
   async function handleSubmit(e) {
    
     e.preventDefault();
+    console.log(userDataReg);
   
     if(nextUrl==="/reset"){
+      username= userInfo.email;
+      user_type=userInfo.user_type;
+      
       try{
-        let { status } = await verifyOTP({ code: otp });
+          let { status } = await verifyOTP({ code: otp, username,user_type} );
         if (status === 201) {
           alert("Verify Successfully!");
         return navigate('/reset')
@@ -42,6 +57,7 @@ const OTPVerification = () => {
 
     }else
     { var isVerified=false;
+     
       try{
         let { status } = await verifyRegisterOTP({ code: otp });
         if (status === 201) {
@@ -55,12 +71,11 @@ const OTPVerification = () => {
       }
     }
     if(isVerified===true){
-         console.log(userDataReg.userData);
+         
         registerUser(userDataReg.userData)
-        .then((msg) => {
-          
-          console.log(msg);
-          navigate(nextUrl);
+        .then(token => {
+          localStorage.setItem('token', token);          
+          navigate('/welcome');
           alert("Registration Successfully!");  
         })
         .catch((error) => {
@@ -74,71 +89,52 @@ const OTPVerification = () => {
       }
     }
 
+
+    const renderButton = (buttonProps) => {
+      const remainingTime = buttonProps.remainingTime;
+     // console.log(remainingTime)
+      return (
+        <button
+        className={!remainingTime > 0 ? "otp-resend" : "resend-active"}
+        style={{
+          borderRadius: "25px",
+          marginLeft:"-250px",
+          marginRight: "90px",
+          marginTop: "110px",
+          fontSize: "16px",
+          color: "#6e7480",
+          padding:"3px",
+          backgroundColor: "#f1f1f1",
+          height: "40px",
+          width: "150px"
+        }}
+      >
+        Resend OTP
+        </button>
+      );
+    }
+    ;
+    <br/>
+    const renderTime = (remainingTime) => {
+      return <span style={{ marginTop: "45px", marginLeft:"-150px"}}
+      >
+        {remainingTime>0?`${remainingTime} seconds remaining`:"Time is up.Try resending OTP"}</span>;
+    };
   
-    
-  //   try {
-  //     // let { status } = await verifyOTP({ code: otp });
-  //     // if (status === 201) {
-  //     //   alert("Verify Successfully!");
-        
-  //       if(nextUrl==="/reset"){
-  //         let { status } = await verifyOTP({ code: otp });
-  //         if (status === 201) {
-  //           alert("Verify Successfully!");
-  //         return navigate('/reset');
-  //         }
-  //       }else
-  //       {
-  //         let { status } = await verifyRegisterOTP({ code: otp });
-  //         if (status === 201) {
-  //           alert("Verify Successfully!");            
-  //         registerUser(userDataReg.userData);
-  //         console.log(registerUser[0]);
-  //         navigate(nextUrl);
-  //       }
-  //     }
-  //   } catch (error) {
-  //     return alert("Wront OTP! Check email again!");
-  //   }
-   
-
-  // function ResendOTP() {
-    
-  // }
-
-  const renderButton = (buttonProps) => {
-    const remainingTime = buttonProps.remainingTime;
-   // console.log(remainingTime)
-
-    return (
-      <button className={!remainingTime > 0 ? "otp-resend" : "resend-active"}>
-        Resend
-      </button>
-    );
-  }
-  ;
-  const renderTime = (remainingTime) => {
-    return <span>{remainingTime>0?`${remainingTime} seconds remaining`:"hh"}</span>;
-  };
   
-  const userInfo = {
-    username: userDataReg.userData.fname + " " + userDataReg.userData.lname,
-    email: userDataReg.userData.email,
- 
-    
-  };
- 
 
   useEffect(() => {
    
     const genOtp = async () => {
+      
+    console.log(userDataReg)
       if(!otpSession){
         if(nextUrl==="/reset"){
-        const generatedOtp = await generateOTP(userInfo.username, userInfo.email);
+        const generatedOtp = await generateOTP(userInfo.user_type, userInfo.email);
         console.log(generatedOtp, otpSession);
         setOtpSession(true);
         }
-        else if(nextUrl==="/ownerDashboardpage"){
+        else if(nextUrl==="/ownerdashboard"){
           const generatedOtp = await generaterRegisterOTP(userInfo.username, userInfo.email);
           console.log(generatedOtp, otpSession);
           setOtpSession(true); 
@@ -150,19 +146,28 @@ const OTPVerification = () => {
     };
     return () => genOtp();
   }, []);
+
+
+  
+  
+  
   return (
-    <div className="registraion-container">
+    <div className="registraion-container" style={{marginTop:"70px", marginLeft: '510px' , backgroundColor: 'white', borderWidth: '1px',boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)" }}>
       
+      <div className="logo" style={{ marginLeft: "110px", marginTop: "-30px" }}>
+        <img src={logo} alt="FastMove Logo" height="30" />
+      </div>
+
       <div className="registration-heading">
-        <div className="heading-title">OTP Verification</div>
-        <div className="heading-subtitle">
-          We have send OTP Verification code to the
-          <em className="otp-email"> {userDataReg.userData.email}.</em> <br />
-          Please check your email.
+        <div className="heading-title"style={{ fontSize: "30px", color: "#004528" }}>OTP Verification</div>
+        <div className="heading-subtitle" style={{ fontSize: "16px", color: "#6e7480" }}>
+            We have send OTP Verification code to the
+              <em className="otp-email"> {userDataReg.userData.email}.</em> <br />
+            Please check your email.
         </div>
       </div>
 
-      <Form onSubmit={handleSubmit}>
+      <Form  onSubmit={handleSubmit} >
         <div>
           <Form.Group className="submit-registration">
             <OTPInput
@@ -179,8 +184,8 @@ const OTPVerification = () => {
         </div>
 
         <Form.Group className="submit-registration">
-          <Button variant="primary" type="submit" className="verify-otp">
-            {loading && <CgSpinner size={30} className="animate-spin" />}
+          <Button variant="primary" type="submit" className="verify-otp" style={{ borderRadius: "25px", marginLeft: "87px" }}>
+             {loading && <CgSpinner size={30} className="animate-spin" />} 
 
             <span>Verify OTP</span>
           </Button>
@@ -188,16 +193,16 @@ const OTPVerification = () => {
 
         <Form.Group className="otp-resend-btn mt-3  ">
         
-          <ResendOTP renderButton={renderButton} renderTime={renderTime} />
+          <ResendOTP 
+          renderButton={renderButton} renderTime={renderTime} 
+          />
         </Form.Group>
 
 
         
       </Form>
-    </div>
-  );
-  
-
+    </div>
+  );
 
 
 };

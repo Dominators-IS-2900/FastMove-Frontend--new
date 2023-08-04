@@ -65,8 +65,7 @@ const InvestigationCard = () => {
             <thead>
               <tr>
                 <th className="green-column">Inquiry ID</th>
-                <th className="green-column">User ID</th>
-                <th className="green-column">Type Of Issue</th>
+                <th className="green-column">Email</th>
                 <th className="green-column">Complain</th>
                 <th className="green-column">Action</th>
               </tr>
@@ -75,8 +74,7 @@ const InvestigationCard = () => {
               {messages.map((message, index) => (
                 <tr key={message.InquiryID}>
                   <td>{message.InquiryID}</td>
-                  <td>{message.UserID}</td>
-                  <td>{message.type_of_issue}</td>
+                  <td>{message.Email}</td>
                   <td>{message.complain}</td>
                   <td>
                     <button className="small-button" onClick={() => handleReplyClick(index)}>

@@ -1,57 +1,14 @@
-<<<<<<< HEAD
-.screen{
-    background-image: linear-gradient(to right, white , #73BFB8);
-}
-
-.split {
-    height: 100%;
-    width: 50%;
-    position: fixed;
-    z-index: 1;
-    top:0;
-    overflow-x: hidden;
-    padding-top: 20px;
-  }
-  
-  .left {
-    left: o;
-  }
-  
-  .right {
-    right:0;
-   
-  }
-  
-  .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-  
-  .centered img {
-    width: 150%;
-    align-items: center;
-    padding-right: 29px;
-    padding-left: 0%;
-    margin-right: 30px;
-    
-  }
-
-  
- 
-
-  /* #01281a */
-  /* #f6c23e */
-=======
 body {
   background-image: url('../../../../Images/BusBG.jpg');
-  background-size: 1530px auto;
+  background-size: cover;
   background-attachment: fixed;
   /* Additional CSS properties for background image */
 }
 
+.fixed-header{
+  width:110%;
+  padding-right: 50px;
+}
 .toppart{
   margin-left: 800px;
 }
@@ -160,4 +117,3 @@ body {
   margin-top: -50px;
   margin-bottom: 0;
 }
->>>>>>> a1349782079c7ed00fbb5d22a3450fa5f3cfd1d6

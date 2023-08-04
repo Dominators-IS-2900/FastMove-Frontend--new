@@ -9,15 +9,18 @@ const Widget = ({ type }) => {
   let data;
 
   //temporary
-  const amount = 100;
-  const diff = 20;
+  const amount = 50000;
+  const balance = 2500000;
+  const diff = 10;
+  const journey = 6;
 
   switch (type) {
     case "user":
       data = {
         title: "TODAY'S JOURNEYS",
         isMoney: false,
-        link: "See all users",
+        isJourney: true,
+        link: "See all journeys",
         icon: (
           <PersonOutlinedIcon
             className="icon"
@@ -33,7 +36,7 @@ const Widget = ({ type }) => {
       data = {
         title: "TODAY'S TICKETS",
         isMoney: false,
-        link: "View all orders",
+        link: "View all tickets",
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"
@@ -47,7 +50,7 @@ const Widget = ({ type }) => {
       break;
     case "earning":
       data = {
-        title: "EARNINGS",
+        title: "TODAY'S EARNINGS",
         isMoney: true,
         link: "View net earnings",
         icon: (
@@ -58,44 +61,48 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "balance":
-      data = {
-        title: "BALANCE",
-        isMoney: true,
-        link: "See details",
-        icon: (
-          <AccountBalanceWalletOutlinedIcon
-            className="icon"
-            style={{
-              backgroundColor: "rgba(128, 0, 128, 0.2)",
-              color: "purple",
-            }}
-          />
-        ),
-      };
-      break;
-    default:
-      break;
-  }
-
-  return (
-    <div className="widget">
-      <div className="left">
-        <span className="title">{data.title}</span>
-        <span className="counter">
-          {data.isMoney && "$"} {amount}
-        </span>
-        <span className="link">{data.link}</span>
-      </div>
-      <div className="right">
-        <div className="percentage positive">
-          <KeyboardArrowUpIcon />
-          {diff} %
+      case "balance":
+        data = {
+          title: "BALANCE",
+          isMoney: true,
+          isBalance: true,
+          link: "See details",
+          icon: (
+            <AccountBalanceWalletOutlinedIcon
+              className="icon"
+              style={{
+                backgroundColor: "rgba(128, 0, 128, 0.2)",
+                color: "purple",
+              }}
+            />
+          ),
+        };
+        break;
+      default:
+        break;
+    }
+  
+    return (
+      <div className="widget">
+        <div className="left">
+          <span className="title">{data.title}</span>
+          {!data.isBalance && (
+            <span className="counter">
+              {data.isMoney ? (data.isMoney && "Rs") + " " + amount : diff}
+            </span>
+          )}
+          {data.isBalance && <span className="counter">{balance}</span>}
+          <span className="link">{data.link}</span>
         </div>
-        {data.icon}
+        <div className="right">
+          <div className="percentage positive">
+            <KeyboardArrowUpIcon />
+            {!data.isBalance && `${diff} %`}
+          </div>
+          {data.icon}
+        </div>
       </div>
-    </div>
-  );
-};
-
-export default Widget;
+    );
+  };
+  
+  export default Widget;
