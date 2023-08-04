@@ -7,7 +7,7 @@ export async function usernameValidate(values){
 
   let { user_type, email } = values;
 
-  console.log(email);
+  console.log(user_type);
 
   if(values.email){
       // check user exist or not

@@ -1,0 +1,18 @@
+.AdminTopBar{
+    margin-left: 15%;
+}
+
+.Adminsidebar{
+    margin-top: -5.4%;
+    
+}
+
+
+.flex{
+    display: flex;
+}
+.heading {
+    color: #01281a;
+    font-weight: bold;
+  }
+  

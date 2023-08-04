@@ -10,10 +10,10 @@ export default function BusRegisterPage(){
     return(
         <div className="BusRegPage">
 
-              <div className="Topbar"> <BusownerTopBar/></div>
+              {/* <div className="Topbar"> <BusownerTopBar/></div> */}
               <div className="flex">
-              <div className="sidebar"> <BusownersideBar/></div>
-                <div className="Dash"> <BusRegister/></div>            
+              <div className="sidebar" style={{marginTop:"0px"}}> <BusownersideBar/></div>
+                <div className="Dash" style={{marginTop:"80px"}}> <BusRegister/></div>            
                    
                 </div>
                     

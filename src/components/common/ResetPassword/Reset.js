@@ -110,24 +110,18 @@ export default function Reset() {
     onSubmit : async values => {
       console.log(username)
       console.log(user_type);
-      let resetPromise = await resetPassword({ username, password: values.password })
+      let resetPromise = await resetPassword({ username,user_type, password: values.password })
       console.log(resetPromise)
       if (resetPromise === 201) {
         
-        navigate("/");
+        navigate("/login");
         return alert("Your Password has been reseted.");
     
     }else{
       return alert("Password reset failed");
     }
 
-      toast.promise(resetPromise, {
-        loading: 'Updating...',
-        success: <b>Reset Successfully...!</b>,
-        error : <b>Could not Reset!</b>
-      });
-
-      resetPromise.then(function(){ navigate('/') })
+     
 
     }
   })

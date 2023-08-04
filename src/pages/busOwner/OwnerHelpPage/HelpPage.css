@@ -1,12 +1,28 @@
 .Topbar{
-    margin-left: 15%;
+    margin-left: 200px;
+    margin-top: -98px;
 }
 
 .sidebar{
-    margin-top: -5.4%;
+    margin-top: 100px;
 }
 
 
 .flex{
     display: flex;
 }
+
+.Helpcard{
+    margin-top: 90px;
+    margin-left: 130px;
+}
+
+.HelpHead{
+    margin-top: 100px;
+}
+
+.Help{
+    margin-left: -30px;
+    margin-top: -65px;
+}
+

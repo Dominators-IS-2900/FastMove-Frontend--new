@@ -62,7 +62,7 @@ export default function Profile() {
 
       <Toaster position='top-center' reverseOrder={false}></Toaster>
 
-      <div className='flex justify-center items-center h-screen'>
+      <div className='flex justify-center items-center h-screen' style={{ backgroundColor: '#FFFFFF' }}>
         <div className={`${styles.glass} ${extend.glass}`} style={{ width: "45%", paddingTop: '3em'}}>
 
           <div className="title flex flex-col items-center">
@@ -94,7 +94,7 @@ export default function Profile() {
 
                
                   <input {...formik.getFieldProps('address')} className={`${styles.textbox} ${extend.textbox}`} type="text" placeholder='Address' />
-                  <button className={styles.btn} type='submit'>Update</button>
+                  <button className={styles.btn} type='submit' style={{ borderRadius: '30px',width:"110px" , maxWidth:"120px"}}>Update</button>
                
                   
               </div>

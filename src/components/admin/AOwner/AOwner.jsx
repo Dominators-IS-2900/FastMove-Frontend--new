@@ -1,121 +1,125 @@
-import React, { useState } from 'react';
 
-export default function Owner() {
-  const [formData, setFormData] = useState({
-    email: '',
-    name: '',
-    nicScanCopy: '',
-    tp: '',
-    address: '',
-    license: '',
-    accountNo: '',
-  });
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+const Ownervarification = () => {
+  const [owners, setOwners] = useState([]);
+
+  useEffect(() => {
+    fetchOwners();
+  }, []);
+
+  const fetchOwners = () => {
+    axios
+      .get('http://localhost:5000/ownerverification')
+      .then(res => {
+        setOwners(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
-  const handleFileUpload = (e) => {
-    setFormData({
-      ...formData,
-      nicScanCopy: e.target.files[0],
-    });
+  const showMessage = (message, isError = false) => {
+    if (isError) {
+      toast.error(message, {
+        className: 'toast-error',
+      });
+    } else {
+      toast.success(message);
+    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add your form submission logic here
-    console.log(formData);
+  const handleVerify = (Email) => {
+    axios
+      .post(`http://localhost:5000/ownerverify/${Email}`)
+      .then(res => {
+        showMessage('Bus Owner verified successfully');
+        fetchOwners();
+      })
+      .catch(err => {
+        console.log(err);
+        showMessage('Error verifying bus owner', true);
+      });
+  };
+
+  const handleCancel = (Email) => {
+    axios
+      .delete(`http://localhost:5000/deleteverifyowner/${Email}`)
+      .then(res => {
+        showMessage('Bus Owner deleted successfully');
+        fetchOwners();
+      })
+      .catch(err => {
+        console.log(err);
+        showMessage('Error deleting bus owner', true);
+      });
   };
 
   return (
     <div className="card shadow mb-4">
       <div className="card-body">
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              className="form-control"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="nicScanCopy">NIC Scan Copy</label>
-            <input
-              type="file"
-              className="form-control-file"
-              id="nicScanCopy"
-              name="nicScanCopy"
-              onChange={handleFileUpload}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="tp">TP</label>
-            <input
-              type="text"
-              className="form-control"
-              id="tp"
-              name="tp"
-              value={formData.tp}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="address">Address</label>
-            <input
-              type="text"
-              className="form-control"
-              id="address"
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="license">License</label>
-            <input
-              type="file"
-              className="form-control-file"
-              id="licence"
-              name="licence"
-              onChange={handleFileUpload}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="accountNo">Account NO</label>
-            <input
-              type="text"
-              className="form-control"
-              id="accountNo"
-              name="accountNo"
-              value={formData.accountNo}
-              onChange={handleChange}
-            />
-          </div>
-          <button type="Veify" className="btn btn-primary mr-2">
-            Verify
-          </button>
-
-        </form>
+        <div className="table-responsive">
+          <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
+            <thead>
+              <tr>
+                
+                <th className="green-column">Email</th>
+                <th className="green-column">First Name</th>
+                <th className="green-column">Last Name</th>
+                <th className="green-column">Contact No</th>
+                <th className="green-column">Address</th>
+                <th className="green-column">NIC Scan Copy</th>
+                <th className="green-column">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {owners.map((owner) => (
+                <tr key={owner.Email}>
+                  <td>{owner.Email}</td>
+                  <td>{owner.FName}</td>
+                  <td>{owner.LName}</td>
+                  <td>{owner.Contact_No}</td>
+                  <td>{owner.address}</td>
+                  <td className="nic-cell">
+                    <a href={owner.ID_scancopy} target="_blank" rel="noopener noreferrer">
+                      View NIC
+                    </a>
+                  </td>
+                  <td>
+                    <div className="Button">
+                      <button className="btn btn-primary equal-width" onClick={() => handleVerify(owner.Email)}>
+                        Verify
+                      </button>
+                      <br></br><br></br>
+                      <button className="btn btn-danger equal-width delete-button" onClick={() => handleCancel(owner.Email)}>
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
-}
+};
+
+export default Ownervarification;
+
+
